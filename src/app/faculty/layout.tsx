@@ -1,0 +1,30 @@
+import FacultyAside from "@/components/aside/portal-sidebars/FacultyAside";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Faculty",
+    default: "Faculty",
+  },
+};
+
+export default function FacultyLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="min-h-screen flex">
+      <FacultyAside />
+      <section className="flex flex-col gap-5 md:gap-6 flex-1 ml-16 md:ml-41.5 lg:ml-44.5">
+        <Header />
+        <main className="Custom-container grow flex flex-col gap-5 md:gap-6">
+          {children}
+        </main>
+        <Footer />
+      </section>
+    </div>
+  );
+}
