@@ -11,6 +11,9 @@ import { useDashboardStats } from "@/hooks/admin/useDashboard";
 export default function StatCards() {
   const { data, isPending, isError } = useDashboardStats();
 
+  if (isPending) return <StatCardSkeleton />;
+  if (isError) return <ErrorMessage content="Failed to load statistics." />;
+
   // Map API response to card configs
   const cards = [
     {
@@ -56,16 +59,12 @@ export default function StatCards() {
     },
   ];
 
-  if (isError) return <ErrorMessage content="Failed to load statistics." />;
-
   return (
     // Responsive grid: 1 → 2 → 3 columns
     <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {isPending ? (
-        <StatCardSkeleton length={6} />
-      ) : (
-        cards.map((card) => <StatCard key={card.label} {...card} />)
-      )}
+      {cards.map((card) => (
+        <StatCard key={card.label} {...card} />
+      ))}
     </section>
   );
 }

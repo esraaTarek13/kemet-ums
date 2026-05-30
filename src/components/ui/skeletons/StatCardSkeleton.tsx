@@ -1,18 +1,12 @@
 import { Skeleton } from "./Skeleton";
 
-interface StatCardSkeletonProps {
-  length?: number;
-}
-
-export default function StatCardSkeleton({
-  length = 1,
-}: StatCardSkeletonProps) {
+export default function StatCardSkeleton() {
   return (
-    <>
-      {Array.from({ length }).map((_, i) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      {Array.from({ length: 4 }).map((_, i) => (
         <section
           key={i}
-          className="h-25 lg:h-30 w-full rounded-xl border-t-4 border-accent/20 bg-bg-card p-3 md:p-4 lg:p-5 flex flex-col justify-between"
+          className="h-25 lg:h-30 w-full card flex flex-col justify-between"
         >
           <Skeleton className="h-4 w-20" />
           <div className="flex items-center justify-between w-full">
@@ -21,6 +15,6 @@ export default function StatCardSkeleton({
           </div>
         </section>
       ))}
-    </>
+    </div>
   );
 }

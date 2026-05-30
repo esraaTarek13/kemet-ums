@@ -1,12 +1,13 @@
 "use client";
 import { useAuthStore } from "@/stores/authStore";
+import HeaderSkeleton from "../skeletons/HeaderSkeleton";
 
 interface HeroBannerProps {
   subtle: string;
 }
 
 export default function HeroBanner({ subtle }: HeroBannerProps) {
-  const { user } = useAuthStore();
+  const { user, isLoading } = useAuthStore();
 
   const now = new Date();
   const day = now.toLocaleDateString("en-US", { weekday: "long" });
@@ -15,7 +16,10 @@ export default function HeroBanner({ subtle }: HeroBannerProps) {
     day: "numeric",
     year: "numeric",
   });
-
+  if (isLoading) {
+    return <HeaderSkeleton />;
+  }
+  
   return (
     <section
       aria-label="Welcome banner"

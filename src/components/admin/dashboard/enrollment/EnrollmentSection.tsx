@@ -4,7 +4,7 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import { useEnrollmentTrend } from "@/hooks/admin/useDashboard";
-import { EnrollmentSkeleton } from "../../skeletons/EnrollmentSkeleton";
+import { EnrollmentSkeleton } from "@/components/ui/skeletons/EnrollmentSkeleton";
 
 // Lazy load chart — recharts is heavy
 const EnrollmentChart = dynamic(() => import("./EnrollmentChart"), {

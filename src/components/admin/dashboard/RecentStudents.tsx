@@ -18,7 +18,7 @@ export default function RecentStudents() {
   const style = statusStyles;
 
   if (isPending) {
-    return <TableSkeleton rows={5} cols={5} />;
+    return <TableSkeleton />;
   }
 
   if (isError)

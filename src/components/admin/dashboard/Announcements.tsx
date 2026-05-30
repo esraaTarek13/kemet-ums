@@ -1,12 +1,12 @@
 "use client";
 import { useRecentAnnouncements } from "@/hooks/admin/useDashboard";
-import CardSkeleton from "../skeletons/CardSkeleton";
 import ErrorMessage from "@/components/ui/ErrorMessage";
+import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
 
 export default function Announcements() {
   const { data: res, isPending, isError } = useRecentAnnouncements();
 
-  if (isPending) return <CardSkeleton length={3} />;
+  if (isPending) return <CardSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load Announcements." />;
 
   return (

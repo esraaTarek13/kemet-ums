@@ -3,18 +3,18 @@ import { FiTrendingUp, FiBarChart2 } from "react-icons/fi";
 import Link from "next/link";
 import { useAuthStore } from "@/stores/authStore";
 import { ROLE_BASE_ROUTES } from "@/data/roles";
-import CardSkeleton from "../skeletons/CardSkeleton";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import { useReportsSummary } from "@/hooks/admin/useDashboard";
 import ProgressBar from "@/components/ui/ProgressBar";
 import { FaArrowRight } from "react-icons/fa";
+import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
 
 export default function ReportsSummary() {
   const { user } = useAuthStore();
   const base = ROLE_BASE_ROUTES[user?.role ?? ""] ?? "/";
   const { data: res, isPending, isError } = useReportsSummary();
 
-  if (isPending) return <CardSkeleton length={3} />;
+  if (isPending) return <CardSkeleton />;
   if (isError)
     return <ErrorMessage content="Failed to load Reports Summary." />;
   if (!res)

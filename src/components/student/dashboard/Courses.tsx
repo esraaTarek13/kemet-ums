@@ -2,9 +2,9 @@
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import ErrorMessage from "@/components/ui/ErrorMessage";
-import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
 import { useStudentDashboard } from "@/hooks/student/useDashboard";
 import CourseCard from "../shared/CourseCard";
+import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
 
 export default function Courses() {
   const { data, isPending, isError } = useStudentDashboard();
@@ -13,17 +13,16 @@ export default function Courses() {
   if (isPending)
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-        <CourseCardSkeleton length={4} />
+        <CourseCardSkeleton />
       </div>
     );
-
-  if (isError)
-    return <ErrorMessage content="Failed to load courses." />;
+  if (isError) return <ErrorMessage content="Failed to load courses." />;
 
   return (
-    <section className="w-full space-y-5 lg:space-y-6">
+    <section aria-label="My courses" className="w-full space-y-5 lg:space-y-6">
       <div className="flex items-center justify-between gap-2 flex-wrap">
         <h3 className="title">My Courses</h3>
+        {/* shortcut to the full courses page */}
         <Link
           href="/student/courses"
           aria-label="View all my courses"
@@ -38,12 +37,17 @@ export default function Courses() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-        {courses && courses.length > 0 ? (
+        {/* render enrolled courses, or notify if none exist */}
+        {courses?.length ? (
           courses.map((course) => (
             <CourseCard key={course.course_id} {...course} />
           ))
         ) : (
-          <p className="text-text-muted col-span-full text-center py-10">
+          <p
+            role="status"
+            aria-live="polite"
+            className="text-text-muted col-span-full text-center py-10"
+          >
             No courses found.
           </p>
         )}

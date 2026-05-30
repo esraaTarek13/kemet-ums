@@ -7,6 +7,8 @@ import SearchResults from "./SearchResults";
 export default function Search() {
   const [term, setTerm] = useState("");
   const { data: res, isPending, isError } = useSearch(term);
+
+  // skip fetch until term is meaningful
   const showResults = term.trim().length >= 2;
 
   const handleClose = useCallback(() => setTerm(""), []);
@@ -18,7 +20,12 @@ export default function Search() {
       onClose={handleClose}
       results={
         showResults ? (
-          <SearchResults data={res} loading={isPending} isError={isError} onClose={handleClose} />
+          <SearchResults
+            data={res}
+            loading={isPending}
+            isError={isError}
+            onClose={handleClose}
+          />
         ) : null
       }
     />
