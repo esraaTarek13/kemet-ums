@@ -17,7 +17,7 @@ export default function StatCard({
   trend,
 }: StatCardProps) {
   return (
-    <div className="bg-bg-card border-t-4 border-accent rounded-xl space-y-2 p-3 md:p-4 lg:p-5">
+    <div className="card-top-border space-y-2 p-3 md:p-4 lg:p-5">
       {/* Card label */}
       <p className="text-[10px] lg:text-xs text-text-subtle uppercase tracking-wide">
         {label}

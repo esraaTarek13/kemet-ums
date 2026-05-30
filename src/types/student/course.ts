@@ -1,4 +1,3 @@
-
 export type FilterStatus = "all" | "in_progress" | "completed";
 
 export interface StudentCourse {
@@ -35,6 +34,7 @@ export interface StudentCourseDetails {
   faculty: {
     full_name: string;
     email: string;
+    avatar_url: string | null;
     specialization: string;
     office_location: string;
     rank: string;
@@ -53,4 +53,12 @@ export interface StudentCourseDetails {
     present: number;
     rate: number;
   };
+  materials: {
+    id: string;
+    title: string;
+    file_url: string;
+    file_type: "pdf";
+    file_size: string;
+    created_at: string;
+  }[];
 }

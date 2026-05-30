@@ -4,20 +4,16 @@ import { useAuthStore } from "@/stores/authStore";
 import { useState } from "react";
 import { FilterStatus, StudentCourse } from "@/types";
 
-const studentCoursesKeys = {
-  all: ["student-courses"] as const,
-  courses: (id: string, filter: FilterStatus) =>
-    [...studentCoursesKeys.all, id, filter] as const,
-};
-
 export function useStudentCourses() {
   const { user } = useAuthStore();
   const [filter, setFilter] = useState<FilterStatus>("all");
 
   const query = useQuery<StudentCourse[]>({
-    queryKey: studentCoursesKeys.courses(user?.id ?? "", filter),
+    queryKey: ["student-courses", user?.id ?? "", filter],
     queryFn: () =>
-      getStudentCourses(user?.id ?? "", filter === "all" ? undefined : filter),
+      filter === "all"
+        ? getStudentCourses(user?.id ?? "")
+        : getStudentCourses(user?.id ?? "", filter),
     enabled: !!user?.id,
     staleTime: 1000 * 60 * 5,
   });
