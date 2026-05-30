@@ -2,6 +2,18 @@
 
 A full-stack university management platform built with Next.js and Supabase, featuring four portals: Super Admin, Admin, Faculty, and Student.
 
+## Live Demo
+
+[kemet-ums.vercel.app](https://kemet-ums.vercel.app/)
+
+## Demo Credentials
+
+| Portal  | Email                | Password     |
+| ------- | -------------------- | ------------ |
+| Admin   | admin@kemet.edu      | Admin@1234   |
+| Student | sara.ahmed@kemet.edu | Student@1234 |
+| Faculty | dr.layla@kemet.edu   | Faculty@1234 |
+
 ## Tech Stack
 
 - **Frontend:** Next.js 16 (App Router), TypeScript, Tailwind CSS
@@ -13,22 +25,26 @@ A full-stack university management platform built with Next.js and Supabase, fea
 ## Features
 
 ### Super Admin Portal
+
 - Full access to all system data
 - Admin account management
 - System-wide settings and oversight
 
 ### Admin Portal
+
 - Dashboard with enrollment trends and reports
 - Student, faculty, and course management
 - Announcements system
 - Reports and analytics
 
 ### Faculty Portal
+
 - Dashboard with course overview and submissions
 - Grade and attendance management
 - Course materials
 
 ### Student Portal
+
 - Dashboard with courses, assignments, and schedule
 - Weekly calendar view
 - Grades and transcript
@@ -37,6 +53,7 @@ A full-stack university management platform built with Next.js and Supabase, fea
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 18+
 - Supabase account
 
