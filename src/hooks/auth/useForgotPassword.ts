@@ -4,7 +4,10 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
 import { ForgotPasswordSchema, OtpSchema } from "@/validation/auth/schema";
-import { forgotPassword, verifyOtp } from "@/lib/services/auth/password.service";
+import {
+  forgotPassword,
+  verifyOtp,
+} from "@/lib/services/auth/password.service";
 
 export function useForgotPassword() {
   const router = useRouter();
@@ -12,6 +15,7 @@ export function useForgotPassword() {
   return useMutation({
     mutationFn: (data: ForgotPasswordSchema) => forgotPassword(data.email),
     onSuccess: (_, variables) => {
+      // Store email in cookie for use in verify-otp and resend steps
       Cookies.set("reset-email", variables.email);
       toast.success("OTP sent to your email!");
       router.replace("/verify-otp");
@@ -30,7 +34,8 @@ export function useVerifyOtp() {
       verifyOtp(Cookies.get("reset-email") ?? "", data.otp),
     onSuccess: () => {
       Cookies.remove("reset-email");
-      Cookies.set("password-reset-verified", "true"); 
+      // Cookie checked by middleware to allow access to /reset-password
+      Cookies.set("password-reset-verified", "true");
       toast.success("OTP verified successfully!");
       router.replace("/reset-password");
     },
@@ -40,6 +45,7 @@ export function useVerifyOtp() {
   });
 }
 
+// Resends OTP using the email stored during useForgotPassword
 export function useResendOtp() {
   return useMutation({
     mutationFn: () => forgotPassword(Cookies.get("reset-email") ?? ""),

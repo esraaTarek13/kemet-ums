@@ -6,6 +6,7 @@ interface UseClickOutsideOptions {
   enabled?: boolean;
 }
 
+// Calls onClickOutside on mousedown outside ref; optionally closes on scroll
 export default function useClickOutside<T extends HTMLElement>(
   ref: RefObject<T | null>,
   { onClickOutside, onScroll, enabled = true }: UseClickOutsideOptions,
@@ -19,17 +20,13 @@ export default function useClickOutside<T extends HTMLElement>(
       }
     };
 
-    const handleScroll = () => {
-      onScroll?.();
-    };
-
     document.addEventListener("mousedown", handleClickOutside);
     if (onScroll)
-      window.addEventListener("scroll", handleScroll, { passive: true });
+      window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      if (onScroll) window.removeEventListener("scroll", handleScroll);
+      if (onScroll) window.removeEventListener("scroll", onScroll);
     };
   }, [enabled, onClickOutside, onScroll]);
 }

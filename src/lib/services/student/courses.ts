@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabase/client";
 import { StudentCourse, StudentCourseDetails } from "@/types";
 
+// Fetches student courses; pass status to filter by in_progress or completed
 export async function getStudentCourses(
   studentId: string,
   status?: "in_progress" | "completed",
@@ -13,6 +14,7 @@ export async function getStudentCourses(
   return data as StudentCourse[];
 }
 
+// Fetches full details for a single course
 export async function getStudentCourseDetails(
   studentId: string,
   courseId: string,

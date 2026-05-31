@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabase/client";
 import { StudentSearchResults } from "@/types";
 
+// Calls search_student_portal RPC; supports pagination via limit/offset
 export async function searchStudent(
   term: string,
   limit = 10,

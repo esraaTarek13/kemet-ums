@@ -7,8 +7,7 @@ import {
   getReportsSummary,
 } from "@/lib/services/admin/dashboard";
 
-// ─── Query Keys ───────────────────────────────────────────────────────────────
-/** Centralized query keys for cache management & invalidation */
+// Centralized keys for cache invalidation
 export const dashboardKeys = {
   all: ["dashboard"] as const,
   stats: () => [...dashboardKeys.all, "stats"] as const,
@@ -21,49 +20,42 @@ export const dashboardKeys = {
   reportsSummary: () => [...dashboardKeys.all, "reports-summary"] as const,
 };
 
-// ─── Hooks ────────────────────────────────────────────────────────────────────
-
-/** Fetches top-level dashboard stats (students, faculty, courses, etc.) — refreshes every 5 min */
 export function useDashboardStats() {
   return useQuery({
     queryKey: dashboardKeys.stats(),
     queryFn: getDashboardStats,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // 5 min
   });
 }
 
-/** Fetches the most recently enrolled students — refreshes every 2 min */
 export function useRecentStudents(limit = 5) {
   return useQuery({
     queryKey: dashboardKeys.recentStudents(limit),
     queryFn: () => getRecentStudents(limit),
-    staleTime: 1000 * 60 * 2,
+    staleTime: 1000 * 60 * 2, // 2 min
   });
 }
 
-/** Fetches active announcements ordered by latest — refreshes every 10 min */
 export function useRecentAnnouncements(limit = 3) {
   return useQuery({
     queryKey: dashboardKeys.announcements(limit),
     queryFn: () => getRecentAnnouncements(limit),
-    staleTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 10, // 10 min
   });
 }
 
-/** Fetches monthly enrollment trend data for the chart — refreshes every 15 min */
 export function useEnrollmentTrend(page = 0) {
   return useQuery({
     queryKey: dashboardKeys.enrollmentTrend(page),
     queryFn: () => getEnrollmentTrend(page),
-    staleTime: 1000 * 60 * 15,
+    staleTime: 1000 * 60 * 15, // 15 min
   });
 }
 
-/** Fetches academic performance & attendance rates for the reports section — refreshes every 10 min */
 export function useReportsSummary() {
   return useQuery({
     queryKey: dashboardKeys.reportsSummary(),
     queryFn: getReportsSummary,
-    staleTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 10, // 10 min
   });
 }

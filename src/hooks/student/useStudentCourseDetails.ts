@@ -10,6 +10,6 @@ export function useStudentCourseDetails(courseId: string) {
     queryKey: ["student-course-details", user?.id ?? "", courseId],
     queryFn: () => getStudentCourseDetails(user?.id ?? "", courseId),
     enabled: !!user?.id && !!courseId,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // 5 min
   });
 }

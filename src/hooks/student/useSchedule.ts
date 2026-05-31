@@ -1,6 +1,7 @@
 import { useStudentDashboard } from "./useDashboard";
 import { RRule } from "rrule";
 
+// Maps 3-letter day abbreviations to RRule weekday constants
 const RRULE_DAY_MAP: Record<string, typeof RRule.MO> = {
   SUN: RRule.SU,
   MON: RRule.MO,
@@ -11,6 +12,7 @@ const RRULE_DAY_MAP: Record<string, typeof RRule.MO> = {
   SAT: RRule.SA,
 };
 
+// Transforms schedule data into recurring calendar events via RRule
 export function useSchedule() {
   const { data, isPending, isError } = useStudentDashboard();
   const schedule = data?.schedule ?? [];

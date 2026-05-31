@@ -1,6 +1,7 @@
 import { searchStudent } from "@/lib/services/student/search";
 import { useQuery } from "@tanstack/react-query";
 
+// Skips query until term is at least 2 characters
 export function useSearch(term: string) {
   return useQuery({
     queryKey: ["search", term],
@@ -9,7 +10,3 @@ export function useSearch(term: string) {
     staleTime: 1000 * 30,
   });
 }
-
-
-
-

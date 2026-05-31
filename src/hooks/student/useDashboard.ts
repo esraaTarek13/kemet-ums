@@ -9,6 +9,6 @@ export function useStudentDashboard() {
     queryKey: ["student-dashboard", user?.id ?? ""],
     queryFn: () => getStudentDashboard(user?.id ?? ""),
     enabled: !!user?.id,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // 5 min
   });
 }

@@ -1,12 +1,10 @@
 import { supabase } from "@/lib/supabase/client";
 
-/** Sends a password reset OTP to the user's email. */
 export const forgotPassword = async (email: string) => {
   const { error } = await supabase.auth.resetPasswordForEmail(email);
   if (error) throw error;
 };
 
-/** Verifies the OTP sent to the user's email. */
 export const verifyOtp = async (email: string, otp: string) => {
   const { error } = await supabase.auth.verifyOtp({
     email,
@@ -16,7 +14,7 @@ export const verifyOtp = async (email: string, otp: string) => {
   if (error) throw error;
 };
 
-/** Updates the user's password after OTP verification. */
+// Signs out after reset to force re-login with the new password
 export const resetPassword = async (newPassword: string) => {
   const { error } = await supabase.auth.updateUser({
     password: newPassword,

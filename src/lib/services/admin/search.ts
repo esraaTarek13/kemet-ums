@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabase/client";
 import { AdminSearchResults } from "@/types";
 
-// Calls the `search_university` Supabase RPC with pagination support
+// Supports pagination via limit/offset
 export async function searchUniversity(
   term: string,
   limit = 10,

@@ -5,7 +5,11 @@ import { LoginSchema } from "@/validation/auth/schema";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ROLE_BASE_ROUTES } from "@/data/roles";
-import { getProfile, loginUser, logoutUser } from "@/lib/services/auth/auth.service";
+import {
+  getProfile,
+  loginUser,
+  logoutUser,
+} from "@/lib/services/auth/auth.service";
 
 export function useLogin() {
   const { setUser } = useAuthStore();
@@ -18,7 +22,7 @@ export function useLogin() {
 
       const profile = await getProfile(user.id);
 
-      // Reject role mismatch — except super_admin signing in as admin
+      // Allow super_admin to sign in through the admin portal; block all other mismatches
       if (
         profile.role !== data.role &&
         !(data.role === "admin" && profile.role === "super_admin")
@@ -30,7 +34,7 @@ export function useLogin() {
       return profile;
     },
 
-    // Store profile and redirect to role base route
+    // Store profile and redirect to role dashboard
     onSuccess: (profile) => {
       setUser(profile);
       toast.success(`Welcome back, ${profile.full_name}!`);
@@ -39,9 +43,7 @@ export function useLogin() {
     },
 
     onError: (err: Error) => {
-      const message =
-        err instanceof Error ? err.message : "Something went wrong";
-      toast.error(message);
+      toast.error(err instanceof Error ? err.message : "Something went wrong");
     },
   });
 }

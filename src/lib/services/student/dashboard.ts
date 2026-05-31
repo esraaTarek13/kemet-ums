@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabase/client";
 import { StudentDashboard } from "@/types";
 
+// Fetches aggregated dashboard data for a student
 export async function getStudentDashboard(
   studentId: string,
 ): Promise<StudentDashboard> {
