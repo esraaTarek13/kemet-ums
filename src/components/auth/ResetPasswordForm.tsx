@@ -18,12 +18,13 @@ export default function ResetPasswordForm() {
   } = useForm<ResetPasswordSchema>({
     resolver: zodResolver(resetPasswordSchema),
   });
-  const { mutate } = useResetPassword()
+  const { mutate } = useResetPassword();
 
   return (
     <form
       className="px-8"
       noValidate
+      aria-label="Reset password form"
       onSubmit={handleSubmit((data) => mutate(data))}
     >
       <h3 className="auth-title">Reset Password</h3>

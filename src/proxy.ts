@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
-// Maps each role to its home dashboard route
+// Role → dashboard route
 const ROLE_HOME: Record<string, string> = {
   student: "/student/dashboard",
   faculty: "/faculty/dashboard",
@@ -10,7 +10,7 @@ const ROLE_HOME: Record<string, string> = {
   super_admin: "/super-admin/dashboard",
 };
 
-// Role-restricted portal prefixes
+// Protected portal prefixes with their required role
 const PROTECTED_PORTALS = [
   { prefix: "/student", role: "student" },
   { prefix: "/faculty", role: "faculty" },
@@ -18,7 +18,7 @@ const PROTECTED_PORTALS = [
   { prefix: "/super-admin", role: "super_admin" },
 ] as const;
 
-// Routes accessible without authentication
+// No auth needed for these
 const PUBLIC_ROUTES = [
   "/login",
   "/register",
@@ -27,7 +27,7 @@ const PUBLIC_ROUTES = [
   "/reset-password",
 ];
 
-// Routes allowed during password reset flow (user is authenticated but mid-reset)
+// Allowed mid-reset even if authenticated
 const RESET_FLOW_ROUTES = ["/verify-otp", "/reset-password"];
 
 export async function proxy(request: NextRequest) {
@@ -35,7 +35,7 @@ export async function proxy(request: NextRequest) {
 
   let response = NextResponse.next({ request });
 
-  // Init Supabase with cookie sync between request and response
+  // Sync cookies between request and response
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
@@ -55,14 +55,13 @@ export async function proxy(request: NextRequest) {
     },
   );
 
-  // Verify session server-side
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   const isPublicRoute = PUBLIC_ROUTES.some((r) => pathname.startsWith(r));
 
-  // Unauthenticated: allow public routes, redirect others to login
+  // Not logged in → allow public, redirect others to login
   if (!user) {
     if (isPublicRoute) return response;
     const loginUrl = new URL("/login", request.url);
@@ -70,7 +69,7 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // Fetch role from profiles table
+  // Get user role
   const { data: profile } = await supabase
     .from("profiles")
     .select("role")
@@ -79,7 +78,7 @@ export async function proxy(request: NextRequest) {
 
   const userRole: string = profile?.role ?? "";
 
-  // No role assigned — redirect to login
+  // No role → kick to login
   if (!userRole) {
     if (isPublicRoute) return response;
     return NextResponse.redirect(new URL("/login", request.url));
@@ -87,22 +86,21 @@ export async function proxy(request: NextRequest) {
 
   const home = ROLE_HOME[userRole] ?? "/login";
 
-  // Allow password reset flow even when authenticated
   const isResetVerified =
     request.cookies.get("password-reset-verified")?.value === "true";
 
+  // Logged-in users shouldn't be on public routes or "/"
   if (isPublicRoute || pathname === "/") {
     if (
       isResetVerified &&
       RESET_FLOW_ROUTES.some((r) => pathname.startsWith(r))
     ) {
-      return response;
+      return response; // Mid-reset, let them through
     }
-    // Authenticated users are redirected away from public routes
     return NextResponse.redirect(new URL(home, request.url));
   }
 
-  // Block access if role doesn't match the portal being visited
+  // Wrong role for this portal → redirect to their home
   const matchedPortal = PROTECTED_PORTALS.find(({ prefix }) =>
     pathname.startsWith(prefix),
   );
@@ -114,7 +112,7 @@ export async function proxy(request: NextRequest) {
   return response;
 }
 
-// Skip middleware for static assets
+// Skip static files
 export const config = {
   matcher: [
     "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",

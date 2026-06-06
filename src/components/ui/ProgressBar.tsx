@@ -1,6 +1,9 @@
+const clamp = (val: number, min: number, max: number) =>
+  Math.min(Math.max(val, min), max);
+
 export default function ProgressBar({
   value = 0,
-  progressClass ,
+  progressClass,
   textClass,
 }: {
   value?: number;
@@ -13,7 +16,7 @@ export default function ProgressBar({
       <div className="h-2 w-full bg-bg-filter rounded-full">
         <div
           className={`h-2 rounded-full transition-all duration-300 ${progressClass}`}
-          style={{ width: `${Math.min(Math.max(value, 0), 100)}%` }}
+          style={{ width: `${clamp(value, 0, 100)}%` }}
         />
       </div>
     </div>

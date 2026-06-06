@@ -10,7 +10,6 @@ export function useStudentCourses() {
 
   const query = useQuery<StudentCourse[]>({
     queryKey: ["student-courses", user?.id ?? "", filter],
-    // "all" fetches without status filter; otherwise pass the selected status
     queryFn: () =>
       filter === "all"
         ? getStudentCourses(user?.id ?? "")

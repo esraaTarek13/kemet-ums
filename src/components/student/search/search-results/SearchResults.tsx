@@ -6,11 +6,12 @@ import type {
 } from "@/types";
 import { FiBook, FiUsers, FiAlertCircle } from "react-icons/fi";
 import { useRouter } from "next/navigation";
+import SearchSection from "./SearchSection";
+import ResultItem from "./ResultItem";
 
-// base path for all student routes
 const STUDENT_BASE = "/student";
 
-interface Props {
+interface SearchResultsProps {
   data: StudentSearchResults | undefined;
   loading: boolean;
   isError: boolean;
@@ -22,7 +23,7 @@ export default function SearchResults({
   loading,
   isError,
   onClose,
-}: Props) {
+}: SearchResultsProps) {
   const router = useRouter();
 
   if (loading)
@@ -61,7 +62,7 @@ export default function SearchResults({
       </div>
     );
 
-  // navigate to result and dismiss search
+  // navigate and dismiss search
   const handleNavigate = (path: string) => {
     router.push(path);
     onClose();
@@ -74,7 +75,7 @@ export default function SearchResults({
       className="flex flex-col gap-3 py-2 max-h-80 overflow-y-auto"
     >
       {hasCourses && (
-        <Section title="Courses" icon={<FiBook aria-hidden="true" />}>
+        <SearchSection title="Courses" icon={<FiBook aria-hidden="true" />}>
           {data?.courses?.map((course: StudentSearchCourse) => (
             <ResultItem
               key={course.id}
@@ -85,11 +86,11 @@ export default function SearchResults({
               }
             />
           ))}
-        </Section>
+        </SearchSection>
       )}
 
       {hasFaculty && (
-        <Section title="Faculty" icon={<FiUsers aria-hidden="true" />}>
+        <SearchSection title="Faculty" icon={<FiUsers aria-hidden="true" />}>
           {data?.faculty?.map((f: StudentSearchFaculty) => (
             <ResultItem
               key={f.id}
@@ -98,60 +99,8 @@ export default function SearchResults({
               onClick={() => handleNavigate(`${STUDENT_BASE}/faculty/${f.id}`)}
             />
           ))}
-        </Section>
+        </SearchSection>
       )}
     </div>
-  );
-}
-
-// groups results under a labeled section header
-function Section({
-  title,
-  icon,
-  children,
-}: {
-  title: string;
-  icon: React.ReactNode;
-  children: React.ReactNode;
-}) {
-  return (
-    <div role="group" aria-label={title}>
-      <div
-        aria-hidden="true"
-        className="flex items-center gap-2 px-4 py-1.5 text-xs font-semibold text-text-subtle uppercase tracking-wider"
-      >
-        {icon}
-        {title}
-      </div>
-      {children}
-    </div>
-  );
-}
-
-// single result row — navigates on click
-function ResultItem({
-  title,
-  subtitle,
-  onClick,
-}: {
-  title: string;
-  subtitle: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      role="listitem"
-      aria-label={`${title} — ${subtitle}`}
-      onClick={onClick}
-      className="w-full flex flex-col px-4 py-2 hover:bg-accent/10 cursor-pointer transition-colors text-left"
-    >
-      <span className="text-xs md:text-sm text-text-primary font-medium">
-        {title}
-      </span>
-      <span aria-hidden="true" className="text-xs text-text-subtle">
-        {subtitle}
-      </span>
-    </button>
   );
 }

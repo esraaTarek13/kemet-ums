@@ -35,7 +35,7 @@ export default function SearchInput({
 
   return (
     <div className="relative" ref={containerRef}>
-      {/* Desktop search input */}
+      {/* Desktop */}
       <div className="hidden md:flex items-center gap-2 bg-bg-search-input rounded-lg px-4 py-2 border border-transparent focus-within:border-accent focus-within:ring-1 focus-within:ring-accent/50 focus-within:shadow-[0_0_10px_#4a1b26]">
         <label htmlFor={searchId} className="sr-only">
           Search
@@ -52,6 +52,7 @@ export default function SearchInput({
           aria-label="Search..."
           aria-controls={results ? resultsId : undefined}
           aria-expanded={isOpen && !!results}
+          aria-autocomplete="list"
           role="combobox"
           autoComplete="off"
           onChange={(e) => {
@@ -62,7 +63,7 @@ export default function SearchInput({
         />
       </div>
 
-      {/* Mobile toggle button */}
+      {/* Mobile toggle */}
       <button
         type="button"
         aria-label="Open search"
@@ -73,7 +74,7 @@ export default function SearchInput({
         <FiSearch aria-hidden="true" />
       </button>
 
-      {/* Mobile search input */}
+      {/* Mobile input */}
       {isOpen && (
         <div className="md:hidden absolute top-10 left-0 w-60 flex items-center gap-2 bg-bg-search-input rounded-lg px-4 py-2 border border-accent ring-1 ring-accent/50 shadow-[0_0_10px_#4a1b26] z-50">
           <FiSearch
@@ -87,6 +88,7 @@ export default function SearchInput({
             aria-label="Search"
             aria-controls={results ? resultsId : undefined}
             aria-expanded={!!results}
+            aria-autocomplete="list"
             role="combobox"
             autoComplete="off"
             autoFocus
@@ -96,7 +98,7 @@ export default function SearchInput({
         </div>
       )}
 
-      {/* Dropdown results */}
+      {/* Dropdown */}
       {isOpen && results && (
         <div
           id={resultsId}

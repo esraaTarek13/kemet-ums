@@ -14,7 +14,7 @@ export const verifyOtp = async (email: string, otp: string) => {
   if (error) throw error;
 };
 
-// Signs out after reset to force re-login with the new password
+// Sign out after reset to force re-login
 export const resetPassword = async (newPassword: string) => {
   const { error } = await supabase.auth.updateUser({
     password: newPassword,

@@ -6,7 +6,7 @@ interface UseClickOutsideOptions {
   enabled?: boolean;
 }
 
-// Calls onClickOutside on mousedown outside ref; optionally closes on scroll
+// Triggers onClickOutside on mousedown outside ref; optionally closes on scroll
 export default function useClickOutside<T extends HTMLElement>(
   ref: RefObject<T | null>,
   { onClickOutside, onScroll, enabled = true }: UseClickOutsideOptions,

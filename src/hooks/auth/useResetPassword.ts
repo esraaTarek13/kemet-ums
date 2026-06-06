@@ -6,7 +6,6 @@ import Cookies from "js-cookie";
 import { ResetPasswordSchema } from "@/validation/auth/schema";
 import { resetPassword } from "@/lib/services/auth/password.service";
 
-// Handles password reset after OTP verification
 export function useResetPassword() {
   const router = useRouter();
 

@@ -12,7 +12,7 @@ export default function Aside({ portalName, navLinks }: AsideProps) {
       aria-label={`${portalName} sidebar`}
       className="h-screen fixed flex flex-col bg-primary py-8 px-3 md:px-4 z-50"
     >
-      {/* Responsive logo: icon on mobile, full logo on md+ */}
+      {/* mobile: icon only, desktop: full logo */}
       <Image
         src="/images/mark-logo.png"
         alt="Kemet University Logo"
@@ -26,14 +26,12 @@ export default function Aside({ portalName, navLinks }: AsideProps) {
         alt="Kemet University Logo"
         width={120}
         height={40}
-        className="h-auto w-auto hidden md:block "
+        className="h-auto w-auto hidden md:block"
         priority
       />
-      {/* Portal name — md+ only */}
       <p className="hidden md:block font-light md:text-[10px] lg:text-xs text-text-peach uppercase tracking-wider pt-2">
         {portalName}
       </p>
-      {/* Main nav */}
       <nav aria-label="Main navigation" className="flex flex-col mt-6 md:mt-10">
         <ul className="space-y-1">
           {navLinks.map((link) => (
@@ -41,7 +39,7 @@ export default function Aside({ portalName, navLinks }: AsideProps) {
           ))}
         </ul>
       </nav>
-      {/* Logout — pinned bottom, disabled while pending */}
+      {/* pinned bottom, disabled while pending */}
       <button
         onClick={() => mutate()}
         disabled={isPending}

@@ -11,10 +11,10 @@
   /* ─── Backgrounds ────────────────────────────────────── */
   --color-bg: #fef9ee;
   --color-bg-navbar: #f9f3e9;
-  --color-bg-card: #ffffff;
-  --color-bg-input: #f9f3e9;
+  --color-bg-card: #ffffff;    
+  --color-bg-input: #f9f3e9; 
   --color-bg-search-input: #ede8dd;
-  --color-bg-filter: #f3ede3;
+  --color-bg-filter: #f3ede3;     
   --color-bg-bar: #e7e2d8;
   --color-bg-subtle: #f5eced;
 

@@ -1,5 +1,6 @@
 import { PiWarningFill, PiClipboardText } from "react-icons/pi";
 import { DueSoonItem } from "@/types";
+import { format } from "date-fns";
 
 export const statusConfig: Record<
   DueSoonItem["status"],
@@ -37,8 +38,5 @@ export const statusConfig: Record<
 };
 
 export const formatDate = (dateStr: string) => {
-  return new Date(dateStr).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-  });
+  return format(new Date(dateStr), "MMM d");
 };

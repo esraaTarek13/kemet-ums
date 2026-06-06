@@ -12,7 +12,6 @@ interface HeaderProps {
 }
 
 export default function Header({ search }: HeaderProps) {
-  // Resolve role-based home route; fallback to "/"
   const { user } = useAuthStore();
   const base = useMemo(
     () => ROLE_BASE_ROUTES[user?.role ?? ""] ?? "/",

@@ -2,13 +2,12 @@
 import { useState, useCallback } from "react";
 import { useSearch } from "@/hooks/student/useSearch";
 import SearchInput from "@/components/ui/SearchInput";
-import SearchResults from "./SearchResults";
+import SearchResults from "./search-results/SearchResults";
 
 export default function Search() {
   const [term, setTerm] = useState("");
   const { data: res, isPending, isError } = useSearch(term);
 
-  // skip fetch until term is meaningful
   const showResults = term.trim().length >= 2;
 
   const handleClose = useCallback(() => setTerm(""), []);

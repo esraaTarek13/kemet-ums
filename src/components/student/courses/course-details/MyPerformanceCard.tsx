@@ -9,7 +9,6 @@ import { TbUserCheck } from "react-icons/tb";
 export default function MyPerformanceCard({ courseId }: { courseId: string }) {
   const { data, isPending, isError } = useStudentCourseDetails(courseId);
 
-  // single destructure instead of 4 separate lines
   const { grade, course, assignments, attendance } = data ?? {};
   const completion = course?.completion;
 
@@ -23,8 +22,8 @@ export default function MyPerformanceCard({ courseId }: { courseId: string }) {
       className="card-top-border space-y-5 md:space-y-6"
     >
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="header-title">My Performance</h3>
-        {/* current grade badge */}
+        <h3 className="title">My Performance</h3>
+        {/* grade badge */}
         <div
           aria-label={`Current grade: ${grade?.grade ?? "not available"}`}
           className="bg-bg-subtle border border-primary/10 rounded-sm py-2 px-2 md:px-4 w-fit h-fit"
@@ -38,7 +37,7 @@ export default function MyPerformanceCard({ courseId }: { courseId: string }) {
         </div>
       </div>
 
-      {/* completion progress — label passed so screen readers get context */}
+      {/* aria-label gives screen readers context */}
       <div className="relative">
         <p
           aria-hidden="true"
@@ -54,7 +53,6 @@ export default function MyPerformanceCard({ courseId }: { courseId: string }) {
         />
       </div>
 
-      {/* assignments and attendance stats */}
       <div className="flex flex-wrap gap-2 md:gap-4 w-full">
         <div
           aria-label={`Assignments: ${assignments?.completed} of ${assignments?.total} completed`}

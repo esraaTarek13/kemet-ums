@@ -10,7 +10,7 @@ export default function WeeklyScheduleCard({ courseId }: { courseId: string }) {
   const { data, isError, isPending } = useStudentCourseDetails(courseId);
   const course = data?.course;
 
-  // map each day to its session — null if course doesn't meet that day
+  // null if course doesn't meet that day
   const weeklySchedule = useMemo(
     () =>
       DAYS.map((day) => ({
@@ -33,11 +33,10 @@ export default function WeeklyScheduleCard({ courseId }: { courseId: string }) {
       aria-label="Weekly schedule"
       className="card-top-border space-y-5 md:space-y-6"
     >
-      <h3 className="header-title">Weekly Schedule</h3>
+      <h3 className="title">Weekly Schedule</h3>
 
       <ul className="space-y-3">
         {weeklySchedule.map(({ day, session }) => (
-          // each li describes the full day state for screen readers
           <li
             key={day}
             aria-label={
@@ -47,7 +46,6 @@ export default function WeeklyScheduleCard({ courseId }: { courseId: string }) {
             }
             className="flex items-center gap-4"
           >
-            {/* day label — decorative, covered by li aria-label */}
             <p
               aria-hidden="true"
               className={`w-10 font-extrabold uppercase text-[11px] ${
@@ -57,7 +55,6 @@ export default function WeeklyScheduleCard({ courseId }: { courseId: string }) {
               {day}
             </p>
 
-            {/* session block — shows time + room, or empty state */}
             {session ? (
               <div
                 aria-hidden="true"

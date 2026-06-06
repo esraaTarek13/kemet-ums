@@ -1,7 +1,6 @@
 import { supabase } from "@/lib/supabase/client";
 import { AdminSearchResults } from "@/types";
 
-// Supports pagination via limit/offset
 export async function searchUniversity(
   term: string,
   limit = 10,

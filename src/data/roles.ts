@@ -1,4 +1,5 @@
-// Base route for each user role — append paths as needed (e.g. /profile, /dashboard)
+
+// Append paths as needed (e.g. /dashboard, /profile)
 export const ROLE_BASE_ROUTES: Record<string, string> = {
   student: "/student",
   faculty: "/faculty",

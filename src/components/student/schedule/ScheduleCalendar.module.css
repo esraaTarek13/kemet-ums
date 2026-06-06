@@ -1,0 +1,123 @@
+/* ─── Calendar Container ─────────────────────────────────── */
+.calendar :global([data-testid="ilamy-calendar"]) {
+  gap: 20px;
+}
+
+/* ─── Calendar Header ────────────────────────────────────── */
+.calendar :global([data-testid="calendar-header"] > div:first-child) {
+  justify-content: space-between;
+  padding: 0 12px;
+  padding-top: 12px;
+}
+
+/* ─── + Button ────────────────────────────────────── */
+.calendar
+  :global(
+    [data-testid="calendar-header"]
+      > div:last-child
+      > div:last-child
+      [data-slot="button"]
+  ) {
+  display: none;
+}
+
+/* ─── Hamburger Menu Button ──────────────────────────────── */
+.calendar
+  :global(
+    [data-testid="calendar-header"] > div:last-child > div:last-child button
+  ) {
+  background-color: var(--color-bg-filter);
+  border: 1px solid var(--color-bg-bar);
+  color: var(--color-primary);
+  font-size: 30px;
+}
+
+/* ─── Menu Dropdown Container ────────────────────────────── */
+:global([data-radix-popper-content-wrapper] [data-state="open"]) {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-bg-bar);
+}
+
+/* ─── Menu Buttons ───────────────────────────────────────── */
+:global([data-radix-popper-content-wrapper] [data-state="open"] button) {
+  border: 1px solid #4a1b261a;
+  color: var(--color-accent);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+/* ─── Menu Button Hover & Active State ───────────────────── */
+:global([data-radix-popper-content-wrapper] [data-state="open"] button:hover),
+:global(
+  [data-radix-popper-content-wrapper]
+    [data-state="open"]
+    button[data-slot="button"].bg-primary\/80
+) {
+  background-color: var(--color-bg-subtle);
+}
+
+/* ─── Menu Footer Divider ────────────────────────────────── */
+:global(
+  [data-radix-popper-content-wrapper] [data-state="open"] div > div:last-child
+) {
+  border-top: 1px solid var(--color-bg-bar);
+}
+
+:global([data-radix-popper-content-wrapper] button:nth-of-type(6)) {
+  display: none;
+}
+
+/* ─── Left Buttons ────────────────────────────────── */
+.calendar
+  :global(
+    [data-testid="calendar-header"] > div:first-child > div:first-child button
+  ) {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  padding: 6px;
+}
+
+/* ─── Calendar Icon ────────────────────────────────── */
+.calendar
+  :global(
+    [data-testid="calendar-header"] > div:first-child > div:first-child svg
+  ) {
+  color: var(--color-primary);
+}
+
+/* ─── Day Style ────────────────────────────────── */
+.calendar :global([data-testid="day-view-header"] span:last-child) {
+  color: var(--color-text-white);
+  font-weight: 400;
+  padding: 4px 16px;
+  margin: 6px 10px;
+}
+
+.calendar :global([data-testid="day-view-header"] > div:first-child) {
+  color: var(--color-primary);
+  margin: 6px;
+}
+
+/* ─── Month Style ────────────────────────────────── */
+.calendar
+  :global([data-testid^="horizontal-row-week-"] div [class="flex w-full"]) {
+  background-color: var(--color-bg-card);
+}
+
+.calendar
+  :global([data-testid="grid-cell-content"] [data-testid^="day-number-"]) {
+  color: var(--color-text-muted);
+}
+
+.calendar
+  :global(
+    [data-testid="grid-cell-content"] [data-testid^="day-number-"].bg-primary
+  ) {
+  color: var(--color-text-white);
+}
+
+/* ─── Year Style ────────────────────────────────── */
+.calendar :global([data-testid="calendar-month-button"]:nth-of-type(2)) {
+  display: none;
+}

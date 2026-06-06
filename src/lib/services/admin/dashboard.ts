@@ -36,7 +36,7 @@ export async function getRecentAnnouncements(
   return data as Announcement[];
 }
 
-// Returns paginated monthly enrollment groups for chart display
+// Paginated monthly enrollment data for charts
 export async function getEnrollmentTrend(
   page = 0,
   windowSize = 6,

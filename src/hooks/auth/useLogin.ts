@@ -34,7 +34,6 @@ export function useLogin() {
       return profile;
     },
 
-    // Store profile and redirect to role dashboard
     onSuccess: (profile) => {
       setUser(profile);
       toast.success(`Welcome back, ${profile.full_name}!`);

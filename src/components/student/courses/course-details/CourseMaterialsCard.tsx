@@ -23,7 +23,7 @@ export default function CourseMaterialsCard({
       aria-label="Course materials"
       className="card-top-border space-y-5 md:space-y-6"
     >
-      <h3 className="header-title">Course Materials</h3>
+      <h3 className="title">Course Materials</h3>
 
       {/* empty state */}
       {!materials?.length ? (
@@ -38,7 +38,6 @@ export default function CourseMaterialsCard({
               className="flex items-center justify-between bg-bg-navbar rounded-sm p-2.5 md:p-4"
             >
               <div className="flex items-center gap-4">
-                {/* pdf icon — decorative */}
                 <div
                   aria-hidden="true"
                   className="bg-bg-subtle border border-primary/10 rounded-sm p-1.5 md:p-3.5"

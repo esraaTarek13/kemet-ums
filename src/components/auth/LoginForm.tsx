@@ -79,7 +79,6 @@ export default function LoginForm() {
           <label className="flex items-center gap-2 text-xs md:text-sm text-text-secondary font-medium cursor-pointer">
             <input
               type="checkbox"
-              aria-label="Remember me"
               className="outline-accent accent-accent"
             />
             Remember me

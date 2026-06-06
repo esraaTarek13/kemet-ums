@@ -7,7 +7,7 @@ import {
   getReportsSummary,
 } from "@/lib/services/admin/dashboard";
 
-// Centralized keys for cache invalidation
+// Keys for cache invalidation
 export const dashboardKeys = {
   all: ["dashboard"] as const,
   stats: () => [...dashboardKeys.all, "stats"] as const,

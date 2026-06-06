@@ -1,4 +1,4 @@
-[data-testid="ilamy-calendar"] {
+.calendar :global([data-testid="ilamy-calendar"]) {
   overflow: hidden;
   border-radius: 12px;
   border: 1px solid var(--color-bg-bar);
@@ -6,13 +6,13 @@
 }
 
 /* ─── Inner Scroll Container ─────────────────────────────── */
-[data-testid="ilamy-calendar"] > div.inline-block {
+.calendar :global([data-testid="ilamy-calendar"] > div.inline-block) {
   min-width: 100%;
   width: 0;
   overflow: auto !important;
 }
 
-[data-testid="calendar-body"] {
+.calendar :global([data-testid="calendar-body"]) {
   width: 800px;
   min-width: 100%;
   height: 500px;
@@ -20,18 +20,18 @@
 }
 
 /* ─── Hide All Day Row ───────────────────────────────────── */
-[data-testid="all-day-row"] {
+.calendar :global([data-testid="all-day-row"]) {
   display: none !important;
 }
 
 /* ─── Hide Week Number ───────────────────────────────────── */
-[data-testid="week-view-header"] > div:first-child {
+.calendar :global([data-testid="week-view-header"] > div:first-child) {
   visibility: hidden !important;
   width: 100px;
 }
 
 /* ─── Week Header: All Days ──────────────────────────────── */
-[data-testid^="week-header-weekday"] {
+.calendar :global([data-testid^="week-header-weekday"]) {
   border-bottom: 4px solid var(--color-bg-filter);
   height: 100%;
   padding: 12px 0;
@@ -42,54 +42,52 @@
 }
 
 /* ─── Week Header: Active Day (Today) ────────────────────── */
-[data-testid^="week-header-weekday"][class*="bg-primary/10"] {
+.calendar :global([data-testid^="week-header-weekday"][class*="bg-primary/10"]) {
   background-color: #c4a8821a !important;
   border-bottom: 4px solid #c4a882;
 }
 
 /* ─── Day Number Styles ──────────────────────────────────── */
-[data-testid^="week-header-weekday"] .rounded-full {
+.calendar :global([data-testid^="week-header-weekday"] .rounded-full) {
   color: var(--color-text-primary);
   font-size: 18px;
   font-weight: 600;
 }
 
-/* ─── Active Day: Number Styles ───────────────── */
-[data-testid^="week-header-weekday"] .bg-primary {
+/* ─── Active Day: Number Styles ──────────────────────────── */
+.calendar :global([data-testid^="week-header-weekday"] .bg-primary) {
   background-color: transparent !important;
   color: var(--color-primary) !important;
 }
 
 /* ─── Time Label (12 AM, 1 AM, ...) ─────────────────────── */
-[data-testid^="vertical-time"] .text-muted-foreground {
+.calendar :global([data-testid^="vertical-time"] .text-muted-foreground) {
   color: #53434599 !important;
   font-size: 11px !important;
   font-weight: 600;
 }
 
 /* ─── Grid Lines (Horizontal & Vertical) ────────────────── */
-[data-testid="vertical-grid-header"],
-[data-testid^="vertical-time"],
-[data-testid^="vertical-cell"] {
+.calendar :global([data-testid="vertical-grid-header"]),
+.calendar :global([data-testid^="vertical-time"]),
+.calendar :global([data-testid^="vertical-cell"]) {
   border-color: var(--color-bg-bar) !important;
 }
 
-[data-testid="vertical-col-time-col"] {
+/* ─── Time Column ────────────────────────────────────────── */
+.calendar :global([data-testid="vertical-col-time-col"]) {
   flex-shrink: 1;
   flex-grow: 0;
 }
 
-[data-testid="vertical-col-time-col"],
-[data-testid="vertical-col-time-col"] > div {
+.calendar :global([data-testid="vertical-col-time-col"]),
+.calendar :global([data-testid="vertical-col-time-col"] > div) {
   width: 100px !important;
 }
 
-[data-testid^="vertical-time"],
-[data-testid^="vertical-cell"] {
+/* ─── Time & Cell Height ─────────────────────────────────── */
+.calendar :global([data-testid^="vertical-time"]),
+.calendar :global([data-testid^="vertical-cell"]) {
   min-height: 80px !important;
   background-color: var(--color-bg-card);
 }
-
-
-
-

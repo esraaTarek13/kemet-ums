@@ -8,7 +8,6 @@ export default function NavLink({ href, label, icon: Icon }: NavLinkItem) {
 
   return (
     <li className="relative group">
-      {/* active link gets highlighted border, inactive gets hover styles */}
       <Link
         href={href}
         aria-current={isActive ? "page" : undefined}
@@ -23,11 +22,11 @@ export default function NavLink({ href, label, icon: Icon }: NavLinkItem) {
           aria-hidden="true"
           className={`text-xl shrink-0 ${isActive ? "text-text-peach" : "text-text-white/70"}`}
         />
-        {/* label hidden on mobile, shown on desktop */}
+        {/* hidden on mobile */}
         <span className="hidden md:block text-xs lg:text-sm">{label}</span>
       </Link>
 
-      {/* tooltip shown on hover when sidebar is collapsed on mobile */}
+      {/* tooltip when sidebar is collapsed */}
       <span
         role="tooltip"
         className="md:hidden absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 rounded-md text-xs text-text-white bg-gray-800 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50"
