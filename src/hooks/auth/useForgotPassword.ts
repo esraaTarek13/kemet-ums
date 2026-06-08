@@ -7,7 +7,7 @@ import { ForgotPasswordSchema, OtpSchema } from "@/validation/auth/schema";
 import {
   forgotPassword,
   verifyOtp,
-} from "@/lib/services/auth/password.service";
+} from "@/lib/services/auth/password";
 
 export function useForgotPassword() {
   const router = useRouter();

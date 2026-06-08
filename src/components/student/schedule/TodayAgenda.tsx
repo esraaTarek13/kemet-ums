@@ -27,7 +27,7 @@ export default function TodayAgenda() {
     return <ErrorMessage content="Failed to load today's schedule." />;
 
   return (
-    <section className="lg:pl-6 relative">
+    <section className="lg:pl-6 relative w-full lg:min-w-70 lg:w-fit">
       {/* Decorative stripe — lg screens only */}
       <div
         className="bg-bg-navbar border-l border-bg-bar absolute -top-6 -bottom-6 left-0 -right-3.75 hidden lg:block -z-10"
@@ -43,7 +43,7 @@ export default function TodayAgenda() {
 
       <ul
         aria-label="Today's schedule"
-        className="space-y-4 mt-5 w-full lg:w-fit"
+        className="space-y-4 mt-5 w-full"
       >
         {todayEvents.length === 0 ? (
           <li className="text-text-muted text-center py-10">

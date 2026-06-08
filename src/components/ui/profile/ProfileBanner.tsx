@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
-import { LuPencil } from "react-icons/lu";
+import ProfileAvatarMenu from "./ProfileAvatarMenu";
 
 interface ProfileBannerProps {
   name: string;
@@ -22,7 +22,7 @@ export default function ProfileBanner({
       {/* Decorative bg logo — hidden on mobile to avoid clutter */}
       <div
         aria-hidden="true"
-        className="hidden sm:block absolute right-2 -bottom-12 sm:-bottom-2 md:-bottom-3 lg:-bottom-2 h-[80%] w-30 lg:w-40 bg-[url('/images/mark-logo.png')] bg-no-repeat bg-center bg-contain mix-blend-luminosity brightness-90"
+        className="hidden sm:block absolute right-2 sm:-bottom-4 lg:-bottom-2 h-[80%] w-30 lg:w-40 bg-[url('/images/mark-logo.png')] bg-no-repeat bg-center bg-contain mix-blend-luminosity brightness-90"
       />
 
       <div className="relative z-10 flex flex-col sm:flex-row items-center gap-6 md:gap-8">
@@ -31,27 +31,20 @@ export default function ProfileBanner({
             <Image
               src={avatarUrl}
               alt={`${name}'s profile picture`}
-              width={68}
-              height={68}
+              width={100}
+              height={100}
               priority
-              className="rounded-full object-cover w-16 h-16"
+              className="rounded-full object-cover w-25 h-25"
             />
           ) : (
             <FaUserCircle
               aria-hidden="true"
-              className="text-[#F5F3F0] text-8xl shrink-0"
+              aria-label={`${name}'s profile picture`}
+              className="text-bg-bar text-8xl shrink-0"
             />
           )}
 
-          <button
-            aria-label="Edit profile picture"
-            className="absolute -right-2 bottom-0 z-50 bg-primary border-4 border-bg-card p-2 rounded-full"
-          >
-            <LuPencil
-              aria-hidden="true"
-              className="shrink-0 text-text-white text-xl"
-            />
-          </button>
+          <ProfileAvatarMenu hasAvatar={!!avatarUrl} />
         </div>
 
         <div className="text-center sm:text-start">

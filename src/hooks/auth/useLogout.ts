@@ -1,5 +1,5 @@
 "use client";
-import { logoutUser } from "@/lib/services/auth/auth.service";
+import { logoutUser } from "@/lib/services/auth/auth";
 import { useAuthStore } from "@/stores/authStore";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";

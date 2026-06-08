@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useAuthStore } from "@/stores/authStore";
 import { supabase } from "@/lib/supabase/client";
-import { getProfile } from "@/lib/services/auth/auth.service";
+import { getProfile } from "@/lib/services/auth/auth";
 
 // Restores user session on app load and syncs profile to global store
 export default function AuthProvider({

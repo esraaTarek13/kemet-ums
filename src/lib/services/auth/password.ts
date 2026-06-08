@@ -14,11 +14,16 @@ export const verifyOtp = async (email: string, otp: string) => {
   if (error) throw error;
 };
 
-// Sign out after reset to force re-login
+// Updates password_changed_at in profiles
 export const resetPassword = async (newPassword: string) => {
-  const { error } = await supabase.auth.updateUser({
-    password: newPassword,
-  });
+  const { error } = await supabase.auth.updateUser({ password: newPassword });
   if (error) throw error;
+  const userId = (await supabase.auth.getUser()).data.user?.id ?? "";
+  await supabase
+    .from("profiles")
+    .update({ password_changed_at: new Date().toISOString() })
+    .eq("id", userId);
   await supabase.auth.signOut();
 };
+
+

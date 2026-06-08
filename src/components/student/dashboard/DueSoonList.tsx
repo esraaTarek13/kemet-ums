@@ -12,7 +12,7 @@ export default function DueSoonList() {
   if (isError) return <ErrorMessage content="Failed to load due soon tasks." />;
 
   return (
-    <section aria-label="Due soon tasks" className="space-y-5 lg:space-y-6">
+    <section aria-label="Due soon tasks" className="space-y-5 lg:space-y-6 lg:min-w-70 lg:w-fit">
       <h3 className="title">Due Soon!</h3>
 
       {/* no upcoming tasks */}

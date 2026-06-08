@@ -4,8 +4,8 @@ import Link from "next/link";
 import { FaRegBell, FaUserCircle } from "react-icons/fa";
 import { ROLE_BASE_ROUTES } from "@/data/roles";
 import Image from "next/image";
-import { ProfileSkeleton } from "../ui/skeletons/ProfileSkeleton";
 import { useMemo } from "react";
+import { UserInfoSkeleton } from "../ui/skeletons/UserInfoSkeleton";
 
 interface HeaderProps {
   search?: React.ReactNode;
@@ -41,7 +41,7 @@ export default function Header({ search }: HeaderProps) {
 
           {/* Profile: skeleton while loading, avatar/fallback icon when ready */}
           {!user ? (
-            <ProfileSkeleton />
+            <UserInfoSkeleton />
           ) : (
             <Link
               href={`${base}/profile`}

@@ -9,7 +9,7 @@ import {
   getProfile,
   loginUser,
   logoutUser,
-} from "@/lib/services/auth/auth.service";
+} from "@/lib/services/auth/auth";
 
 export function useLogin() {
   const { setUser } = useAuthStore();

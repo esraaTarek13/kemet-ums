@@ -10,7 +10,7 @@ export interface User {
   email: string;
   full_name: string;
   role: Role;
-  avatar_url?: string;
+  avatar_url?: string | null;
   phone?: string;
   nationality?: string;
   address?: string;
