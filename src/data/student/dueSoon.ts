@@ -1,4 +1,5 @@
 import { PiWarningFill, PiClipboardText } from "react-icons/pi";
+import { RiFileCheckLine } from "react-icons/ri";
 import { DueSoonItem } from "@/types";
 import { format } from "date-fns";
 
@@ -12,19 +13,19 @@ export const statusConfig: Record<
   }
 > = {
   not_submitted: {
-    icon: PiWarningFill,
+    icon: PiClipboardText,
     label: "Not Submitted",
-    textClass: "text-danger",
-    bgClass: "bg-danger-bg",
+    textClass: "text-text-secondary",
+    bgClass: "bg-bg-subtle",
   },
   pending: {
     icon: PiClipboardText,
     label: "Pending",
-    textClass: "text-warning",
-    bgClass: "bg-warning-bg",
+    textClass: "text-pending",
+    bgClass: "bg-pending-bg/20",
   },
   graded: {
-    icon: PiClipboardText,
+    icon: RiFileCheckLine ,
     label: "Graded",
     textClass: "text-success",
     bgClass: "bg-success-bg",

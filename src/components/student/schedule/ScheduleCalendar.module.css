@@ -30,6 +30,7 @@
   border: 1px solid var(--color-bg-bar);
   color: var(--color-primary);
   font-size: 30px;
+  cursor: pointer;
 }
 
 /* ─── Menu Dropdown Container ────────────────────────────── */
@@ -76,6 +77,7 @@
   font-weight: 600;
   color: var(--color-text-primary);
   padding: 6px;
+  cursor: pointer;
 }
 
 /* ─── Calendar Icon ────────────────────────────────── */

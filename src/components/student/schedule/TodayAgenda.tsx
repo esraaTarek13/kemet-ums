@@ -22,7 +22,12 @@ export default function TodayAgenda() {
     [],
   );
 
-  if (isPending) return <CardSkeleton />;
+  if (isPending)
+    return (
+      <div className="lg:w-90">
+        <CardSkeleton />
+      </div>
+    );
   if (isError)
     return <ErrorMessage content="Failed to load today's schedule." />;
 
@@ -41,10 +46,7 @@ export default function TodayAgenda() {
         </p>
       </div>
 
-      <ul
-        aria-label="Today's schedule"
-        className="space-y-4 mt-5 w-full"
-      >
+      <ul aria-label="Today's schedule" className="space-y-4 mt-5 w-full">
         {todayEvents.length === 0 ? (
           <li className="text-text-muted text-center py-10">
             No events scheduled for today.

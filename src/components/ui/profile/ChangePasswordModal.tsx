@@ -92,20 +92,12 @@ export default function ChangePasswordModal({
               {...register("confirmPassword")}
             />
 
-            <div className="flex gap-2 md:gap-4 justify-end flex-wrap pt-6 border-t border-border mt-6">
-              <Dialog.Close asChild>
-                <button
-                  type="button"
-                  className="border border-border rounded-md text-accent text-sm md:text-base py-2 px-5 md:px-8 cursor-pointer"
-                >
-                  Cancel
-                </button>
-              </Dialog.Close>
+            <div className="pt-6 border-t border-border mt-6 text-end">
               <button
                 type="submit"
                 disabled={isPending}
                 aria-disabled={isPending}
-                className="bg-accent rounded-md font-semibold text-text-white text-sm md:text-base py-2 px-5 md:px-8 cursor-pointer disabled:opacity-50"
+                className="btn-dark bg-accent border border-accent rounded-md font-semibold text-text-white text-sm md:text-base py-2 px-5 md:px-8 cursor-pointer disabled:opacity-50"
               >
                 {isPending ? "Saving..." : "Save Changes"}
               </button>

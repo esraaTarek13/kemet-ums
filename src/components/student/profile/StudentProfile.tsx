@@ -9,7 +9,7 @@ import { format } from "date-fns";
 
 export default function StudentProfile() {
   const { data, isError, isPending } = useStudentProfile();
-  const { profile, student } = data ?? {};
+  const { profile, student } = data ?? {};  
 
   if (isPending) return <ProfileSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load profile." />;

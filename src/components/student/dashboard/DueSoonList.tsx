@@ -3,17 +3,41 @@ import ErrorMessage from "@/components/ui/ErrorMessage";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
 import { statusConfig, formatDate } from "@/data/student/dueSoon";
 import { useStudentDashboard } from "@/hooks/student/useDashboard";
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function DueSoonList() {
   const { data, isPending, isError } = useStudentDashboard();
   const tasks = data?.due_soon;
 
-  if (isPending) return <CardSkeleton />;
+  if (isPending)
+    return (
+      <div className="lg:w-90">
+        <CardSkeleton />
+      </div>
+    );
   if (isError) return <ErrorMessage content="Failed to load due soon tasks." />;
 
   return (
-    <section aria-label="Due soon tasks" className="space-y-5 lg:space-y-6 lg:min-w-70 lg:w-fit">
-      <h3 className="title">Due Soon!</h3>
+    <section
+      aria-label="Due soon tasks"
+      className="space-y-5 lg:space-y-6 lg:min-w-70 lg:w-fit"
+    >
+      <div className="flex items-center justify-between gap-2 flex-wrap">
+        <h3 className="title">Due Soon!</h3>
+        {/* shortcut to the full assignments page */}
+        <Link
+          href="/student/assignments"
+          aria-label="View all my assignments"
+          className="group flex gap-2 items-center text-text-secondary transition duration-200 px-2"
+        >
+          <span className="text-xs md:text-sm">View All</span>
+          <FaArrowRight
+            aria-hidden="true"
+            className="text-sm shrink-0 transition-transform duration-200 group-hover:translate-x-1"
+          />
+        </Link>
+      </div>
 
       {/* no upcoming tasks */}
       {!tasks?.length ? (

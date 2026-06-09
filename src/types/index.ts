@@ -6,5 +6,6 @@ export * from './student/dashboard'
 export * from "./student/search";
 export * from "./student/course";
 export * from "./student/schedule";
+export * from "./student/assignment";
 export * from './faculty/dashboard'
 export * from "./faculty/search";
