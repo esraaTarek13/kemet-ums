@@ -47,3 +47,9 @@ export interface SubmissionDetailsModalProps {
   fileSize: string | null;
   fileType: string | null;
 }
+
+export interface SubmitModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  assignmentId: string;
+}

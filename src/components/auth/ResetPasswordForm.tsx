@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   resetPasswordSchema,
   type ResetPasswordSchema,
-} from "@/validation/auth/schema";
+} from "@/validation/auth.schema";
 import { useResetPassword } from "@/hooks/auth/useResetPassword";
 
 /** Reset password form — validates and submits new password with confirmation. */

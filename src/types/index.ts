@@ -1,5 +1,6 @@
 export * from './auth'
 export * from './aside'
+export * from './fileSubmission'
 export * from './admin/dashboard'
 export * from './admin/search'
 export * from './student/dashboard'

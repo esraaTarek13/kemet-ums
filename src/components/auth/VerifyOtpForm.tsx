@@ -6,7 +6,7 @@ import { FaArrowRotateRight } from "react-icons/fa6";
 import { OTPInput } from "input-otp";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { otpSchema, type OtpSchema } from "@/validation/auth/schema";
+import { otpSchema, type OtpSchema } from "@/validation/auth.schema";
 import { useResendOtp, useVerifyOtp } from "@/hooks/auth/useForgotPassword";
 
 export default function VerifyOtpForm() {

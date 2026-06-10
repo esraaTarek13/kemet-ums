@@ -1,7 +1,7 @@
 "use client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { ChangePasswordSchema } from "@/validation/profile";
+import { ChangePasswordSchema } from "@/validation/profile.schema";
 import { useAuthStore } from "@/stores/authStore";
 import { changePassword } from "@/lib/services/shared/profile";
 

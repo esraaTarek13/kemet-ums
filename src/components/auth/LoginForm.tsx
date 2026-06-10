@@ -7,7 +7,7 @@ import Input from "../ui/Input";
 import { useState } from "react";
 import Link from "next/link";
 import { ROLE_BUTTONS } from "@/data/auth";
-import { loginSchema, LoginSchema } from "@/validation/auth/schema";
+import { loginSchema, LoginSchema } from "@/validation/auth.schema";
 import { useLogin } from "@/hooks/auth/useLogin";
 
 /** Login form with role switcher, email/password fields */

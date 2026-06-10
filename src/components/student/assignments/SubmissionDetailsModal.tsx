@@ -39,7 +39,7 @@ export default function SubmissionDetailsModal({
 
         <Dialog.Content
           aria-describedby={undefined}
-          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 card-top-border w-full max-w-lg"
+          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 card-top-border w-[90%] max-w-lg"
         >
           {/* Header */}
           <div className="flex items-center justify-between pb-5 border-b border-border">

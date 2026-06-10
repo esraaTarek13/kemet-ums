@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   forgotPasswordSchema,
   type ForgotPasswordSchema,
-} from "@/validation/auth/schema";
+} from "@/validation/auth.schema";
 import { useForgotPassword } from "@/hooks/auth/useForgotPassword";
 import AuthBtn from "../ui/AuthBtn";
 

@@ -103,6 +103,7 @@ export default function AssignmentItem({ assignment }: AssignmentItemProps) {
       <SubmitModal
         isOpen={isSubmitOpen}
         onClose={() => setIsSubmitOpen(false)}
+        assignmentId={assignment.assignment_id}
       />
       <SubmissionDetailsModal
         isOpen={isDetailsOpen}
