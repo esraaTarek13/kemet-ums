@@ -10,6 +10,7 @@ export default function FileSubmission({
 }: FileSubmissionProps) {
   const watchedFiles = watch("file");
   const selectedFile = watchedFiles?.[0];
+  const hasError = !!errors.file;
 
   return (
     <>
@@ -19,11 +20,15 @@ export default function FileSubmission({
           htmlFor="file"
           className="flex flex-col justify-center items-center gap-4 py-6 md:py-8 lg:py-10 border border-dashed border-[#C4A8824D] cursor-pointer"
         >
+          {/* sr-only keeps input focusable/keyboard-accessible, unlike display:none */}
           <input
             type="file"
             id="file"
             accept=".pdf,.doc,.docx"
-            className="hidden"
+            disabled={isPending}
+            aria-invalid={hasError}
+            aria-describedby={hasError ? "file-error" : undefined}
+            className="sr-only"
             {...register("file")}
           />
           <span className="bg-accent/10 py-3 px-3.5 rounded-xl">
@@ -50,9 +55,9 @@ export default function FileSubmission({
             )}
           </div>
         </label>
-        {errors.file && (
-          <p role="alert" className="text-red-500 text-xs">
-            {errors.file.message as string}
+        {hasError && (
+          <p id="file-error" role="alert" className="text-red-500 text-xs">
+            {errors.file?.message as string}
           </p>
         )}
       </div>

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 export default function NavLink({ href, label, icon: Icon }: NavLinkItem) {
   const pathname = usePathname();
-  const isActive = pathname === href;
+  const isActive = pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <li className="relative group">
@@ -22,11 +22,9 @@ export default function NavLink({ href, label, icon: Icon }: NavLinkItem) {
           aria-hidden="true"
           className={`text-xl shrink-0 ${isActive ? "text-text-peach" : "text-text-white/70"}`}
         />
-        {/* hidden on mobile */}
         <span className="hidden md:block text-xs lg:text-sm">{label}</span>
       </Link>
 
-      {/* tooltip when sidebar is collapsed */}
       <span
         role="tooltip"
         className="md:hidden absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 rounded-md text-xs text-text-white bg-gray-800 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50"

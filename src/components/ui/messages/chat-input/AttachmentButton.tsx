@@ -17,11 +17,13 @@ export default function AttachmentButton({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? []);
     if (files.length) onFileSelect(files);
+    // Reset so selecting the same file again still triggers onChange
     e.target.value = "";
   };
 
   return (
     <>
+      {/* Programmatic input — triggered via ref, not part of tab order */}
       <input
         ref={fileInputRef}
         type="file"
@@ -36,7 +38,10 @@ export default function AttachmentButton({
         aria-label="Attach file"
         className="cursor-pointer disabled:opacity-50"
       >
-        <FiPlusCircle className="text-text-secondary text-2xl md:text-3xl shrink-0" />
+        <FiPlusCircle
+          aria-hidden="true"
+          className="text-text-secondary text-2xl md:text-3xl shrink-0"
+        />
       </button>
     </>
   );

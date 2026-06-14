@@ -7,10 +7,14 @@ interface FilePreviewItemProps {
   onRemove: () => void;
 }
 
-export default function FilePreviewItem({ file, onRemove }: FilePreviewItemProps) {
+export default function FilePreviewItem({
+  file,
+  onRemove,
+}: FilePreviewItemProps) {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const isImage = file.type.startsWith("image/");
 
+  // Generate a local preview URL for images, and clean it up on unmount/change
   useEffect(() => {
     if (!isImage) return;
     const url = URL.createObjectURL(file);
@@ -21,15 +25,20 @@ export default function FilePreviewItem({ file, onRemove }: FilePreviewItemProps
   return (
     <div className="flex items-center gap-2 bg-bg-input rounded-xl p-2 w-fit max-w-50 mb-1">
       {previewUrl ? (
+        // unoptimized: blob URLs can't be processed by Next's image optimizer
         <Image
           src={previewUrl}
           alt={file.name}
           width={48}
           height={48}
+          unoptimized
           className="rounded-lg object-cover w-12 h-12 shrink-0"
         />
       ) : (
-        <FiFile className="text-2xl text-text-secondary shrink-0" />
+        <FiFile
+          aria-hidden="true"
+          className="text-2xl text-text-secondary shrink-0"
+        />
       )}
       <span className="text-xs text-text-primary truncate flex-1">
         {file.name}
@@ -40,7 +49,7 @@ export default function FilePreviewItem({ file, onRemove }: FilePreviewItemProps
         aria-label={`Remove ${file.name}`}
         className="cursor-pointer text-text-secondary hover:text-red-500 shrink-0"
       >
-        <FiX className="text-lg" />
+        <FiX aria-hidden="true" className="text-lg" />
       </button>
     </div>
   );

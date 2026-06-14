@@ -20,9 +20,9 @@ export default function AttachmentList({ attachments }: AttachmentListProps) {
                 <Image
                   src={att.file_url}
                   alt={att.file_name ?? "Attached image"}
-                  width={300}
-                  height={300}
-                  className="rounded-lg object-cover max-w-full w-auto h-auto"
+                  width={100}
+                  height={100}
+                  className="rounded-lg object-cover max-w-full w-auto h-auto md:w-72"
                 />
               </a>
             ) : (
@@ -31,16 +31,18 @@ export default function AttachmentList({ attachments }: AttachmentListProps) {
                 onClick={() =>
                   downloadFile(att.file_url, att.file_name ?? "file")
                 }
-                className="flex items-center justify-between gap-2 bg-bg-input/70 rounded-lg p-2.5 hover:bg-bg-input/50 transition-colors text-text-primary min-w-45 w-full cursor-pointer"
+                className="flex items-center justify-between gap-2 bg-bg-input/70 rounded-lg p-2.5 hover:bg-bg-input/50 transition-colors text-text-primary md:w-full cursor-pointer"
               >
-                <div className="flex items-center gap-2">
-                <FiFile className="text-2xl shrink-0" />
-                <span className="text-sm font-medium truncate flex-1">
-                  {att.file_name ?? "Attachment"}
-                </span>
-
+                <div className="flex items-center gap-2 w-15 md:w-50">
+                  <FiFile
+                    aria-hidden="true"
+                    className="text-xl md:text-2xl shrink-0"
+                  />
+                  <span className="text-xs md:text-sm font-medium truncate flex-1">
+                    {att.file_name ?? "Attachment"}
+                  </span>
                 </div>
-                <FiDownload className="text-lg shrink-0" />
+                <FiDownload aria-hidden="true" className="text-lg shrink-0" />
               </button>
             )}
           </div>

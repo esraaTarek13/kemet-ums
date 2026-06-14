@@ -31,9 +31,7 @@ export default function MessageMenu({
       <DropdownMenu.Root open={menuOpen} onOpenChange={setMenuOpen}>
         <DropdownMenu.Trigger asChild>
           <button className="opacity-0 group-hover:opacity-100 transition-opacity duration-150 cursor-pointer shrink-0 outline-none">
-            <IoIosArrowDown
-              className="text-text-white/80"
-            />
+            <IoIosArrowDown className="text-text-white/80" />
           </button>
         </DropdownMenu.Trigger>
 
@@ -50,11 +48,7 @@ export default function MessageMenu({
 
             {content && (
               <DropdownMenu.Item
-                onSelect={(e) => {
-                  e.preventDefault();
-                  setMenuOpen(false);
-                  setEditOpen(true);
-                }}
+                onSelect={() => setEditOpen(true)}
                 className="flex gap-2 items-center px-3 py-2 rounded-md cursor-pointer outline-none hover:bg-accent/10 data-highlighted:bg-accent/10"
               >
                 <MdOutlineModeEditOutline />
@@ -65,11 +59,7 @@ export default function MessageMenu({
             <DropdownMenu.Separator className="h-px bg-border my-1" />
 
             <DropdownMenu.Item
-              onSelect={(e) => {
-                e.preventDefault();
-                setMenuOpen(false);
-                setDeleteOpen(true);
-              }}
+              onSelect={() => setDeleteOpen(true)}
               className="flex gap-2 items-center px-3 py-2 rounded-md cursor-pointer outline-none text-danger hover:bg-danger-bg/10 data-highlighted:bg-red-500/10"
             >
               <RiDeleteBin6Line />
@@ -79,7 +69,8 @@ export default function MessageMenu({
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
 
-      {content && (
+      {/* Mount only when needed to avoid unnecessary renders */}
+      {editOpen && content && (
         <EditMessage
           messageId={messageId}
           content={content}
@@ -88,11 +79,13 @@ export default function MessageMenu({
         />
       )}
 
-      <DeleteMessage
-        messageId={messageId}
-        open={deleteOpen}
-        onOpenChange={setDeleteOpen}
-      />
+      {deleteOpen && (
+        <DeleteMessage
+          messageId={messageId}
+          open={deleteOpen}
+          onOpenChange={setDeleteOpen}
+        />
+      )}
     </>
   );
 }

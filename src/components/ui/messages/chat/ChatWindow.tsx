@@ -32,14 +32,14 @@ export default function ChatWindow({
         <ChatHeader courseInfo={courseInfo} />
 
         <div
-          className="px-6 py-3 mt-16 h-[65vh] overflow-y-auto space-y-4 md:space-y-6"
+          className="px-6 pt-6 mt-14 h-[70vh] md:h-[68vh] lg:h-[65vh] overflow-y-auto"
           role="log"
           aria-live="polite"
         >
           {messages.length === 0 ? (
             <p className="text-center text-text-subtle">No messages yet</p>
           ) : (
-            <div className="pb-18">
+            <div className="pb-18 space-y-6">
               {messages.map((msg) => (
                 <MessageBubble key={msg.id} message={msg} />
               ))}

@@ -12,8 +12,14 @@ export default function ProfilePassword({
 }: ProfilePasswordProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const lastChanged = lastPasswordChangedAt
-    ? `Last changed ${formatDistanceToNow(new Date(lastPasswordChangedAt), { addSuffix: true })}`
+  // Guard against invalid/missing date values from the server
+  const parsedDate = lastPasswordChangedAt
+    ? new Date(lastPasswordChangedAt)
+    : null;
+  const isValidDate = parsedDate && !isNaN(parsedDate.getTime());
+
+  const lastChanged = isValidDate
+    ? `Last changed ${formatDistanceToNow(parsedDate, { addSuffix: true })}`
     : "Password has never been changed";
 
   return (

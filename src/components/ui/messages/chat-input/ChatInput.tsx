@@ -17,10 +17,12 @@ export default function ChatInput() {
     removeFile,
     addFiles,
     addEmoji,
+    onEnterKeyDown,
   } = useChatInput();
 
   return (
-    <div className="h-fit card rounded-none absolute -bottom-6 left-0 -right-3.75">
+    <div className="h-fit card rounded-none fixed lg:absolute bottom-15.25 lg:-bottom-6 left-18 md:left-41.5 lg:-left-3.75 right-0 lg:-right-3.75">
+      {/* Preview of files attached before sending */}
       <FilePreviewList files={selectedFiles} onRemove={removeFile} />
 
       <form
@@ -35,7 +37,6 @@ export default function ChatInput() {
           </label>
           <TextareaAutosize
             id="message"
-            autoFocus
             autoComplete="off"
             placeholder={
               selectedFiles.length ? "Add a caption..." : "Type your message..."
@@ -43,6 +44,8 @@ export default function ChatInput() {
             disabled={isPending}
             minRows={1}
             maxRows={4}
+            // Enter sends, Shift+Enter inserts a newline
+            onKeyDown={onEnterKeyDown}
             {...register("content")}
             className="text-sm md:text-base text-text-primary w-full bg-transparent outline-none resize-none cursor-auto"
           />
@@ -50,12 +53,19 @@ export default function ChatInput() {
           <EmojiPickerButton onEmojiSelect={addEmoji} />
         </div>
 
+        {/* Icon-only button needs aria-label for screen readers */}
         <button
           type="submit"
-          disabled={isPending || (!content?.trim() && selectedFiles.length === 0)}
-          className="flex justify-center items-center bg-accent rounded-xl p-3 cursor-pointer disabled:opacity-80"
+          aria-label="Send message"
+          disabled={
+            isPending || (!content?.trim() && selectedFiles.length === 0)
+          }
+          className="flex justify-center items-center bg-accent rounded-xl p-3 cursor-pointer disabled:opacity-80 disabled:cursor-not-allowed"
         >
-          <IoSend className="text-text-white text-xl md:text-2xl shrink-0" />
+          <IoSend
+            aria-hidden="true"
+            className="text-text-white text-xl md:text-2xl shrink-0"
+          />
         </button>
       </form>
     </div>

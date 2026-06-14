@@ -37,11 +37,13 @@ export default function ProfileBanner({
               className="rounded-full object-cover w-25 h-25"
             />
           ) : (
-            <FaUserCircle
-              aria-hidden="true"
-              aria-label={`${name}'s profile picture`}
-              className="text-bg-bar text-8xl shrink-0"
-            />
+            // role="img" + aria-label exposes this as an accessible image fallback
+            <span role="img" aria-label={`${name}'s profile picture`}>
+              <FaUserCircle
+                aria-hidden="true"
+                className="text-bg-bar text-8xl shrink-0"
+              />
+            </span>
           )}
 
           <ProfileAvatarMenu hasAvatar={!!avatarUrl} />

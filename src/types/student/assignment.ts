@@ -30,7 +30,7 @@ export interface Material {
   id: string;
   title: string;
   file_url: string;
-  file_type: "pdf" | "doc" | "docx";
+  file_type: "pdf" | "doc" | "docx" | "ppt" | "pptx";
   file_size: string;
   created_at: string;
 }

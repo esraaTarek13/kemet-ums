@@ -7,7 +7,7 @@ import HeroBanner from "@/components/ui/dashboard/HeroBanner";
 
 export default function Dashboard() {
   return (
-    <>
+    <div className="Custom-container flex flex-col gap-5 md:gap-6">
       <HeroBanner subtle="Here is your academic overview." />
       <StatCards />
       <Attendance />
@@ -18,6 +18,6 @@ export default function Dashboard() {
         </div>
         <DueSoonList />
       </div>
-    </>
+    </div>
   );
 }

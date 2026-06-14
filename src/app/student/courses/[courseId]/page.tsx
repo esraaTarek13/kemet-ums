@@ -12,7 +12,7 @@ export default async function CourseDetailsPage({
   const { courseId } = await params;
 
   return (
-    <>
+    <div className="Custom-container flex flex-col gap-5 md:gap-6">
       <CourseHeader courseId={courseId} />
       <section className="flex flex-col lg:flex-row gap-5 md:gap-6">
         <div className="space-y-5 md:space-y-6 grow">
@@ -24,6 +24,6 @@ export default async function CourseDetailsPage({
           <WeeklyScheduleCard courseId={courseId} />
         </div>
       </section>
-    </>
+    </div>
   );
 }

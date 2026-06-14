@@ -76,6 +76,7 @@
 ::selection {
   background-color: #e6c3c9;
   color: var(--color-text-primary);
+   
 }
 
 ::-webkit-scrollbar {
@@ -89,7 +90,7 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-accent);
-  border-radius: 999px;
+  border-radius: var(--radius-full);
 }
 
 /* Fills element from bottom to top then resets — used on logo mark */

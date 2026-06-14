@@ -5,8 +5,8 @@ export function ChatSkeleton() {
     <section className="flex flex-col h-full w-full">
       {/* Header skeleton */}
       <div className="p-4 border-b border-bg-bar space-y-4">
-        <Skeleton className="h-6 w-32" />
-        <Skeleton className="h-4 w-50" />
+        <Skeleton className="h-6 w-full md:w-32" />
+        <Skeleton className="h-4 w-full md:w-50" />
       </div>
 
       {/* Messages skeleton */}
@@ -21,13 +21,13 @@ export function ChatSkeleton() {
               <div
                 className={`flex gap-3 max-w-[80%] ${isMine ? "flex-row-reverse" : ""}`}
               >
-                <Skeleton className="w-9 h-9 rounded-full shrink-0" />
+                <Skeleton className="w-7 md:w-9 h-7 md:h-9 rounded-full shrink-0" />
                 <div
                   className={`${isMine ? "items-end" : "items-start"} flex flex-col gap-1.5 min-w-0`}
                 >
                   <Skeleton className="h-3 w-16" />
                   <Skeleton
-                    className={`h-12 ${i % 3 === 0 ? "w-48" : "w-64"} rounded-2xl ${
+                    className={`h-12 ${i % 3 === 0 ? "w-full md:w-48" : "w-full md:w-64"} rounded-2xl ${
                       isMine ? "rounded-tr-none" : "rounded-tl-none"
                     }`}
                   />
@@ -45,3 +45,5 @@ export function ChatSkeleton() {
     </section>
   );
 }
+
+

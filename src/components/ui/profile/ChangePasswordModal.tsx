@@ -5,7 +5,7 @@ import Input from "@/components/ui/Input";
 import { useChangePassword } from "@/hooks/shared/useChangePassword";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCallback } from "react";
+import { useEffect } from "react";
 import {
   changePasswordSchema,
   ChangePasswordSchema,
@@ -30,20 +30,19 @@ export default function ChangePasswordModal({
     resolver: zodResolver(changePasswordSchema),
   });
 
-  const onSubmit = useCallback(
-    (data: ChangePasswordSchema) => {
-      mutate(data, {
-        onSuccess: () => {
-          reset();
-          onClose();
-        },
-      });
-    },
-    [mutate, reset, onClose],
-  );
+  // Clear form fields whenever the modal closes (X, Escape, outside click, or success)
+  useEffect(() => {
+    if (!isOpen) reset();
+  }, [isOpen, reset]);
+
+  const onSubmit = (data: ChangePasswordSchema) => {
+    mutate(data, {
+      onSuccess: onClose,
+    });
+  };
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={onClose}>
+    <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 h-full bg-black/50 z-50" />
 
@@ -96,7 +95,6 @@ export default function ChangePasswordModal({
               <button
                 type="submit"
                 disabled={isPending}
-                aria-disabled={isPending}
                 className="btn-dark bg-accent border border-accent rounded-md font-semibold text-text-white text-sm md:text-base py-2 px-5 md:px-8 cursor-pointer disabled:opacity-50"
               >
                 {isPending ? "Saving..." : "Save Changes"}

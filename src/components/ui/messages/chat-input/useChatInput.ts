@@ -28,14 +28,17 @@ export function useChatInput() {
   const content = watch("content");
   const isPending = isSendingMessage || isSendingFile;
 
+  // Remove a file from the pending attachments list
   const removeFile = (index: number) => {
     setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
+  // Append newly selected files to the pending list
   const addFiles = (files: File[]) => {
     setSelectedFiles((prev) => [...prev, ...files]);
   };
 
+  // Insert emoji at the end of the current message text
   const addEmoji = (emoji: string) => {
     setValue("content", (content ?? "") + emoji);
   };
@@ -43,6 +46,7 @@ export function useChatInput() {
   const onSubmit = (values: ChatFormValues) => {
     const trimmed = values.content.trim();
 
+    // Files take priority: send with optional caption
     if (selectedFiles.length > 0) {
       sendFiles(
         { files: selectedFiles, content: trimmed || undefined },
@@ -56,9 +60,18 @@ export function useChatInput() {
       return;
     }
 
+    // No files and empty text — nothing to send
     if (!trimmed) return;
 
     sendMessage(trimmed, { onSuccess: () => reset() });
+  };
+
+  // Enter sends the message, Shift+Enter inserts a newline
+  const onEnterKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(onSubmit)();
+    }
   };
 
   return {
@@ -70,5 +83,6 @@ export function useChatInput() {
     removeFile,
     addFiles,
     addEmoji,
+    onEnterKeyDown,
   };
 }
