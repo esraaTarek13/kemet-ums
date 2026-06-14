@@ -54,7 +54,7 @@ export default function Assignments() {
               aria-label={`${stat.title}: ${stat.value} assignments`}
               className={`${stat.border} bg-bg-card border-b-3 rounded-lg py-2.5 lg:py-4 px-4 lg:px-6`}
             >
-              <h5 className="text-sm text-text-subtle uppercase pb-1">
+              <h5 className="text-xs text-text-subtle uppercase pb-1">
                 {stat.title}
               </h5>
               <span className={`${stat.color} font-bold text-2xl`}>

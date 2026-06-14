@@ -50,17 +50,18 @@ export default function ConversationSidebar({
   return (
     <aside
       aria-label="Conversations"
-      className="w-full lg:max-w-72.5 relative pr-4 "
+      className="w-full lg:max-w-72.5 relative"
     >
       <div
         className="hidden lg:block bg-bg-navbar border-r border-bg-bar absolute -top-6 -bottom-6 right-0 -left-50 -z-10"
         aria-hidden="true"
       />
-      <div className="flex flex-col gap-4 md:gap-6 w-full h-[78vh] overflow-y-hidden">
+
+      <div className="flex flex-col gap-4 md:gap-6 w-full h-[78dvh] overflow-y-hidden">
         <h3 className="title">Messages</h3>
         <ConversationSearchBar value={search} onChange={setSearch} />
 
-        <ul className="flex-1 overflow-y-auto space-y-1 min-h-0 ">
+        <ul className="flex-1 overflow-y-auto space-y-1 min-h-0 pr-4">
           {sortedThreads?.length === 0 ? (
             <li className="text-sm text-text-secondary text-center py-6">
               No conversations found.

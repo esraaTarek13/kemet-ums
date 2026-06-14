@@ -14,7 +14,7 @@ export default function Messages() {
   const courseInfo = data?.course;
 
   return (
-    <div className="flex h-full">
+    <div className="flex h-full ">
       <ConversationSidebar
         selectedCourseId={selectedCourseId}
         onSelect={setSelectedCourseId}

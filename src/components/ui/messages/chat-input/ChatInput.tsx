@@ -20,9 +20,7 @@ export default function ChatInput() {
   } = useChatInput();
 
   return (
-    <div className="w-full relative pt-4 pl-8">
-      <div className="card min-w-full overflow-hidden rounded-none absolute left-0 -right-3.75 top-0 -bottom-6 -z-10" />
-
+    <div className="h-fit card rounded-none absolute -bottom-6 left-0 -right-3.75">
       <FilePreviewList files={selectedFiles} onRemove={removeFile} />
 
       <form

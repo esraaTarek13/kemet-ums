@@ -28,18 +28,22 @@ export default function ChatWindow({
 
   return (
     <ChatProvider courseId={courseId} portal={portal}>
-      <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] w-full ">
+      <section className="flex flex-col min-h-full w-full relative">
         <ChatHeader courseInfo={courseInfo} />
 
         <div
-          className="py-8 px-6 h-[65dvh] overflow-y-auto space-y-4 md:space-y-6"
+          className="px-6 py-3 mt-16 h-[65vh] overflow-y-auto space-y-4 md:space-y-6"
           role="log"
           aria-live="polite"
         >
           {messages.length === 0 ? (
             <p className="text-center text-text-subtle">No messages yet</p>
           ) : (
-            messages.map((msg) => <MessageBubble key={msg.id} message={msg} />)
+            <div className="pb-18">
+              {messages.map((msg) => (
+                <MessageBubble key={msg.id} message={msg} />
+              ))}
+            </div>
           )}
         </div>
 

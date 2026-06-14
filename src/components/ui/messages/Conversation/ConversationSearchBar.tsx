@@ -7,7 +7,7 @@ interface Props {
 
 export default function ConversationSearchBar({ value, onChange }: Props) {
   return (
-    <div className="flex items-center gap-2 bg-bg-card rounded-lg px-4 py-2 shadow-[0_0_10px_#0000000D]">
+    <div className="flex items-center gap-2 bg-bg-card rounded-lg mr-4 px-4 py-2 shadow-[0_0_10px_#0000000D]">
       <label htmlFor="CourseSearch" className="sr-only">Search</label>
       <FiSearch aria-hidden="true" className="text-border text-sm shrink-0" />
       <input

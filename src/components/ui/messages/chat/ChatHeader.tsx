@@ -5,9 +5,7 @@ interface ChatHeaderProps {
 }
 export default function ChatHeader({ courseInfo }: ChatHeaderProps) {
   return (
-    <div className="w-full relative pb-4 pl-8">
-      <div className="card rounded-none absolute left-0 -right-3.75 -top-6 bottom-0 -z-10" />
-      <div>
+    <div className="h-20 flex flex-col justify-center card rounded-none absolute -top-6 left-0 -right-3.75 py-0">
         <h4 className="title">{courseInfo?.course_name ?? "Subject Name"}</h4>
         <div className="flex gap-2 items-center text-text-secondary text-xs md:text-sm">
           <p> {courseInfo?.faculty_name ?? "Instructor Name"} </p>
@@ -17,7 +15,6 @@ export default function ChatHeader({ courseInfo }: ChatHeaderProps) {
               <p>{courseInfo?.student_count} students</p>
             </>
           )}
-        </div>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
   const isMine = message.is_mine;
 
   return (
-    <div className={`flex ${isMine ? "justify-end" : "justify-start"}`}>
+    <div className={`flex ${isMine ? "justify-end" : "justify-start"} `}>
       <div
         className={`flex gap-3 max-w-[80%] ${isMine ? "flex-row-reverse" : ""}`}
       >

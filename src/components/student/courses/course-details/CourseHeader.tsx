@@ -40,10 +40,10 @@ export default function CourseHeader({ courseId }: { courseId: string }) {
       </nav>
 
       {/* course info card */}
-      <div className="card flex gap-4 md:gap-5 lg:gap-6">
+      <div className="card flex flex-col sm:flex-row items-center gap-4 md:gap-5 lg:gap-6">
         <div
           aria-hidden="true"
-          className="bg-bg-subtle border border-primary/10 rounded-lg py-4 md:py-6 px-2 h-fit"
+          className="bg-bg-subtle border border-primary/10 rounded-lg py-4 md:py-6 px-2 w-fit h-fit"
         >
           <p className="font-bold text-accent text-base md:text-lg lg:text-xl">
             {course?.course_code}
