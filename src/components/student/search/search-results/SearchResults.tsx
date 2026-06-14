@@ -2,9 +2,8 @@
 import type {
   StudentSearchResults,
   StudentSearchCourse,
-  StudentSearchFaculty,
 } from "@/types";
-import { FiBook, FiUsers, FiAlertCircle } from "react-icons/fi";
+import { FiBook, FiAlertCircle } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import SearchSection from "./SearchSection";
 import ResultItem from "./ResultItem";
@@ -49,9 +48,8 @@ export default function SearchResults({
     );
 
   const hasCourses = !!data?.courses?.length;
-  const hasFaculty = !!data?.faculty?.length;
 
-  if (!hasCourses && !hasFaculty)
+  if (!hasCourses)
     return (
       <div
         role="status"
@@ -74,33 +72,18 @@ export default function SearchResults({
       aria-label="Search results"
       className="flex flex-col gap-3 py-2 max-h-80 overflow-y-auto"
     >
-      {hasCourses && (
-        <SearchSection title="Courses" icon={<FiBook aria-hidden="true" />}>
-          {data?.courses?.map((course: StudentSearchCourse) => (
-            <ResultItem
-              key={course.id}
-              title={course.course_name}
-              subtitle={`${course.course_code} · ${course.faculty_name}`}
-              onClick={() =>
-                handleNavigate(`${STUDENT_BASE}/courses/${course.id}`)
-              }
-            />
-          ))}
-        </SearchSection>
-      )}
-
-      {hasFaculty && (
-        <SearchSection title="Faculty" icon={<FiUsers aria-hidden="true" />}>
-          {data?.faculty?.map((f: StudentSearchFaculty) => (
-            <ResultItem
-              key={f.id}
-              title={f.full_name}
-              subtitle={`${f.faculty_code} · ${f.department}`}
-              onClick={() => handleNavigate(`${STUDENT_BASE}/faculty/${f.id}`)}
-            />
-          ))}
-        </SearchSection>
-      )}
+      <SearchSection title="Courses" icon={<FiBook aria-hidden="true" />}>
+        {data?.courses?.map((course: StudentSearchCourse) => (
+          <ResultItem
+            key={course.id}
+            title={course.course_name}
+            subtitle={`${course.course_code} · ${course.faculty_name}`}
+            onClick={() =>
+              handleNavigate(`${STUDENT_BASE}/courses/${course.id}`)
+            }
+          />
+        ))}
+      </SearchSection>
     </div>
   );
 }
