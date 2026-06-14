@@ -1,7 +1,7 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { LoginRole } from "@/types/auth";
+import type { LoginRole } from "@/types/shared/auth";
 import AuthBtn from "../ui/AuthBtn";
 import Input from "../ui/Input";
 import { useState } from "react";

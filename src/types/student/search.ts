@@ -8,16 +8,6 @@ export interface StudentSearchCourse {
   schedule: string;
 }
 
-export interface StudentSearchFaculty {
-  id: string;
-  faculty_code: string;
-  full_name: string;
-  email: string;
-  department: string;
-  rank: string;
-}
-
 export interface StudentSearchResults {
   courses: StudentSearchCourse[] | null;
-  faculty: StudentSearchFaculty[] | null;
 }

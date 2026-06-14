@@ -91,3 +91,7 @@
   min-height: 80px !important;
   background-color: var(--color-bg-card);
 }
+
+.calendar :global(div) {
+  border-right: none !important;
+}

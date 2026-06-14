@@ -123,3 +123,5 @@
 .calendar :global([data-testid="calendar-month-button"]:nth-of-type(2)) {
   display: none;
 }
+
+
