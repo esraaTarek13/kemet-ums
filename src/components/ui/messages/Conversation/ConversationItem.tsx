@@ -17,7 +17,7 @@ export default function ConversationItem({
       onClick={onSelect}
       role="button"
       aria-current={isSelected ? "true" : undefined}
-      className={`w-full flex items-center gap-4 px-4 py-5 border-l-4 rounded-lg cursor-pointer transition duration-200 ${
+      className={`w-full min-w-fit flex items-center gap-4 px-4 py-5 border-l-4 rounded-lg cursor-pointer transition duration-200 ${
         isSelected
           ? "bg-bg-filter border-accent"
           : "border-transparent hover:bg-bg-filter hover:border-accent"

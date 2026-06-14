@@ -21,7 +21,7 @@ export default function StudentLayout({
       <StudentAside />
       <section className="flex flex-col gap-5 md:gap-6 flex-1 ml-16 md:ml-41.5 lg:ml-44.5">
         <Header search={<Search />} />
-        <main className="grow flex flex-col gap-5 md:gap-6">
+        <main className="Custom-container grow flex flex-col gap-5 md:gap-6">
           {children}
         </main>
         <Footer />

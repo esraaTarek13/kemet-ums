@@ -50,10 +50,10 @@ export default function ConversationSidebar({
   return (
     <aside
       aria-label="Conversations"
-      className="w-full lg:max-w-72.5 relative px-4 "
+      className="w-full lg:max-w-72.5 relative pr-4 "
     >
       <div
-        className="hidden lg:block bg-bg-navbar border-r border-bg-bar absolute inset-0 -z-10"
+        className="hidden lg:block bg-bg-navbar border-r border-bg-bar absolute -top-6 -bottom-6 right-0 -left-50 -z-10"
         aria-hidden="true"
       />
       <div className="flex flex-col gap-4 md:gap-6 w-full h-[78vh] overflow-y-hidden">

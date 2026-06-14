@@ -28,11 +28,11 @@ export default function ChatWindow({
 
   return (
     <ChatProvider courseId={courseId} portal={portal}>
-      <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] w-full h-[79dvh]">
+      <section className="grid grid-cols-1 grid-rows-[auto_1fr_auto] w-full ">
         <ChatHeader courseInfo={courseInfo} />
 
         <div
-          className="h-full py-8 pl-6 overflow-y-auto space-y-4 md:space-y-6"
+          className="py-8 px-6 h-[65dvh] overflow-y-auto space-y-4 md:space-y-6"
           role="log"
           aria-live="polite"
         >
