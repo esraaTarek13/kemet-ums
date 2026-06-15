@@ -38,7 +38,7 @@ const COLUMNS = [
   },
 ];
 
-export default function CoursesTableInner({ status }: { status: string }) {
+export default function CoursesTableInner() {
   const { data, isPending, isError } = useStudentGrades();
   const grades = data?.courses ?? [];
 
