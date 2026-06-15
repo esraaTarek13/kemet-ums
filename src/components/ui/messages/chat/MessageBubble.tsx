@@ -70,40 +70,38 @@ function MessageBubble({ message }: MessageBubbleProps) {
                 messageId={message.id}
                 content={message.content}
               />
-
-              <div className="flex flex-col gap-4">
+              <div className="space-y-4">
                 {message.attachments.length > 0 && (
                   <AttachmentList attachments={message.attachments} />
                 )}
-                {message.content && (
-                  <>
-                    <p>{displayContent}</p>
-                    {isLong && (
-                      <button
-                        type="button"
-                        onClick={() => setIsExpanded((prev) => !prev)}
-                        aria-expanded={isExpanded}
-                        className={`text-xs font-semibold underline self-start cursor-pointer ${
-                          isMine ? "text-text-white/80 " : "text-primary"
-                        }`}
-                      >
-                        {isExpanded ? "Show less" : "Read more"}
-                      </button>
-                    )}
-                  </>
-                )}
+
+                {message.content && <p>{displayContent}</p>}
               </div>
             </div>
-            <p
-              className={`${
-                isMine
-                  ? "text-text-white/70 text-start"
-                  : "text-text-muted text-end"
-              } text-[10px] mt-2`}
-            >
-              {formatTime(message.created_at)}
-              {message.edited_at && <span> · edited</span>}
-            </p>
+
+            <div className="flex justify-between items-center gap-2">
+              {message.content && isLong && (
+                <button
+                  type="button"
+                  onClick={() => setIsExpanded((prev) => !prev)}
+                  aria-expanded={isExpanded}
+                  className={`text-xs font-semibold underline cursor-pointer ${
+                    isMine ? "text-text-white/80 " : "text-primary"
+                  }`}
+                >
+                  {isExpanded ? "Show less" : "Read more"}
+                </button>
+              )}
+
+              <p
+                className={`${
+                  isMine ? "text-text-white/70 ml-auto" : "text-text-muted "
+                } text-[10px] mt-2 self-end`}
+              >
+                {formatTime(message.created_at)}
+                {message.edited_at && <span> · edited</span>}
+              </p>
+            </div>
           </div>
         </div>
       </div>

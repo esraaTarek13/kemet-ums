@@ -9,7 +9,7 @@ import MessageBubble from "./MessageBubble";
 interface ChatWindowProps {
   messages: Message[];
   courseInfo?: CourseInfo;
-  isLoading: boolean;
+  isPending: boolean;
   isError: boolean;
   courseId: string;
   portal: "student" | "faculty";
@@ -18,12 +18,12 @@ interface ChatWindowProps {
 export default function ChatWindow({
   messages,
   courseInfo,
-  isLoading,
+  isPending,
   isError,
   courseId,
   portal,
 }: ChatWindowProps) {
-  if (isLoading) return <ChatSkeleton />;
+  if (isPending) return <ChatSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load messages." />;
 
   return (

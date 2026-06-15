@@ -7,14 +7,14 @@ interface ChatPageProps {
 }
 
 export default function ChatPage({ chatId }: ChatPageProps) {
-  const { data, isLoading, isError } = useStudentCourseMessages(chatId);
+  const { data, isPending, isError } = useStudentCourseMessages(chatId);
   const messages = data?.messages ?? [];
   const courseInfo = data?.course;
   return (
     <ChatWindow
       messages={messages}
       courseInfo={courseInfo}
-      isLoading={isLoading}
+      isPending={isPending}
       isError={isError}
       portal="student"
       courseId={chatId}

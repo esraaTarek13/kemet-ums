@@ -11,24 +11,24 @@
   /* ─── Backgrounds ────────────────────────────────────── */
   --color-bg: #fef9ee;
   --color-bg-navbar: #f9f3e9;
-  --color-bg-card: #ffffff;    
-  --color-bg-input: #f9f3e9; 
-  --color-bg-search-input: #ede8dd;   
-  --color-bg-filter: #f3ede3;     
-  --color-bg-bar: #e7e2d8; 
-  --color-bg-subtle: #f5eced;    
+  --color-bg-card: #ffffff;
+  --color-bg-input: #f9f3e9;  
+  --color-bg-search-input: #ede8dd;
+  --color-bg-filter: #f3ede3;
+  --color-bg-bar: #e7e2d8;
+  --color-bg-subtle: #f5eced;
 
   /* ─── Text ───────────────────────────────────────────── */
   --color-text-primary: #1d1c16;
   --color-text-secondary: #715b3a;
   --color-text-muted: #534345;
-  --color-text-subtle: #867275;   
+  --color-text-subtle: #867275;
   --color-text-peach: #fddeb5;
   --color-text-white: #ffffff;
 
   /* ─── Borders ────────────────────────────────────────── */
   --color-border: #d8c1c3;
-  --color-border-card: #e8e0d0; 
+  --color-border-card: #e8e0d0;
 
   /* ─── Semantic colors ────────────────────────────────── */
   --color-danger: #a32d2d;
@@ -76,7 +76,6 @@
 ::selection {
   background-color: #e6c3c9;
   color: var(--color-text-primary);
-   
 }
 
 ::-webkit-scrollbar {
@@ -191,13 +190,25 @@
     padding: 16px;
   }
 
-  .btn-dark:hover{
+  .btn {
+    background: var(--color-accent);
+    border: 1px solid var(--color-bg-bar);
+    color: var(--color-text-white);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 200ms;
+    cursor: pointer;
+  }
+
+  .btn-dark:hover {
     background: var(--color-bg-card) !important;
     color: var(--color-accent) !important;
     transition: all 200ms linear;
   }
 
-  .btn-light:hover{
+  .btn-light:hover {
     background: var(--color-accent) !important;
     color: var(--color-text-white) !important;
     transition: all 200ms linear;
@@ -219,6 +230,10 @@
     .title {
       font-size: 18px;
     }
+    .btn {
+      padding: 12px 24px;
+      font-size: 16px;
+    }
   }
 
   @media (min-width: 1024px) {
@@ -235,6 +250,10 @@
     }
     .card {
       padding: 20px;
+    }
+    .btn {
+      padding: 16px 30px;
+      font-size: 18px;
     }
   }
 }

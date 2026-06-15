@@ -34,7 +34,6 @@ export default function CourseMaterialsList({
       </p>
     );
   }
-console.log(materials);
 
   return (
     <ul className="space-y-3">

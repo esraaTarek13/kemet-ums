@@ -8,11 +8,12 @@ A full-stack university management platform built with Next.js and Supabase, fea
 
 ## Demo Credentials
 
-| Portal  | Email                | Password     |
-| ------- | -------------------- | ------------ |
-| Admin   | admin@kemet.edu      | Admin@1234   |
-| Student | sara.ahmed@kemet.edu | Student@1234 |
-| Faculty | dr.layla@kemet.edu   | Faculty@1234 |
+| Portal      | Email                | Password     | Status         |
+| ----------- | -------------------- | ------------ | -------------- |
+| Super Admin | —                    | —            |  In Progress |
+| Admin       | admin@kemet.edu      | Admin@1234   |  In Progress |
+| Faculty     | dr.layla@kemet.edu   | Faculty@1234 |  In Progress |
+| Student     | sara.ahmed@kemet.edu | Student@1234 |  Completed   |
 
 ## Tech Stack
 
@@ -43,7 +44,7 @@ A full-stack university management platform built with Next.js and Supabase, fea
 - Grade and attendance management
 - Course materials
 
-### Student Portal
+### Student Portal (Completed)
 
 - Dashboard with courses, assignments, and schedule
 - Weekly calendar view

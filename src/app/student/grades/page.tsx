@@ -1,8 +1,9 @@
+import GradesSection from '@/components/student/grades/GradesSection';
 
-export default function page() {
+export default function GradesPage() {
   return (
-    <div>
-      
-    </div>
+    <section className="Custom-container h-full flex flex-col gap-5 md:gap-6">
+      <GradesSection />
+    </section>
   )
 }

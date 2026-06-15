@@ -15,7 +15,6 @@ const RRULE_DAY_MAP: Record<string, typeof RRule.MO> = {
 // Builds recurring calendar events from schedule data
 export function useScheduleEvents() {
   const { data: schedule, isPending, isError } = useSchedule();
-  console.log(schedule);
   
   const events = (schedule ?? []).map((event, i) => ({
     id: `${i}`,
