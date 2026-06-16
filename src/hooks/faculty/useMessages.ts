@@ -1,5 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuthStore } from "@/stores/authStore";
+import { supabase } from "@/lib/supabase/client";
 import {
   getFacultyMessages,
   getFacultyCourseMessages,
@@ -17,11 +19,44 @@ export function useFacultyMessages() {
 
 export function useFacultyCourseMessages(courseId: string) {
   const { user } = useAuthStore();
-  return useQuery({
+  const queryClient = useQueryClient();
+
+  const query = useQuery({
     queryKey: ["faculty-course-messages", courseId],
     queryFn: () => getFacultyCourseMessages(user?.id ?? "", courseId),
     enabled: !!user?.id && !!courseId,
     staleTime: 1000 * 30,
-    refetchInterval: 1000 * 10,
   });
+
+  // Listen for new messages and refresh chat + sidebar
+  useEffect(() => {
+    if (!courseId) return;
+
+    const channel = supabase
+      .channel(`messages:${courseId}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "messages",
+          filter: `course_id=eq.${courseId}`,
+        },
+        () => {
+          queryClient.invalidateQueries({
+            queryKey: ["faculty-course-messages", courseId],
+          });
+          queryClient.invalidateQueries({
+            queryKey: ["faculty-messages", user?.id],
+          });
+        },
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [courseId, user?.id, queryClient]);
+
+  return query;
 }

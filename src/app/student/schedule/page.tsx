@@ -1,5 +1,5 @@
 import ScheduleCalendar from "@/components/student/schedule/ScheduleCalendar";
-import TodayAgenda from "@/components/student/schedule/TodayAgenda";
+import StudentTodayAgenda from "@/components/student/schedule/StudentTodayAgenda";
 
 export default function SchedulePage() {
   return (
@@ -7,7 +7,7 @@ export default function SchedulePage() {
       <div className="lg:grow h-fit">
         <ScheduleCalendar />
       </div>
-      <TodayAgenda />
+      <StudentTodayAgenda />
     </section>
   );
 }

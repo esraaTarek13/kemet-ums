@@ -1,8 +1,5 @@
 "use client";
-import type {
-  StudentSearchResults,
-  StudentSearchCourse,
-} from "@/types";
+import type { StudentSearchResults, StudentSearchCourse } from "@/types";
 import { FiBook, FiAlertCircle } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import SearchSection from "./SearchSection";
@@ -24,6 +21,12 @@ export default function SearchResults({
   onClose,
 }: SearchResultsProps) {
   const router = useRouter();
+
+  // navigate and dismiss search
+  const handleNavigate = (path: string) => {
+    router.push(path);
+    onClose();
+  };
 
   if (loading)
     return (
@@ -59,12 +62,6 @@ export default function SearchResults({
         No results found.
       </div>
     );
-
-  // navigate and dismiss search
-  const handleNavigate = (path: string) => {
-    router.push(path);
-    onClose();
-  };
 
   return (
     <div

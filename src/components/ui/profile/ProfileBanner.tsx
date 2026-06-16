@@ -4,17 +4,19 @@ import ProfileAvatarMenu from "./ProfileAvatarMenu";
 
 interface ProfileBannerProps {
   name: string;
-  studentId: string;
+  Id: string;
   department: string;
-  year: string;
+  year?: string;
+  rank?: string;
   avatarUrl: string | null;
 }
 
 export default function ProfileBanner({
   name,
-  studentId,
+  Id,
   department,
   year,
+  rank,
   avatarUrl,
 }: ProfileBannerProps) {
   return (
@@ -51,14 +53,16 @@ export default function ProfileBanner({
 
         <div className="text-center sm:text-start">
           <h3 className="header-title">{name}</h3>
-          <p className="text-text-secondary/70 text-xs md:text-base">
-            {studentId}
-          </p>
+          <p className="text-text-secondary/70 text-xs md:text-base">{Id}</p>
           <div className="flex gap-3 items-center flex-wrap mt-2.5">
             <p className="bg-[#F5F0E8] py-1 px-3 rounded-lg text-primary text-xs md:text-sm">
               {department}
             </p>
-            <p className="text-text-secondary text-xs md:text-base">{year}</p>
+            {(year || rank) && (
+              <p className="text-text-secondary text-xs md:text-base">
+                {[year, rank].filter(Boolean).join(" | ")}
+              </p>
+            )}
           </div>
         </div>
       </div>

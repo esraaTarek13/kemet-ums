@@ -16,7 +16,7 @@ export default function StudentProfile() {
 
   const bannerItems = {
     name: profile?.full_name ?? "—",
-    studentId: student?.student_code ?? "—",
+    Id: student?.student_code ?? "—",
     department: student?.department ?? "—",
     year: student?.academic_year ? `Year ${student.academic_year}` : "—",
     avatarUrl: profile?.avatar_url ?? null,
@@ -46,8 +46,8 @@ export default function StudentProfile() {
         ? format(new Date(student.date_of_birth), "dd/MM/yyyy")
         : "—",
     },
-    { label: "Nationality", value: profile?.nationality ?? "—" },
     { label: "Phone Number", value: profile?.phone ?? "—" },
+    { label: "Nationality", value: profile?.nationality ?? "—" },
     { label: "Residential Address", value: profile?.address ?? "—" },
   ];
 

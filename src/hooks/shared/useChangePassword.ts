@@ -14,7 +14,7 @@ export function useChangePassword() {
     onSuccess: () => {
       // Refresh profile to reflect updated password_changed_at
       queryClient.invalidateQueries({
-        queryKey: ["student-profile", user?.id],
+        queryKey: ["profile", user?.id],
       });
       toast.success("Password changed successfully!");
     },

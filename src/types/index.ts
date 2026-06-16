@@ -10,5 +10,7 @@ export * from "./student/course";
 export * from "./student/schedule";
 export * from "./student/assignment";
 export * from "./student/grades";
+export * from "./student/profile";
 export * from './faculty/dashboard'
 export * from "./faculty/search";
+export * from "./faculty/profile";
