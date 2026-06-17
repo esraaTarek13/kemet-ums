@@ -4,7 +4,7 @@ import { useAuthStore } from "@/stores/authStore";
 import { LoginSchema } from "@/validation/auth.schema";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { ROLE_BASE_ROUTES } from "@/data/roles";
+import { ROLE_BASE_ROUTES } from "@/data/shared/roles";
 import {
   getProfile,
   loginUser,

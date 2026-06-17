@@ -1,5 +1,5 @@
 "use client";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import TranscriptSummaryBarSkeleton from "@/components/ui/skeletons/TranscriptSummaryBarSkeleton";
 import { useStudentGrades } from "@/hooks/student/useStudentGrades";
 import { PiDownloadSimpleBold } from "react-icons/pi";

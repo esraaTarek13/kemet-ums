@@ -1,5 +1,5 @@
 "use client";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
 import { statusConfig, formatDate } from "@/data/student/dueSoon";
 import { useStudentDashboard } from "@/hooks/student/useDashboard";

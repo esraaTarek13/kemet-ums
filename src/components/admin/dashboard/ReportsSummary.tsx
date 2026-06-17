@@ -2,10 +2,10 @@
 import { FiTrendingUp, FiBarChart2 } from "react-icons/fi";
 import Link from "next/link";
 import { useAuthStore } from "@/stores/authStore";
-import { ROLE_BASE_ROUTES } from "@/data/roles";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import { ROLE_BASE_ROUTES } from "@/data/shared/roles";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import { useReportsSummary } from "@/hooks/admin/useDashboard";
-import ProgressBar from "@/components/ui/ProgressBar";
+import ProgressBar from "@/components/ui/shared/ProgressBar";
 import { FaArrowRight } from "react-icons/fa";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
 

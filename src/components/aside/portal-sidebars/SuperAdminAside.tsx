@@ -1,5 +1,5 @@
 "use client";
-import { SUPER_ADMIN_NAV } from "@/data/aside";
+import { SUPER_ADMIN_NAV } from "@/data/shared/aside";
 import Aside from "../Aside";
 
 export default function SuperAdminAside() {

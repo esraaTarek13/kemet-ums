@@ -5,7 +5,7 @@ import { getTheme } from "@table-library/react-table-library/baseline";
 import { useStudentGrades } from "@/hooks/student/useStudentGrades";
 import { GradesCourse } from "@/types";
 import { TableSkeleton } from "@/components/ui/skeletons/TableSkeleton";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 
 const StatusBadge = ({ status }: { status: string }) => {
   const isCompleted = status === "completed";

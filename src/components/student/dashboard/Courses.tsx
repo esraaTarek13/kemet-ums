@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import { useStudentDashboard } from "@/hooks/student/useDashboard";
 import CourseCard from "../shared/CourseCard";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";

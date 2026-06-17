@@ -1,5 +1,5 @@
 "use client";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import GpaTrendChartSkeleton from "@/components/ui/skeletons/GpaTrendChartSkeleton";
 import { useStudentGrades } from "@/hooks/student/useStudentGrades";
 import { Bar, BarChart, XAxis, ResponsiveContainer } from "recharts";

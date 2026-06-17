@@ -1,6 +1,6 @@
 "use client";
-import ProgressBar from "@/components/ui/ProgressBar";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ProgressBar from "@/components/ui/shared/ProgressBar";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import { useStudentDashboard } from "@/hooks/student/useDashboard";
 import AttendanceSkeletons from "@/components/ui/skeletons/AttendanceSkeletons";
 

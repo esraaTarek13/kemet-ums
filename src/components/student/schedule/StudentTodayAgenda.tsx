@@ -1,10 +1,10 @@
 "use client";
 
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import TodayAgenda from "@/components/ui/schedule/TodayAgenda";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
 import { useSchedule } from "@/hooks/student/useSchedule";
-import { getTodayEvents } from "@/utils/scheduleUtils";
+import { getTodayEvents } from "@/utils/shared/todayEvents";
 import { format } from "date-fns";
 import { useMemo } from "react";
 

@@ -1,5 +1,5 @@
 "use client";
-import { FACULTY_NAV } from "@/data/aside";
+import { FACULTY_NAV } from "@/data/shared/aside";
 import Aside from "../Aside";
 
 export default function FacultyAside() {

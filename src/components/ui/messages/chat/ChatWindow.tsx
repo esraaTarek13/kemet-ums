@@ -2,7 +2,7 @@ import { CourseInfo, Message } from "@/types";
 import ChatInput from "../chat-input/ChatInput";
 import ChatHeader from "./ChatHeader";
 import { ChatSkeleton } from "../../skeletons/ChatSkeleton";
-import ErrorMessage from "../../ErrorMessage";
+import ErrorMessage from "../../shared/ErrorMessage";
 import { ChatProvider } from "../context/ChatContext";
 import MessageBubble from "./MessageBubble";
 

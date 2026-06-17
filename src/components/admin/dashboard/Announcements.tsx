@@ -1,6 +1,6 @@
 "use client";
 import { useRecentAnnouncements } from "@/hooks/admin/useDashboard";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
 
 export default function Announcements() {

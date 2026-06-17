@@ -4,7 +4,7 @@ import { IoClose } from "react-icons/io5";
 import { TfiMedall } from "react-icons/tfi";
 import CourseMaterialsList from "../shared/CourseMaterialsList";
 import { Material, SubmissionDetailsModalProps } from "@/types";
-import { getGradeRank } from "@/utils/getGradeRank";
+import { getGradeRank } from "@/utils/shared/gradeRank";
 
 export default function SubmissionDetailsModal({
   isOpen,

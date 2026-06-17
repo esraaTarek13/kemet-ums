@@ -1,6 +1,6 @@
 "use client";
 
-import { ROLE_BASE_ROUTES } from "@/data/roles";
+import { ROLE_BASE_ROUTES } from "@/data/shared/roles";
 import { useAuthStore } from "@/stores/authStore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

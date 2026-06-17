@@ -1,55 +1,26 @@
 "use client";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import ProfileBanner from "@/components/ui/profile/ProfileBanner";
 import ProfileCard from "@/components/ui/profile/ProfileCard";
 import ProfilePassword from "@/components/ui/profile/ProfilePassword";
 import ProfileSkeleton from "@/components/ui/skeletons/ProfileSkeleton";
 import { useStudentProfile } from "@/hooks/student/useStudentProfile";
-import { format } from "date-fns";
+import {
+  mapToAcademicItems,
+  mapToBannerItems,
+  mapToPersonalItems,
+} from "@/utils/student/profileMappers";
 
 export default function StudentProfile() {
   const { data, isError, isPending } = useStudentProfile();
-  const { profile, student } = data ?? {};  
+  const { profile, student } = data ?? {};
 
   if (isPending) return <ProfileSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load profile." />;
 
-  const bannerItems = {
-    name: profile?.full_name ?? "—",
-    Id: student?.student_code ?? "—",
-    department: student?.department ?? "—",
-    year: student?.academic_year ? `Year ${student.academic_year}` : "—",
-    avatarUrl: profile?.avatar_url ?? null,
-  };
-
-  const academicItems = [
-    { label: "University Email", value: profile?.email ?? "—" },
-    { label: "Student ID", value: student?.student_code ?? "—" },
-    { label: "Department", value: student?.department ?? "—" },
-    {
-      label: "Academic Year",
-      value: student?.academic_year ? `Year ${student.academic_year}` : "—",
-    },
-    {
-      label: "Enrollment Date",
-      value: student?.enrollment_date
-        ? format(new Date(student.enrollment_date), "MMM d, yyyy")
-        : "—",
-    },
-  ];
-
-  const personalItems = [
-    { label: "Full Name", value: profile?.full_name ?? "—" },
-    {
-      label: "Date of Birth",
-      value: student?.date_of_birth
-        ? format(new Date(student.date_of_birth), "dd/MM/yyyy")
-        : "—",
-    },
-    { label: "Phone Number", value: profile?.phone ?? "—" },
-    { label: "Nationality", value: profile?.nationality ?? "—" },
-    { label: "Residential Address", value: profile?.address ?? "—" },
-  ];
+  const bannerItems = mapToBannerItems(profile, student);
+  const academicItems = mapToAcademicItems(profile, student);
+  const personalItems = mapToPersonalItems(profile, student);
 
   return (
     <section

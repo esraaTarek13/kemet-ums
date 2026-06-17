@@ -1,11 +1,12 @@
 "use client";
-import sharedStyles from "../shared/schedule.module.css";
-import styles from "./ScheduleCalendar.module.css";
+import sharedStyles from "@/styles/schedule.module.css";
+import styles from "@/styles/SchedulePage.module.css";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic";
-import { useScheduleEvents } from "@/hooks/student/useScheduleEvents";
 import ScheduleSkeleton from "@/components/ui/skeletons/ScheduleSkeleton";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
+import { useSchedule } from "@/hooks/student/useSchedule";
+import { mapToScheduleEvents } from "@/utils/shared/scheduleEventsMapper";
 
 // SSR disabled to avoid hydration mismatch with calendar DOM
 const IlamyCalendar = dynamic(
@@ -14,7 +15,8 @@ const IlamyCalendar = dynamic(
 );
 
 export default function ScheduleCalendar() {
-  const { events, isPending, isError } = useScheduleEvents();
+  const { data: schedule, isPending, isError } = useSchedule();
+  const events = mapToScheduleEvents(schedule);
 
   if (isPending) return <ScheduleSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load Schedule." />;

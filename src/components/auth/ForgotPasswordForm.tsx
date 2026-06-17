@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import Input from "../ui/Input";
+import Input from "../ui/shared/Input";
 import { FaArrowLeft } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,7 +9,7 @@ import {
   type ForgotPasswordSchema,
 } from "@/validation/auth.schema";
 import { useForgotPassword } from "@/hooks/auth/useForgotPassword";
-import AuthBtn from "../ui/AuthBtn";
+import AuthBtn from "../ui/shared/AuthBtn";
 
 /** Forgot password form — collects email and sends OTP. */
 export default function ForgotPasswordForm() {

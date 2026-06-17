@@ -1,5 +1,5 @@
 "use client";
-import FileSubmission from "@/components/ui/FileSubmission";
+import FileSubmission from "@/components/ui/shared/FileSubmission";
 import { useSubmitAssignment } from "@/hooks/student/useSubmitAssignment";
 import { SubmitFormValues, SubmitModalProps } from "@/types";
 import { submitAssignmentSchema } from "@/validation/submitFile.schema";

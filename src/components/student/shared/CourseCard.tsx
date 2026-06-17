@@ -1,4 +1,4 @@
-import ProgressBar from "@/components/ui/ProgressBar";
+import ProgressBar from "@/components/ui/shared/ProgressBar";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import type { StudentCourse, StudentDashboardCourse } from "@/types";

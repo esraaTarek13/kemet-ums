@@ -1,7 +1,7 @@
 "use client";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoClose } from "react-icons/io5";
-import Input from "@/components/ui/Input";
+import Input from "@/components/ui/shared/Input";
 import { useChangePassword } from "@/hooks/shared/useChangePassword";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

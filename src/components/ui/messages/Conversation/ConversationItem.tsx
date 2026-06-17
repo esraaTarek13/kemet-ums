@@ -1,4 +1,4 @@
-import { ROLE_BASE_ROUTES } from "@/data/roles";
+import { ROLE_BASE_ROUTES } from "@/data/shared/roles";
 import { useAuthStore } from "@/stores/authStore";
 import { CourseThread } from "@/types";
 import { format } from "date-fns";

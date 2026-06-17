@@ -2,7 +2,7 @@
 import { useStudentGrades } from "@/hooks/student/useStudentGrades";
 import { IoStarSharp } from "react-icons/io5";
 import { FaCircle } from "react-icons/fa";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import GpaCardSkeleton from "@/components/ui/skeletons/GpaCardSkeleton";
 
 export default function GpaCard() {

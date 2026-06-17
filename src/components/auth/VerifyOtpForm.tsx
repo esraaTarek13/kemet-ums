@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import AuthBtn from "../ui/AuthBtn";
+import AuthBtn from "../ui/shared/AuthBtn";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRotateRight } from "react-icons/fa6";
 import { OTPInput } from "input-otp";

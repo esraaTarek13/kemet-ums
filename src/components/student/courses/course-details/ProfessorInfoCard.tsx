@@ -1,5 +1,5 @@
 "use client";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import InstructorCardSkeleton from "@/components/ui/skeletons/InstructorCardSkeleton";
 import { useStudentCourseDetails } from "@/hooks/student/useStudentCourseDetails";
 import Image from "next/image";

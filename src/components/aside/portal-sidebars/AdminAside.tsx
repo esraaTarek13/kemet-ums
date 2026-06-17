@@ -1,5 +1,5 @@
 "use client";
-import { ADMIN_NAV } from "@/data/aside";
+import { ADMIN_NAV } from "@/data/shared/aside";
 import Aside from "../Aside";
 
 export default function AdminAside() {

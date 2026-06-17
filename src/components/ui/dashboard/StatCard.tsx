@@ -1,12 +1,5 @@
+import { statCardDescriptionColors } from "@/data/dashboard/statusCardStyles";
 import { StatCardProps } from "@/types";
-
-// Maps descriptionColor prop to Tailwind class
-const descriptionColors = {
-  default: "text-text-subtle",
-  success: "text-[var(--color-success)]",
-  warning: "text-[var(--color-pending)]",
-  danger: "text-[var(--color-danger)]",
-};
 
 export default function StatCard({
   label,
@@ -33,7 +26,7 @@ export default function StatCard({
 
       {description && (
         <p
-          className={`font-medium text-xs ${descriptionColors[descriptionColor]}`}
+          className={`font-medium text-xs ${statCardDescriptionColors[descriptionColor]}`}
         >
           {description}
         </p>

@@ -4,7 +4,7 @@ import { FILTER_COURSES } from "@/data/student/filterCourses";
 import { useStudentCourses } from "@/hooks/student/useStudentCourses";
 import CourseCard from "../shared/CourseCard";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 
 export default function Courses() {
   const {

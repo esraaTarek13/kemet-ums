@@ -1,27 +1,10 @@
 import { Material } from "@/types";
-import { downloadFile } from "@/utils/downloadFile";
-import {
-  MdOutlinePictureAsPdf,
-  MdOutlineDescription,
-  MdOutlineSlideshow,
-  MdOutlineInsertDriveFile,
-} from "react-icons/md";
+import { downloadFile } from "@/utils/shared/downloadFile";
+import { getFileIcon } from "@/utils/shared/fileIcon";
 import { PiDownloadSimpleBold } from "react-icons/pi";
 
 interface CourseMaterialsListProps {
   materials: Material[];
-}
-
-// Map file type to an appropriate icon + color
-function getFileIcon(fileType: string) {
-  const type = fileType.toLowerCase();
-  if (type === "pdf")
-    return { Icon: MdOutlinePictureAsPdf, color: "text-[#DC2626]" };
-  if (["doc", "docx"].includes(type))
-    return { Icon: MdOutlineDescription, color: "text-[#2563EB]" };
-  if (["ppt", "pptx"].includes(type))
-    return { Icon: MdOutlineSlideshow, color: "text-[#EA580C]" };
-  return { Icon: MdOutlineInsertDriveFile, color: "text-text-subtle" };
 }
 
 export default function CourseMaterialsList({

@@ -1,9 +1,9 @@
 "use client";
-import styles from "../shared/schedule.module.css";
+import styles from "@/styles/schedule.module.css";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic";
 import { useScheduleEvents } from "@/hooks/student/useScheduleEvents";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import ScheduleSkeleton from "@/components/ui/skeletons/ScheduleSkeleton";
 
 // SSR disabled to avoid hydration mismatch with calendar DOM

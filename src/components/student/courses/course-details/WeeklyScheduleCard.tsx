@@ -1,29 +1,16 @@
 "use client";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import WeeklyScheduleSkeleton from "@/components/ui/skeletons/WeeklyScheduleSkeleton";
 import { useStudentCourseDetails } from "@/hooks/student/useStudentCourseDetails";
+import { mapToWeeklySchedule } from "@/utils/shared/weeklyScheduleMappers";
 import { useMemo } from "react";
-
-const DAYS = ["SUN", "MON", "TUE", "WED", "THU"];
 
 export default function WeeklyScheduleCard({ courseId }: { courseId: string }) {
   const { data, isError, isPending } = useStudentCourseDetails(courseId);
   const course = data?.course;
 
   // null if course doesn't meet that day
-  const weeklySchedule = useMemo(
-    () =>
-      DAYS.map((day) => ({
-        day,
-        session: course?.days?.includes(day)
-          ? {
-              time: `${course.start_time.slice(0, 5)} – ${course.end_time.slice(0, 5)}`,
-              room: course.room,
-            }
-          : null,
-      })),
-    [course?.days, course?.start_time, course?.end_time],
-  );
+  const weeklySchedule = useMemo(() => mapToWeeklySchedule(course), [course]);
 
   if (isPending) return <WeeklyScheduleSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load Schedule data." />;

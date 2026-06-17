@@ -1,8 +1,8 @@
 "use client";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import { TableSkeleton } from "@/components/ui/skeletons/TableSkeleton";
-import { ROLE_BASE_ROUTES } from "@/data/roles";
-import { statusStyles } from "@/data/statusStyles";
+import { ROLE_BASE_ROUTES } from "@/data/shared/roles";
+import { statusStyles } from "@/data/shared/statusStyles";
 import { useRecentStudents } from "@/hooks/admin/useDashboard";
 import { useAuthStore } from "@/stores/authStore";
 import Link from "next/link";

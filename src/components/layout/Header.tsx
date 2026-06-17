@@ -2,7 +2,7 @@
 import { useAuthStore } from "@/stores/authStore";
 import Link from "next/link";
 import { FaRegBell, FaUserCircle } from "react-icons/fa";
-import { ROLE_BASE_ROUTES } from "@/data/roles";
+import { ROLE_BASE_ROUTES } from "@/data/shared/roles";
 import Image from "next/image";
 import { useMemo } from "react";
 import { UserInfoSkeleton } from "../ui/skeletons/UserInfoSkeleton";

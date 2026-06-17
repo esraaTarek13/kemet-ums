@@ -1,40 +1,25 @@
 "use client";
 
-import { STATS_CONFIG, TABS } from "@/data/student/assignments";
+import { TABS } from "@/data/student/assignments";
 import { useStudentAssignments } from "@/hooks/student/useStudentAssignments";
 import { useMemo, useState } from "react";
 import AssignmentsCard from "./AssignmentsCard";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
+import { filterAssignmentsByTab, mapToAssignmentStats } from "@/utils/student/assignmentsMappers";
 
 export default function Assignments() {
-  const { data, isPending, isError } = useStudentAssignments();
-  const { all, graded, overdue, pending, not_submitted } = data ?? {};
+   const { data, isPending, isError } = useStudentAssignments();
   const [activeTab, setActiveTab] = useState("All");
 
   // Filter assignments based on the active tab
   const filteredAssignments = useMemo(
-    () =>
-      ({
-        All: all,
-        Overdue: overdue,
-        Pending: pending,
-        "Not Submitted": not_submitted,
-        Graded: graded,
-      })[activeTab] ?? [],
-    [activeTab, all, overdue, pending, not_submitted, graded],
+    () => filterAssignmentsByTab(data, activeTab),
+    [data, activeTab],
   );
 
   // Map stat counts to config for rendering summary cards
-  const statsCards = useMemo(() => {
-    const counts: Record<string, number> = {
-      Overdue: overdue?.length ?? 0,
-      "Not Submitted": not_submitted?.length ?? 0,
-      Pending: pending?.length ?? 0,
-      Graded: graded?.length ?? 0,
-    };
-    return STATS_CONFIG.map((s) => ({ ...s, value: counts[s.title] }));
-  }, [overdue, not_submitted, pending, graded]);
+ const statsCards = useMemo(() => mapToAssignmentStats(data), [data]);
 
   if (isPending) return <CardSkeleton />;
   if (isError)

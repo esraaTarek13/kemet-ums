@@ -1,7 +1,7 @@
 "use client";
 import { useState, useCallback } from "react";
 import { useSearch } from "@/hooks/student/useSearch";
-import SearchInput from "@/components/ui/SearchInput";
+import SearchInput from "@/components/ui/shared/SearchInput";
 import SearchResults from "./search-results/SearchResults";
 
 export default function Search() {

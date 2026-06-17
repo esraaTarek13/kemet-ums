@@ -2,7 +2,7 @@
 import { useState, useCallback } from "react";
 import { useSearch } from "@/hooks/admin/useSearch";
 import SearchResults from "./SearchResults";
-import SearchInput from "@/components/ui/SearchInput";
+import SearchInput from "@/components/ui/shared/SearchInput";
 
 export default function Search() {
   const [term, setTerm] = useState("");

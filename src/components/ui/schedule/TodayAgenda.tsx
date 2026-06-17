@@ -1,11 +1,11 @@
-import { StudentSchedule } from "@/types";
+import { FacultyScheduleEvent, StudentSchedule } from "@/types";
 import AgendaEventCard from "./AgendaEventCard";
 
 interface TodayAgendaProps {
   title?: string;
   date: string;
   now: string;
-  events: StudentSchedule[];
+  events: StudentSchedule[] | FacultyScheduleEvent[];
 }
 
 export default function TodayAgenda({

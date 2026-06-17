@@ -2,11 +2,11 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { LoginRole } from "@/types/shared/auth";
-import AuthBtn from "../ui/AuthBtn";
-import Input from "../ui/Input";
+import AuthBtn from "../ui/shared/AuthBtn";
+import Input from "../ui/shared/Input";
 import { useState } from "react";
 import Link from "next/link";
-import { ROLE_BUTTONS } from "@/data/auth";
+import { ROLE_BUTTONS } from "@/data/shared/auth";
 import { loginSchema, LoginSchema } from "@/validation/auth.schema";
 import { useLogin } from "@/hooks/auth/useLogin";
 

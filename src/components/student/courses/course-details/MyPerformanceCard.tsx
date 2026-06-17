@@ -1,6 +1,6 @@
 "use client";
-import ErrorMessage from "@/components/ui/ErrorMessage";
-import ProgressBar from "@/components/ui/ProgressBar";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
+import ProgressBar from "@/components/ui/shared/ProgressBar";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
 import { useStudentCourseDetails } from "@/hooks/student/useStudentCourseDetails";
 import { LuFileCheck } from "react-icons/lu";

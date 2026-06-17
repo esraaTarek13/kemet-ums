@@ -1,7 +1,7 @@
 "use client";
 import { useStudentCourseDetails } from "@/hooks/student/useStudentCourseDetails";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CourseMaterialsList from "../../shared/CourseMaterialsList";
 
 export default function CourseMaterialsCard({

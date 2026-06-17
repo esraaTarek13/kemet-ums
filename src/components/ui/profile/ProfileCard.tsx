@@ -10,7 +10,7 @@ export default function ProfileCard({ header, items }: ProfileCardProps) {
     <section className="card grow space-y-6" aria-label={header}>
       <h4 className="flex items-center gap-2 text-text-secondary">
         <MdLockOutline aria-hidden="true" />
-        <span className="font-bold text-xs uppercase">{header}</span>
+        <span className="font-bold text-[10px] md:text-xs uppercase">{header}</span>
       </h4>
 
       <ul className="space-y-5 md:space-y-6">

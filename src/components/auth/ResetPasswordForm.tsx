@@ -1,7 +1,7 @@
 "use client";
 import { useForm } from "react-hook-form";
-import AuthBtn from "../ui/AuthBtn";
-import Input from "../ui/Input";
+import AuthBtn from "../ui/shared/AuthBtn";
+import Input from "../ui/shared/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   resetPasswordSchema,

@@ -2,7 +2,7 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import { useEnrollmentTrend } from "@/hooks/admin/useDashboard";
 import { EnrollmentSkeleton } from "@/components/ui/skeletons/EnrollmentSkeleton";
 

@@ -1,5 +1,5 @@
 "use client";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import HeaderSkeleton from "@/components/ui/skeletons/HeaderSkeleton";
 import { useStudentCourseDetails } from "@/hooks/student/useStudentCourseDetails";
 import Link from "next/link";

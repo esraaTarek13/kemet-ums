@@ -1,4 +1,5 @@
-import { StudentSchedule } from "@/types";
+import { AGENDA_STATUS_STYLES } from "@/data/shared/statusStyles";
+import { FacultyScheduleEvent, StudentSchedule } from "@/types";
 import { CiLocationOn } from "react-icons/ci";
 
 /** Maps a time range to a display status based on current time. */
@@ -8,15 +9,8 @@ const getStatus = (start: string, end: string, now: string) => {
   return "DONE";
 };
 
-/** Status badge styles keyed by status value — avoids inline ternary chains. */
-const STATUS_STYLES: Record<string, string> = {
-  "ACTIVE NOW": "bg-success-bg text-success",
-  UPCOMING: "bg-pending-bg/20 text-pending",
-  DONE: "bg-bg-bar text-text-subtle",
-};
-
 interface AgendaEventCardProps {
-  event: StudentSchedule;
+  event: StudentSchedule | FacultyScheduleEvent;
   now: string;
 }
 
@@ -31,7 +25,7 @@ export default function AgendaEventCard({ event, now }: AgendaEventCardProps) {
       <div className="flex justify-between items-center gap-2 flex-wrap">
         <span
           role="status"
-          className={`text-[10px] md:text-sm rounded-full py-1 px-3 ${STATUS_STYLES[status]}`}
+          className={`text-[10px] md:text-sm rounded-full py-1 px-3 ${AGENDA_STATUS_STYLES[status]}`}
         >
           {status}
         </span>

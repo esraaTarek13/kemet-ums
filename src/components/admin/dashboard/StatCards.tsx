@@ -5,7 +5,7 @@ import { FaUserGroup, FaChalkboardUser } from "react-icons/fa6";
 import { MdOutlineWarning, MdOutlineApartment } from "react-icons/md";
 import { LuBookOpen, LuClipboardCheck } from "react-icons/lu";
 import StatCardSkeleton from "@/components/ui/skeletons/StatCardSkeleton";
-import ErrorMessage from "@/components/ui/ErrorMessage";
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import { useDashboardStats } from "@/hooks/admin/useDashboard";
 
 export default function StatCards() {
