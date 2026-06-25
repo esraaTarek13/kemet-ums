@@ -1,0 +1,19 @@
+.calendar :global([data-testid="calendar-body"]) {
+  width: fit-content;
+  min-width: 100%;
+  height: 500px;
+  border: none;
+}
+
+/* ─── Day Style ────────────────────────────────── */
+.calendar :global([data-testid="day-view-header"] span:last-child) {
+  color: var(--color-text-white);
+  font-weight: 400;
+  padding: 4px 16px;
+  margin: 6px 10px;
+}
+
+.calendar :global([data-testid="day-view-header"] > div:first-child) {
+  color: var(--color-primary);
+  margin: 6px;
+}

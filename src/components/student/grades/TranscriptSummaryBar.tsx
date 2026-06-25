@@ -2,34 +2,19 @@
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import TranscriptSummaryBarSkeleton from "@/components/ui/skeletons/TranscriptSummaryBarSkeleton";
 import { useStudentGrades } from "@/hooks/student/useStudentGrades";
+import { mapToTranscriptSummary } from "@/lib/mappers/student/mapToTranscriptSummary";
+import { downloadTranscript } from "@/lib/utils/downloadTranscript";
 import { PiDownloadSimpleBold } from "react-icons/pi";
 
 export default function TranscriptSummaryBar() {
   const { data, isPending, isError } = useStudentGrades();
   console.log(data);
-  
 
   if (isPending) return <TranscriptSummaryBarSkeleton />;
   if (isError)
     return <ErrorMessage content="Failed to load transcript summary." />;
 
-  const items = [
-    {
-      label: "Total Credits",
-      value: data?.total_credits ?? "0",
-      valueClassName: "text-primary text-xl md:text-2xl lg:text-3xl",
-    },
-    {
-      label: "Semester GPA",
-      value: data?.semester_gpa ?? "0",
-      valueClassName: "text-primary text-xl md:text-2xl lg:text-3xl",
-    },
-    {
-      label: "Standing",
-      value: data?.standing ?? "",
-      valueClassName: "text-success bg-success-bg py-1 px-3",
-    },
-  ];
+  const items = mapToTranscriptSummary(data);
 
   return (
     <section className="card flex flex-col lg:flex-row justify-between items-center gap-4 p-4 md:p-6 lg:p-8 mt-auto">
@@ -45,8 +30,10 @@ export default function TranscriptSummaryBar() {
           </li>
         ))}
       </ul>
+
       <button
         type="button"
+        onClick={() => downloadTranscript(data)}
         className="flex gap-3 items-center justify-center btn btn-dark w-full lg:w-fit min-w-fit"
       >
         <PiDownloadSimpleBold

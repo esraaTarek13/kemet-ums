@@ -1,6 +1,6 @@
 import { FiFile, FiX } from "react-icons/fi";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface FilePreviewItemProps {
   file: File;
@@ -11,16 +11,20 @@ export default function FilePreviewItem({
   file,
   onRemove,
 }: FilePreviewItemProps) {
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const isImage = file.type.startsWith("image/");
 
-  // Generate a local preview URL for images, and clean it up on unmount/change
+  // Derived value — no need for state, just recompute when `file` changes
+  const previewUrl = useMemo(
+    () => (isImage ? URL.createObjectURL(file) : null),
+    [file, isImage],
+  );
+
+  // Cleanup only — this is the legitimate use of useEffect here
   useEffect(() => {
-    if (!isImage) return;
-    const url = URL.createObjectURL(file);
-    setPreviewUrl(url);
-    return () => URL.revokeObjectURL(url);
-  }, [file, isImage]);
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
 
   return (
     <div className="flex items-center gap-2 bg-bg-input rounded-xl p-2 w-fit max-w-50 mb-1">

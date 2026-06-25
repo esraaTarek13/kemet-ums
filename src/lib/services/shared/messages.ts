@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabase/client";
-import { SendMessagePayload } from "@/types";
+import { MessageReadStatus, SendMessagePayload } from "@/types";
 
 export async function sendMessage(payload: SendMessagePayload): Promise<void> {
   const { error } = await supabase.from("messages").insert(payload);
@@ -21,6 +21,23 @@ export async function editMessage(messageId: string, senderId: string, content: 
     .update({ content, edited_at: new Date().toISOString() })
     .eq("id", messageId)
     .eq("sender_id", senderId);
+  if (error) throw new Error(error.message);
+}
+
+export async function getMessageReadStatus(
+  messageId: string,
+): Promise<MessageReadStatus[]> {
+  const { data, error } = await supabase.rpc("get_message_read_status", {
+    p_message_id: messageId,
+  });
+  if (error) throw new Error(error.message);
+  return data as MessageReadStatus[];
+}
+
+export async function markCourseMessagesRead(courseId: string): Promise<void> {
+  const { error } = await supabase.rpc("mark_course_messages_read", {
+    p_course_id: courseId,
+  });
   if (error) throw new Error(error.message);
 }
 

@@ -1,20 +1,36 @@
+// components/ui/shared/FileSubmission.tsx
 import { TbFileUpload } from "react-icons/tb";
-import { FileSubmissionProps } from "@/types";
 import { LuFileCheck } from "react-icons/lu";
+import {
+  FieldValues,
+  UseFormRegister,
+  UseFormWatch,
+  FieldErrors,
+  Path,
+} from "react-hook-form";
 
-export default function FileSubmission({
+interface FileSubmissionProps<T extends FieldValues> {
+  register: UseFormRegister<T>;
+  errors: FieldErrors<T>;
+  watch: UseFormWatch<T>;
+  isPending: boolean;
+  submitLabel?: string;
+}
+
+export default function FileSubmission<T extends FieldValues>({
   register,
   errors,
   watch,
   isPending,
-}: FileSubmissionProps) {
-  const watchedFiles = watch("file");
-  const selectedFile = watchedFiles?.[0];
+  submitLabel = "Submit Assignment",
+}: FileSubmissionProps<T>) {
+  const watchedFiles = watch("file" as Path<T>);
+  const selectedFile = (watchedFiles as FileList)?.[0];
   const hasError = !!errors.file;
 
   return (
     <>
-      <div className="space-y-2 my-8">
+      <div className="space-y-2 my-6">
         <p className="text-text-secondary text-xs uppercase">file submission</p>
         <label
           htmlFor="file"
@@ -29,13 +45,19 @@ export default function FileSubmission({
             aria-invalid={hasError}
             aria-describedby={hasError ? "file-error" : undefined}
             className="sr-only"
-            {...register("file")}
+            {...register("file" as Path<T>)}
           />
           <span className="bg-accent/10 py-3 px-3.5 rounded-xl">
             {selectedFile ? (
-              <LuFileCheck className="text-accent text-3xl md:text-5xl shrink-0" />
+              <LuFileCheck
+                aria-hidden="true"
+                className="text-accent text-3xl md:text-5xl shrink-0"
+              />
             ) : (
-              <TbFileUpload className="text-accent text-3xl md:text-5xl shrink-0" />
+              <TbFileUpload
+                aria-hidden="true"
+                className="text-accent text-3xl md:text-5xl shrink-0"
+              />
             )}
           </span>
           <div>
@@ -62,16 +84,16 @@ export default function FileSubmission({
         )}
       </div>
 
-      <div className="flex items-center justify-between gap-2 flex-wrap pt-6 border-t border-border text-end">
+      <div className="flex items-center justify-between gap-2 flex-wrap pt-6 border-t border-border">
         <span className="font-bold text-[10px] md:text-xs text-text-muted uppercase">
           Max File Size: 25MB
         </span>
         <button
           type="submit"
           disabled={isPending}
-          className="btn-dark bg-accent border border-accent rounded-md font-semibold text-text-white text-sm md:text-base py-2 px-5 md:px-8 cursor-pointer disabled:opacity-50"
+          className="btn btn-dark disabled:opacity-50 py-2"
         >
-          {isPending ? "Submitting..." : "Submit Assignment"}
+          {isPending ? "Submitting..." : submitLabel}
         </button>
       </div>
     </>

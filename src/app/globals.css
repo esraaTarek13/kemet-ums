@@ -12,7 +12,7 @@
   --color-bg: #fef9ee;
   --color-bg-navbar: #f9f3e9;
   --color-bg-card: #ffffff;
-  --color-bg-input: #f9f3e9;  
+  --color-bg-input: #f9f3e9;
   --color-bg-search-input: #ede8dd;
   --color-bg-filter: #f3ede3;
   --color-bg-bar: #e7e2d8;
@@ -35,7 +35,7 @@
   --color-danger-bg: #fee2e2;
   --color-danger-border: #fecaca;
 
-  --color-success: #166534;
+  --color-success: #16a34a;
   --color-success-bg: #dcfce7;
   --color-success-border: #bbf7d0;
 
@@ -70,6 +70,17 @@
   input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0 1000px var(--color-bg-input) inset !important;
     -webkit-text-fill-color: var(--color-text-subtle) !important;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
   }
 }
 
@@ -120,7 +131,6 @@
   margin-right: auto;
   margin-left: auto;
 }
-
 @media (min-width: 576px) {
   .Custom-container {
     max-width: 540px;
@@ -192,9 +202,9 @@
 
   .btn {
     background: var(--color-accent);
-    border: 1px solid var(--color-bg-bar);
+    border: 2px solid var(--color-bg-bar);
     color: var(--color-text-white);
-    padding: 12px 20px;
+    padding: 10px 20px;
     border-radius: var(--radius-md);
     font-size: 14px;
     font-weight: bold;
@@ -231,7 +241,6 @@
       font-size: 18px;
     }
     .btn {
-      padding: 12px 24px;
       font-size: 16px;
     }
   }
@@ -250,10 +259,6 @@
     }
     .card {
       padding: 20px;
-    }
-    .btn {
-      padding: 16px 30px;
-      font-size: 18px;
     }
   }
 }

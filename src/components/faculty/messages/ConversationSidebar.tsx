@@ -5,11 +5,12 @@ import { ConversationSidebarSkeleton } from "@/components/ui/skeletons/Conversat
 import { useFacultyMessages } from "@/hooks/faculty/useMessages";
 import { useParams } from "next/navigation";
 import { useMemo, useState } from "react";
-import { filterAndSortThreads } from "@/utils/shared/sortThreads";
+import { filterAndSortThreads } from "@/lib/utils/filterAndSortThreads";
 
 export default function ConversationSidebar() {
   const { chatId: selectedCourseId } = useParams<{ chatId?: string }>();
   const { data: threads, isPending, isError } = useFacultyMessages();
+  
   const [search, setSearch] = useState("");
 
   // Filter by course name/code, then sort by most recent message
@@ -30,7 +31,7 @@ export default function ConversationSidebar() {
     <aside aria-label="Conversations" className="w-full lg:max-w-72.5 relative">
       {/* Decorative background, hidden from assistive tech */}
       <div
-        className="hidden lg:block bg-bg-navbar border-r border-bg-bar absolute -top-6 -bottom-10.5 right-0 -left-50 -z-10"
+        className="hidden lg:block bg-bg-navbar border-r border-bg-bar absolute -top-6 -bottom-6 right-0 -left-50 -z-10"
         aria-hidden="true"
       />
 

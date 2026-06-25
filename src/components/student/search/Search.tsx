@@ -1,12 +1,12 @@
 "use client";
 import { useState, useCallback } from "react";
-import { useSearch } from "@/hooks/student/useSearch";
 import SearchInput from "@/components/ui/shared/SearchInput";
 import SearchResults from "./search-results/SearchResults";
+import { useStudentSearch } from "@/hooks/student/useSearch";
 
 export default function Search() {
   const [term, setTerm] = useState("");
-  const { data: res, isPending, isError } = useSearch(term);
+  const { data: res, isPending, isError } = useStudentSearch(term);
 
   const showResults = term.trim().length >= 2;
 

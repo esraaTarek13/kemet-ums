@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useSendFiles, useSendMessage } from "@/hooks/shared/useMessages";
 import { useChatContext } from "../context/ChatContext";
 
@@ -11,7 +11,7 @@ export function useChatInput() {
   const { courseId, portal } = useChatContext();
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
-  const { register, handleSubmit, reset, watch, setValue } =
+  const { register, handleSubmit, reset, control, setValue } =
     useForm<ChatFormValues>({
       defaultValues: { content: "" },
     });
@@ -25,7 +25,7 @@ export function useChatInput() {
     portal,
   );
 
-  const content = watch("content");
+  const content = useWatch({ control, name: "content" });
   const isPending = isSendingMessage || isSendingFile;
 
   // Remove a file from the pending attachments list
@@ -62,7 +62,6 @@ export function useChatInput() {
 
     // No files and empty text — nothing to send
     if (!trimmed) return;
-
     sendMessage(trimmed, { onSuccess: () => reset() });
   };
 

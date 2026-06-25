@@ -2,23 +2,23 @@ import { supabase } from "@/lib/supabase/client";
 import { CourseMessagesData, CourseThread } from "@/types";
 
 export async function getStudentMessages(
-  studentId: string
+  studentId: string,
 ): Promise<CourseThread[]> {
   const { data, error } = await supabase.rpc("get_student_messages", {
-    student_uuid: studentId,
+    p_student_id: studentId,
   });
   if (error) throw new Error(error.message);
-  return data;
+  return data as CourseThread[];
 }
 
 export async function getStudentCourseMessages(
   studentId: string,
-  courseId: string
+  courseId: string,
 ): Promise<CourseMessagesData> {
   const { data, error } = await supabase.rpc("get_course_messages", {
-    student_uuid: studentId,
-    course_uuid: courseId,
+    p_student_id: studentId,
+    p_course_id: courseId,
   });
   if (error) throw new Error(error.message);
-  return data;
+  return data as CourseMessagesData;
 }

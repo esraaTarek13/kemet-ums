@@ -1,11 +1,11 @@
 import { searchStudent } from "@/lib/services/student/search";
 import { useQuery } from "@tanstack/react-query";
 
-export function useSearch(term: string) {
+export function useStudentSearch(term: string) {
   return useQuery({
-    queryKey: ["search", term],
+    queryKey: ["student-search", term],
     queryFn: () => searchStudent(term),
-    enabled: term.trim().length >= 2, // skip until 2+ chars
+    enabled: term.trim().length >= 2,
     staleTime: 1000 * 30,
   });
 }

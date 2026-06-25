@@ -15,6 +15,7 @@ export interface Message {
   sender_name: string;
   sender_avatar: string | null;
   is_mine: boolean;
+  seen_by_all: boolean;
   attachments: MessageAttachment[];
 }
 
@@ -50,4 +51,13 @@ export interface SendMessagePayload {
   course_id: string;
   sender_id: string;
   content?: string | null;
+}
+
+export interface MessageReadStatus {
+  user_id: string;
+  full_name: string;
+  avatar_url: string | null;
+  role: string;
+  read_at: string | null;
+  seen: boolean;
 }

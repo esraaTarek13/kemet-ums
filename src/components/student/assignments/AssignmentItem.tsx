@@ -1,41 +1,50 @@
-import { statusConfig, LABELS } from "@/data/student/assignments";
+import { statusConfig } from "@/data/student/assignments";
+import * as Tooltip from "@radix-ui/react-tooltip";
 import { Assignment } from "@/types";
 import { formatDistanceToNow } from "date-fns";
 import { useState } from "react";
-import SubmitModal from "./SubmitModal";
-import SubmissionDetailsModal from "./SubmissionDetailsModal";
+import SubmitModal from "./modals/SubmitModal";
+import SubmissionDetailsModal from "./modals/SubmissionDetailsModal";
+import { TbUpload } from "react-icons/tb";
+import { FaClipboardCheck } from "react-icons/fa";
+import AssignmentDetailsModal from "./modals/AssignmentDetailsModal";
 
 interface AssignmentItemProps {
   assignment: Assignment;
 }
 
-/** Derives submission state flags from the assignment label */
-function getAssignmentState(label: string) {
+function getAssignmentState(assignment: Assignment) {
   return {
-    isLate: label === LABELS.LATE,
-    isSubmitted: label !== LABELS.NOT_SUBMITTED,
+    isLate: assignment.status === "overdue",
+    isSubmitted:
+      assignment.status === "pending" || assignment.status === "graded",
   };
 }
 
 export default function AssignmentItem({ assignment }: AssignmentItemProps) {
-  // Fallback to "pending" if status is unrecognized
   const config = statusConfig[assignment.status] ?? statusConfig["pending"];
   const { icon: Icon, label, textClass, bgClass } = config;
-  const { isLate, isSubmitted } = getAssignmentState(label);
+  const { isLate, isSubmitted } = getAssignmentState(assignment);
 
   const [isSubmitOpen, setIsSubmitOpen] = useState(false);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isAssignmentDetailsOpen, setIsAssignmentDetailsOpen] = useState(false);
 
   const dueText = `Due ${formatDistanceToNow(new Date(assignment.due_date), {
     addSuffix: true,
   })}`;
 
-  // Accessible button label based on submission state
   const buttonLabel = isLate
     ? `${assignment.title} - submission closed`
     : isSubmitted
       ? `View submission for ${assignment.title}`
       : `Submit ${assignment.title} now`;
+
+  const tooltipText = isLate
+    ? "Submission Closed"
+    : isSubmitted
+      ? "View Submission"
+      : "Submit Now";
 
   return (
     <li
@@ -77,29 +86,54 @@ export default function AssignmentItem({ assignment }: AssignmentItemProps) {
         </div>
       </div>
 
-      <button
-        type="button"
-        disabled={isLate}
-        aria-disabled={isLate}
-        aria-label={buttonLabel}
-        onClick={() =>
-          isSubmitted ? setIsDetailsOpen(true) : setIsSubmitOpen(true)
-        }
-        className={`${
-          isLate
-            ? "disabled:opacity-50 text-text-primary bg-bg-card"
-            : isSubmitted
-              ? "text-text-white bg-accent btn-dark"
-              : "text-text-primary bg-bg-card btn-light"
-        } w-full md:max-w-50 border border-border rounded-lg py-2.5 px-4 md:px-6 font-semibold text-sm md:text-base cursor-pointer`}
-      >
-        {isLate
-          ? "Submission Closed"
-          : isSubmitted
-            ? "View Submission"
-            : "Submit Now"}
-      </button>
+      <div className="flex gap-2 items-stretch">
+        <button
+          type="button"
+          aria-label={`View assignment details for ${assignment.title}`}
+          className="btn btn-dark min-w-fit w-full"
+          onClick={() => setIsAssignmentDetailsOpen(true)}
+        >
+          View Assignment
+        </button>
 
+        <Tooltip.Root>
+          <Tooltip.Trigger asChild>
+            <button
+              type="button"
+              disabled={isLate}
+              aria-disabled={isLate}
+              aria-label={buttonLabel}
+              onClick={() =>
+                isSubmitted ? setIsDetailsOpen(true) : setIsSubmitOpen(true)
+              }
+              className={`btn px-4 text-xl shrink-0 ${
+                isLate
+                  ? "text-text-primary bg-bg-card cursor-no-drop opacity-50"
+                  : isSubmitted
+                    ? "btn-dark"
+                    : "text-text-primary bg-bg-card btn-light"
+              }`}
+            >
+              {isSubmitted ? <FaClipboardCheck /> : <TbUpload />}
+            </button>
+          </Tooltip.Trigger>
+          <Tooltip.Portal>
+            <Tooltip.Content
+              className="bg-bg-card text-text-primary text-xs font-semibold px-3 py-1.5 rounded-md border border-border shadow-md z-50"
+              sideOffset={6}
+            >
+              {tooltipText}
+              <Tooltip.Arrow className="fill-border" />
+            </Tooltip.Content>
+          </Tooltip.Portal>
+        </Tooltip.Root>
+      </div>
+
+      <AssignmentDetailsModal
+        isOpen={isAssignmentDetailsOpen}
+        onClose={() => setIsAssignmentDetailsOpen(false)}
+        assignment={assignment}
+      />
       <SubmitModal
         isOpen={isSubmitOpen}
         onClose={() => setIsSubmitOpen(false)}
@@ -108,14 +142,11 @@ export default function AssignmentItem({ assignment }: AssignmentItemProps) {
       <SubmissionDetailsModal
         isOpen={isDetailsOpen}
         onClose={() => setIsDetailsOpen(false)}
-        grade={assignment.grade}
-        maxGrade={assignment.max_grade}
-        submittedAt={assignment.submitted_at}
-        feedback={assignment.feedback}
-        fileUrl={assignment.file_url}
-        fileName={assignment.file_name}
-        fileSize={assignment.file_size}
-        fileType={assignment.file_type}
+        onResubmit={() => {
+          setIsDetailsOpen(false);
+          setIsSubmitOpen(true);
+        }}
+        assignment={assignment}
       />
     </li>
   );

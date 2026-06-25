@@ -1,8 +1,8 @@
-import CourseHeader from "@/components/student/courses/course-details/CourseHeader";
+import CourseHeader from "@/components/student/courses/course-details/header/CourseHeader";
 import CourseMaterialsCard from "@/components/student/courses/course-details/CourseMaterialsCard";
 import MyPerformanceCard from "@/components/student/courses/course-details/MyPerformanceCard";
 import ProfessorInfoCard from "@/components/student/courses/course-details/ProfessorInfoCard";
-import WeeklyScheduleCard from "@/components/student/courses/course-details/WeeklyScheduleCard";
+import WeeklyScheduleCard from "@/components/student/courses/course-details/schedule/WeeklyScheduleCard";
 
 export default async function CourseDetailsPage({
   params,

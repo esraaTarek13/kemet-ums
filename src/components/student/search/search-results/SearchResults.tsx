@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 import SearchSection from "./SearchSection";
 import ResultItem from "./ResultItem";
 
-const STUDENT_BASE = "/student";
-
 interface SearchResultsProps {
   data: StudentSearchResults | undefined;
   loading: boolean;
@@ -72,11 +70,11 @@ export default function SearchResults({
       <SearchSection title="Courses" icon={<FiBook aria-hidden="true" />}>
         {data?.courses?.map((course: StudentSearchCourse) => (
           <ResultItem
-            key={course.id}
+            key={course.offering_id}
             title={course.course_name}
             subtitle={`${course.course_code} · ${course.faculty_name}`}
             onClick={() =>
-              handleNavigate(`${STUDENT_BASE}/courses/${course.id}`)
+              handleNavigate(`/student/courses/${course.offering_id}`)
             }
           />
         ))}

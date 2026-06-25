@@ -6,7 +6,7 @@ import { useStudentMessages } from "@/hooks/student/useMessages";
 import ConversationItem from "@/components/ui/messages/Conversation/ConversationItem";
 import { ConversationSidebarSkeleton } from "@/components/ui/skeletons/ConversationSidebarSkeleton";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
-import { filterAndSortThreads } from "@/utils/shared/sortThreads";
+import { filterAndSortThreads } from "@/lib/utils/filterAndSortThreads";
 
 
 export default function ConversationSidebar() {
@@ -32,7 +32,7 @@ export default function ConversationSidebar() {
     <aside aria-label="Conversations" className="w-full lg:max-w-72.5 relative">
       {/* Decorative background, hidden from assistive tech */}
       <div
-        className="hidden lg:block bg-bg-navbar border-r border-bg-bar absolute -top-6 -bottom-10.5 right-0 -left-50 -z-10"
+        className="hidden lg:block bg-bg-navbar border-r border-bg-bar absolute -top-6 -bottom-6 right-0 -left-50 -z-10"
         aria-hidden="true"
       />
 

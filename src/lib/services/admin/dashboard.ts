@@ -8,7 +8,7 @@ import {
 import { supabase } from "@/lib/supabase/client";
 
 export async function getDashboardStats(): Promise<DashboardStats> {
-  const { data, error } = await supabase.rpc("get_dashboard_stats");
+  const { data, error } = await supabase.rpc("get_admin_dashboard_stats");
   if (error) throw new Error(error.message);
   return data as DashboardStats;
 }
@@ -36,22 +36,37 @@ export async function getRecentAnnouncements(
   return data as Announcement[];
 }
 
-// Paginated monthly enrollment data for charts
 export async function getEnrollmentTrend(
-  page = 0,
-  windowSize = 6,
+  page = 1,
+  pageSize = 6,
 ): Promise<EnrollmentTrendResponse> {
   const { data, error } = await supabase.rpc("get_enrollment_trend", {
-    page_number: page,
-    window_size: windowSize,
+    p_page: page,
+    p_page_size: pageSize,
   });
   if (error) throw new Error(error.message);
-  return data as EnrollmentTrendResponse;
+
+  const rows = data as {
+    month: string;
+    month_date: string;
+    count: number;
+    total_count: number;
+    total_pages: number;
+  }[];
+
+  const total_pages = rows[0]?.total_pages ?? 1;
+
+  return {
+    data: rows.map((r) => ({ month: r.month, count: r.count })),
+    total_pages,
+    current_page: page,
+    has_next: page < total_pages,
+    has_prev: page > 1,
+  };
 }
 
-// Returns academic performance % and attendance rate %
 export async function getReportsSummary(): Promise<ReportsSummary> {
-  const { data, error } = await supabase.rpc("get_reports_summary");
+  const { data, error } = await supabase.rpc("get_admin_reports_summary");
   if (error) throw new Error(error.message);
   return data as ReportsSummary;
 }

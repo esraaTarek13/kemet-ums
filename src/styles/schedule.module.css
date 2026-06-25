@@ -20,7 +20,7 @@
 }
 
 /* ─── Hide All Day Row ───────────────────────────────────── */
-.calendar :global([data-testid="all-day-row"]) {
+.calendar :global([data-testid="all-day-row"]) { 
   display: none !important;
 }
 

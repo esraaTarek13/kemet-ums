@@ -2,7 +2,7 @@
 import { useStudentCourseDetails } from "@/hooks/student/useStudentCourseDetails";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
-import CourseMaterialsList from "../../shared/CourseMaterialsList";
+import CourseMaterialItem from "@/components/ui/shared/CourseMaterialItem";
 
 export default function CourseMaterialsCard({
   courseId,
@@ -14,6 +14,7 @@ export default function CourseMaterialsCard({
   if (isPending) return <CourseCardSkeleton length={1} />;
   if (isError)
     return <ErrorMessage content="Failed to load Course Materials." />;
+  const materials = data.materials ?? [];
 
   return (
     <section
@@ -21,7 +22,18 @@ export default function CourseMaterialsCard({
       className="card-top-border space-y-5 md:space-y-6"
     >
       <h3 className="title">Course Materials</h3>
-      <CourseMaterialsList materials={data?.materials ?? []} />
+
+      {materials.length > 0 ? (
+        <ul className="space-y-3">
+          {materials.map((material) => (
+            <CourseMaterialItem key={material.id} material={material} />
+          ))}
+        </ul>
+      ) : (
+        <p role="status" className="text-text-subtle text-sm text-center py-10">
+          No materials available.
+        </p>
+      )}
     </section>
   );
 }

@@ -2,11 +2,11 @@
 import StatCard from "@/components/ui/dashboard/StatCard";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import StatCardSkeleton from "@/components/ui/skeletons/StatCardSkeleton";
-import { useStudentDashboard } from "@/hooks/student/useDashboard";
-import { mapToStudentStats } from "@/utils/student/statCardMappers";
+import { useStudentDashboardStats } from "@/hooks/student/useDashboard";
+import { mapToStudentStats } from "@/lib/mappers/student/statCardMappers";
 
 export default function StatCards() {
-  const { data, isPending, isError } = useStudentDashboard();
+  const { data, isPending, isError } = useStudentDashboardStats();
 
   if (isPending) return <StatCardSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load statistics." />;

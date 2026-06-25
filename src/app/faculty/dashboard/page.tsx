@@ -1,9 +1,9 @@
-import HeroBanner from "@/components/ui/dashboard/HeroBanner";
+import DashboardSection from "@/components/faculty/dashboard/DashboardSection";
 
 export default function Dashboard() {
   return (
-    <>
-      <HeroBanner subtle="Here is your teaching overview." />
-    </>
-  )
+    <div className="Custom-container flex flex-col gap-5 md:gap-6">
+     <DashboardSection />
+    </div>
+  );
 }

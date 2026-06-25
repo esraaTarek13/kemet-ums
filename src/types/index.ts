@@ -2,6 +2,7 @@ export * from './shared/auth'
 export * from './shared/aside'
 export * from './shared/fileSubmission'
 export * from './shared/messages'
+export * from './shared/notifications'
 export * from './admin/dashboard'
 export * from './admin/search'
 export * from './student/dashboard'
@@ -11,7 +12,11 @@ export * from "./student/schedule";
 export * from "./student/assignment";
 export * from "./student/grades";
 export * from "./student/profile";
+export * from "./student/transcript";
 export * from './faculty/dashboard'
 export * from "./faculty/search";
 export * from "./faculty/schedule";
+export * from "./faculty/courses";
+export * from "./faculty/attendance";
+export * from "./faculty/submissions";
 export * from "./faculty/profile";

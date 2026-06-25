@@ -9,7 +9,7 @@ import {
   mapToAcademicItems,
   mapToBannerItems,
   mapToPersonalItems,
-} from "@/utils/student/profileMappers";
+} from "@/lib/mappers/student/profileMappers";
 
 export default function StudentProfile() {
   const { data, isError, isPending } = useStudentProfile();

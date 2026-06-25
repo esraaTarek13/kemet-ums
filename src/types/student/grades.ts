@@ -8,7 +8,7 @@ export interface GradesCourse {
   final: number | null;
   quiz: number | null;
   grade: string | null;
-  status: "in_progress" | "completed" | "dropped";
+  status: "active" | "completed" | "dropped";
 }
 
 export interface GpaTrendItem {

@@ -1,11 +1,7 @@
-import { IconType } from "react-icons";
-
 export type DashboardStats = {
   total_students: number;
   active_students: number;
   at_risk_students: number;
-  suspended_students: number;
-  graduated_students: number;
   total_faculty: number;
   active_faculty: number;
   fulltime_faculty: number;
@@ -25,8 +21,7 @@ export type RecentStudent = {
   email: string;
   department: string;
   academic_year: number;
-  gpa: number;
-  status: "active" | "suspended" | "at_risk" | "graduated";
+  status: "active" | "at_risk";
   enrollment_date: string;
   avatar_url: string | null;
 };
@@ -56,17 +51,9 @@ export interface EnrollmentTrendResponse {
 }
 
 export type ReportsSummary = {
-  academic_performance: number;
-  attendance_rate: number;
-  current_semester: string | null;
-  academic_year: string | null;
+  avg_gpa: number;
+  pass_rate: number;
+  top_department: string;
+  enrollment_this_sem: number;
+  completion_rate: number;
 };
-
-export interface StatCardProps {
-  label: string;
-  value: number | undefined ;
-  icon: IconType;
-  description?: string;
-  descriptionColor?: "default" | "success" | "warning" | "danger";
-  trend?: string;
-}

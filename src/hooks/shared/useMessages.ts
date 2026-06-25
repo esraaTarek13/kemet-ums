@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useAuthStore } from "@/stores/authStore";
 import {
@@ -6,6 +6,7 @@ import {
   deleteMessage,
   editMessage,
   sendMessageWithFiles,
+  getMessageReadStatus,
 } from "@/lib/services/shared/messages";
 
 // Shared helper to invalidate both the course chat and the sidebar list
@@ -73,5 +74,14 @@ export function useEditMessage(courseId: string, portal: "student" | "faculty") 
       editMessage(messageId, user?.id ?? "", content),
     onSuccess: invalidate,
     onError: (err: Error) => toast.error(err.message ?? "Failed to edit message"),
+  });
+}
+
+export function useMessageReadStatus(messageId: string, enabled: boolean) {
+  return useQuery({
+    queryKey: ["message-read-status", messageId],
+    queryFn: () => getMessageReadStatus(messageId),
+    enabled: enabled && !!messageId,
+    staleTime: 1000 * 10,
   });
 }

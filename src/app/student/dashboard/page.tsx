@@ -1,6 +1,6 @@
 import Attendance from "@/components/student/dashboard/Attendance";
 import Courses from "@/components/student/dashboard/Courses";
-import DueSoonList from "@/components/student/dashboard/DueSoonList";
+import DueSoonList from "@/components/student/dashboard/due-soon/DueSoonList";
 import Schedule from "@/components/student/dashboard/Schedule";
 import StatCards from "@/components/student/dashboard/StatCards";
 import HeroBanner from "@/components/ui/dashboard/HeroBanner";

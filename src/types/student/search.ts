@@ -1,5 +1,6 @@
 export interface StudentSearchCourse {
   id: string;
+  offering_id: string;
   course_code: string;
   course_name: string;
   department: string;

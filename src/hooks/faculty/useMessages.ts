@@ -6,6 +6,7 @@ import {
   getFacultyMessages,
   getFacultyCourseMessages,
 } from "@/lib/services/faculty/messages";
+import { markCourseMessagesRead } from "@/lib/services/shared/messages";
 
 export function useFacultyMessages() {
   const { user } = useAuthStore();
@@ -28,7 +29,16 @@ export function useFacultyCourseMessages(courseId: string) {
     staleTime: 1000 * 30,
   });
 
-  // Listen for new messages and refresh chat + sidebar
+  useEffect(() => {
+    if (!courseId || !user?.id) return;
+
+    markCourseMessagesRead(courseId)
+      .then(() => {
+        queryClient.invalidateQueries({ queryKey: ["faculty-messages", user?.id] });
+      })
+      .catch(() => {});
+  }, [courseId, user?.id, queryClient]);
+
   useEffect(() => {
     if (!courseId) return;
 
@@ -43,12 +53,8 @@ export function useFacultyCourseMessages(courseId: string) {
           filter: `course_id=eq.${courseId}`,
         },
         () => {
-          queryClient.invalidateQueries({
-            queryKey: ["faculty-course-messages", courseId],
-          });
-          queryClient.invalidateQueries({
-            queryKey: ["faculty-messages", user?.id],
-          });
+          queryClient.invalidateQueries({ queryKey: ["faculty-course-messages", courseId] });
+          queryClient.invalidateQueries({ queryKey: ["faculty-messages", user?.id] });
         },
       )
       .subscribe();

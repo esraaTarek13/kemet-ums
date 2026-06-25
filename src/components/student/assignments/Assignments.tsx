@@ -3,13 +3,16 @@
 import { TABS } from "@/data/student/assignments";
 import { useStudentAssignments } from "@/hooks/student/useStudentAssignments";
 import { useMemo, useState } from "react";
-import AssignmentsCard from "./AssignmentsCard";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
-import { filterAssignmentsByTab, mapToAssignmentStats } from "@/utils/student/assignmentsMappers";
+import {
+  filterAssignmentsByTab,
+  mapToAssignmentStats,
+} from "@/lib/mappers/student/assignmentsMappers";
+import AssignmentsCards from "./AssignmentsCards";
 
 export default function Assignments() {
-   const { data, isPending, isError } = useStudentAssignments();
+  const { data, isPending, isError } = useStudentAssignments();
   const [activeTab, setActiveTab] = useState("All");
 
   // Filter assignments based on the active tab
@@ -19,7 +22,7 @@ export default function Assignments() {
   );
 
   // Map stat counts to config for rendering summary cards
- const statsCards = useMemo(() => mapToAssignmentStats(data), [data]);
+  const statsCards = useMemo(() => mapToAssignmentStats(data), [data]);
 
   if (isPending) return <CardSkeleton />;
   if (isError)
@@ -31,7 +34,6 @@ export default function Assignments() {
     <section className="space-y-12">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <h3 className="header-title">Assignments</h3>
-
         <ul className="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-4">
           {statsCards.map((stat) => (
             <li
@@ -73,7 +75,7 @@ export default function Assignments() {
         ))}
       </ul>
 
-      <AssignmentsCard assignments={filteredAssignments} />
+      <AssignmentsCards assignments={filteredAssignments} />
     </section>
   );
 }

@@ -9,12 +9,12 @@ import { TbUserCheck } from "react-icons/tb";
 export default function MyPerformanceCard({ courseId }: { courseId: string }) {
   const { data, isPending, isError } = useStudentCourseDetails(courseId);
 
-  const { grade, course, assignments, attendance } = data ?? {};
-  const completion = course?.completion;
-
   if (isPending) return <CourseCardSkeleton length={1} />;
   if (isError)
     return <ErrorMessage content="Failed to load Performance data." />;
+
+  const { course, grade, assignments, attendance } = data ?? {};
+  const completion = course?.completion_percentage;
 
   return (
     <section
@@ -89,7 +89,7 @@ export default function MyPerformanceCard({ courseId }: { courseId: string }) {
               attendance
             </p>
             <p className="font-bold text-accent text-base md:text-lg">
-              {attendance?.rate}% Presence
+              {attendance?.rate ?? 0}% Presence
             </p>
           </div>
         </div>

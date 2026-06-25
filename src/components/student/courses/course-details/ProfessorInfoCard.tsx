@@ -8,10 +8,10 @@ import { PiDoorBold } from "react-icons/pi";
 
 export default function ProfessorInfoCard({ courseId }: { courseId: string }) {
   const { data, isError, isPending } = useStudentCourseDetails(courseId);
-  const faculty = data?.faculty;
 
   if (isPending) return <InstructorCardSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load course." />;
+  const faculty = data?.course ?? {};
 
   return (
     <section
@@ -19,10 +19,10 @@ export default function ProfessorInfoCard({ courseId }: { courseId: string }) {
       className="card-top-border flex flex-col items-center gap-4 px-8"
     >
       {/* professor avatar — sr-only fallback if no image */}
-      {faculty?.avatar_url ? (
+      {faculty?.faculty_avatar ? (
         <Image
-          src={faculty.avatar_url}
-          alt={faculty.full_name}
+          src={faculty.faculty_avatar}
+          alt={faculty.faculty_name}
           width={68}
           height={68}
           className="rounded-full object-cover w-16 h-16"
@@ -31,17 +31,17 @@ export default function ProfessorInfoCard({ courseId }: { courseId: string }) {
         <>
           <FaUserCircle aria-hidden="true" className="text-primary text-6xl" />
           <span className="sr-only">
-            {faculty?.full_name ?? "Professor"} — no photo available
+            {faculty?.faculty_name ?? "Professor"} — no photo available
           </span>
         </>
       )}
 
       <div className="space-y-1">
         <h4 className="font-bold text-accent text-lg md:text-xl lg:text-2xl text-center">
-          {faculty?.full_name}
+          {faculty?.faculty_name}
         </h4>
         <p className="font-bold text-text-secondary text-xs md:text-sm text-center uppercase">
-          {faculty?.rank} of {faculty?.specialization}
+          {faculty?.faculty_rank} of {faculty?.faculty_specialization}
         </p>
       </div>
 
@@ -49,12 +49,12 @@ export default function ProfessorInfoCard({ courseId }: { courseId: string }) {
       <div className="flex flex-col items-center gap-3">
         <div className="flex items-center gap-2 text-text-muted text-center">
           <FaRegEnvelope aria-hidden="true" />
-          <p className="text-xs md:text-sm">{faculty?.email}</p>
+          <p className="text-xs md:text-sm">{faculty?.faculty_email}</p>
         </div>
         <div className="flex items-center gap-2 text-text-muted text-center">
           <PiDoorBold aria-hidden="true" />
           <p className="text-xs md:text-sm">
-            Office Hours: {faculty?.office_location}
+            Office Hours: {faculty?.faculty_office_hours ?? "—"}
           </p>
         </div>
       </div>

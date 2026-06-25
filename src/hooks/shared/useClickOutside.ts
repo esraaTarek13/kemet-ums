@@ -28,5 +28,5 @@ export default function useClickOutside<T extends HTMLElement>(
       document.removeEventListener("mousedown", handleClickOutside);
       if (onScroll) window.removeEventListener("scroll", onScroll);
     };
-  }, [enabled, onClickOutside, onScroll]);
+  }, [ref, enabled, onClickOutside, onScroll]);
 }

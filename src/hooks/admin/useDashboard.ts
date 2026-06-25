@@ -15,8 +15,8 @@ export const dashboardKeys = {
     [...dashboardKeys.all, "recent-students", limit] as const,
   announcements: (limit?: number) =>
     [...dashboardKeys.all, "announcements", limit] as const,
-  enrollmentTrend: (page = 0) =>
-    [...dashboardKeys.all, "enrollment-trend", page] as const,
+  enrollmentTrend: (page = 1) =>
+  [...dashboardKeys.all, "enrollment-trend", page] as const,
   reportsSummary: () => [...dashboardKeys.all, "reports-summary"] as const,
 };
 
@@ -44,11 +44,11 @@ export function useRecentAnnouncements(limit = 3) {
   });
 }
 
-export function useEnrollmentTrend(page = 0) {
+export function useEnrollmentTrend(page = 1) {
   return useQuery({
     queryKey: dashboardKeys.enrollmentTrend(page),
     queryFn: () => getEnrollmentTrend(page),
-    staleTime: 1000 * 60 * 15, // 15 min
+    staleTime: 1000 * 60 * 15,
   });
 }
 

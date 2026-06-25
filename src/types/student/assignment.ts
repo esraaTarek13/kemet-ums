@@ -4,6 +4,7 @@ export type AssignmentStatus =
 export interface Assignment {
   assignment_id: string;
   title: string;
+  description: string;
   due_date: string;
   max_grade: number;
   course_name: string;
@@ -16,6 +17,10 @@ export interface Assignment {
   file_name: string | null;
   file_size: string | null;
   file_type: string | null;
+  sub_file_url: string | null;
+  sub_file_name: string | null;
+  sub_file_size: string | null;
+  sub_file_type: string | null;
 }
 
 export interface StudentAssignments {
@@ -38,14 +43,13 @@ export interface Material {
 export interface SubmissionDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  grade: number | null;
-  maxGrade: number | null;
-  submittedAt: string | null;
-  feedback: string | null;
-  fileUrl: string | null ;
-  fileName: string | null;
-  fileSize: string | null;
-  fileType: string | null;
+  onResubmit: () => void;
+  assignment: Assignment;
+}
+export interface AssignmentDetailsModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  assignment: Assignment;
 }
 
 export interface SubmitModalProps {

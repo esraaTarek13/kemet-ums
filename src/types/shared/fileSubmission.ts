@@ -1,12 +1,8 @@
-import { FieldErrors, UseFormRegister, UseFormWatch } from "react-hook-form";
+import { FieldErrors, UseFormRegister, UseFormWatch, FieldValues } from "react-hook-form";
 
-export interface SubmitFormValues {
-  file: FileList;
-}
-
-export interface FileSubmissionProps {
-  register: UseFormRegister<SubmitFormValues>;
-  errors: FieldErrors<SubmitFormValues>;
-  watch: UseFormWatch<SubmitFormValues>;
+export interface FileSubmissionProps<T extends FieldValues> {
+  register: UseFormRegister<T>;
+  errors: FieldErrors<T>;
+  watch: UseFormWatch<T>;
   isPending: boolean;
 }

@@ -5,6 +5,7 @@ import { CiLocationOn } from "react-icons/ci";
 /** Maps a time range to a display status based on current time. */
 const getStatus = (start: string, end: string, now: string) => {
   if (now >= start && now <= end) return "ACTIVE NOW";
+  if (now >= start && now <= end) return "ACTIVE NOW";
   if (now < start) return "UPCOMING";
   return "DONE";
 };

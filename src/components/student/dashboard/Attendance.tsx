@@ -1,11 +1,11 @@
 "use client";
 import ProgressBar from "@/components/ui/shared/ProgressBar";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
-import { useStudentDashboard } from "@/hooks/student/useDashboard";
 import AttendanceSkeletons from "@/components/ui/skeletons/AttendanceSkeletons";
+import { useStudentDashboardStats } from "@/hooks/student/useDashboard";
 
 export default function Attendance() {
-  const { data, isPending, isError } = useStudentDashboard();
+ const { data, isPending, isError } = useStudentDashboardStats();
   const attendanceRate = data?.attendance_rate;
 
   if (isPending) return <AttendanceSkeletons />;

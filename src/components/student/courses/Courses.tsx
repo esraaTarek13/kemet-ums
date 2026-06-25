@@ -46,28 +46,28 @@ export default function Courses() {
                   : "text-text-muted"
               }`}
             >
-              {course.replaceAll("_", " ")}
+              {course}
             </button>
           ))}
         </div>
       </div>
 
       {/* course grid — empty state if no results */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 pt-3">
-        {courses.length > 0 ? (
-          courses.map((course) => (
-            <CourseCard key={course.course_id} {...course} />
-          ))
-        ) : (
-          <p
-            role="status"
-            aria-live="polite"
-            className="text-text-muted col-span-full text-center py-10"
-          >
-            No courses found.
-          </p>
-        )}
-      </div>
+      {courses.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 pt-3">
+          {courses.map((course) => (
+            <CourseCard key={course.offering_id} course={course} />
+          ))}
+        </div>
+      ) : (
+        <p
+          role="status"
+          aria-live="polite"
+          className="text-text-muted col-span-full text-center py-10"
+        >
+          No courses found.
+        </p>
+      )}
     </section>
   );
 }

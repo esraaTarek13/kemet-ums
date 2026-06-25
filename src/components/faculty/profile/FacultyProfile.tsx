@@ -9,7 +9,7 @@ import {
   mapToAcademicItems,
   mapToBannerItems,
   mapToPersonalItems,
-} from "@/utils/faculty/profileMappers";
+} from "@/lib/mappers/faculty/profileMappers";
 
 export default function FacultyProfile() {
   const { data, isPending, isError } = useFacultyProfile();

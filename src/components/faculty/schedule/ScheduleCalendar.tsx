@@ -1,12 +1,12 @@
 "use client";
 import sharedStyles from "@/styles/schedule.module.css";
-import styles from "@/styles/SchedulePage.module.css";
+import styles from "@/styles/schedulePage.module.css";
 import dayjs from "dayjs";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import ScheduleSkeleton from "@/components/ui/skeletons/ScheduleSkeleton";
-import { useSchedule } from "@/hooks/faculty/useSchedule";
-import { mapToScheduleEvents } from "@/utils/shared/scheduleEventsMapper";
+import { mapToScheduleEvents } from "@/lib/mappers/shared/scheduleEventsMapper";
 import dynamic from "next/dynamic";
+import { useFacultySchedule } from "@/hooks/faculty/useSchedule";
 
 // SSR disabled to avoid hydration mismatch with calendar DOM
 const IlamyCalendar = dynamic(
@@ -14,10 +14,8 @@ const IlamyCalendar = dynamic(
   { ssr: false, loading: () => <ScheduleSkeleton /> },
 );
 export default function ScheduleCalendar() {
-  const { data: schedule, isPending, isError } = useSchedule();
-  const events = mapToScheduleEvents(schedule);
-  console.log(schedule);
-  
+  const { data: schedule, isPending, isError } = useFacultySchedule();
+  const events = mapToScheduleEvents(schedule);  
 
   if (isPending) return <ScheduleSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load Schedule." />;
@@ -36,7 +34,7 @@ export default function ScheduleCalendar() {
             initialView="week"
             firstDayOfWeek="saturday"
             hideNonBusinessHours={true}
-            businessHours={{ startTime: 6, endTime: 19 }}
+            businessHours={{ startTime: 8, endTime: 20 }}
             disableCellClick={true}
             disableEventClick={true}
             disableDragAndDrop={true}

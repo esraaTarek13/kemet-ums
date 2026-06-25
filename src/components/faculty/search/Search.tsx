@@ -1,15 +1,15 @@
 "use client";
 
 import SearchInput from "@/components/ui/shared/SearchInput";
-import { useSearch } from "@/hooks/faculty/useSearch";
 import { useCallback, useState } from "react";
 import SearchResults from "./search-results/SearchResults";
+import { useFacultySearch } from "@/hooks/faculty/useSearch";
 
 
 export default function Search() {
   const [term, setTerm] = useState("");
-  const { data: res, isPending, isError } = useSearch(term);
-
+  const { data: res, isPending, isError } = useFacultySearch(term);
+  
   const showResults = term.trim().length >= 2;
 
   const handleClose = useCallback(() => setTerm(""), []);

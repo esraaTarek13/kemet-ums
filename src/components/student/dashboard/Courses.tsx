@@ -2,13 +2,12 @@
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
-import { useStudentDashboard } from "@/hooks/student/useDashboard";
+import { useStudentDashboardCourses } from "@/hooks/student/useDashboard";
 import CourseCard from "../shared/CourseCard";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
 
 export default function Courses() {
-  const { data, isPending, isError } = useStudentDashboard();
-  const courses = data?.courses;
+  const { data: courses, isPending, isError } = useStudentDashboardCourses();
 
   if (isPending)
     return (
@@ -40,7 +39,7 @@ export default function Courses() {
         {/* render enrolled courses, or notify if none exist */}
         {courses?.length ? (
           courses.map((course) => (
-            <CourseCard key={course.course_id} {...course} />
+            <CourseCard key={course.offering_id} course={course} />
           ))
         ) : (
           <p

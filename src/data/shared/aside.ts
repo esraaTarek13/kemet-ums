@@ -19,6 +19,7 @@ export const STUDENT_NAV = [
   { label: "Assignments", href: "/student/assignments", icon: MdAssignment },
   { label: "Grades", href: "/student/grades", icon: MdGrade },
   { label: "Schedule", href: "/student/schedule", icon: MdCalendarMonth },
+  { label: "Announcements", href: "/student/announcements", icon: MdCampaign },
   { label: "Messages", href: "/student/messages", icon: MdMessage },
 ];
 

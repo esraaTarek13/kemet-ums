@@ -1,4 +1,3 @@
-
 export interface SearchStudent {
   id: string;
   student_code: string;

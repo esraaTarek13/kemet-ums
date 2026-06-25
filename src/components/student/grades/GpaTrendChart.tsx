@@ -10,13 +10,13 @@ export default function GpaTrendChart() {
   if (isPending) return <GpaTrendChartSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load GPA trend." />;
 
-  const chartData = (data?.gpa_trend ?? [])
-    .slice()
-    .reverse()
-    .map((item) => ({
-      label: item.semester,
-      gpa: item.gpa,
-    }));
+  const chartData = (data?.gpa_trend ?? []).slice().map((item) => ({
+    label: item.semester
+      .replace("Fall", "F")
+      .replace("Spring", "S")
+      .replace("Summer", "Su"),
+    gpa: item.gpa,
+  }));
 
   // Text summary for screen readers, since the chart SVG isn't accessible
   const chartSummary = chartData
@@ -24,7 +24,7 @@ export default function GpaTrendChart() {
     .join(", ");
 
   return (
-    <div className="card h-full w-full lg:w-65 p-4 md:p-6 rounded-xl">
+    <div className="card h-full lg:h-fit w-full lg:w-65 p-4 md:p-6 rounded-xl">
       <p className="text-text-secondary text-sm uppercase tracking-wider mb-2">
         GPA Trend
       </p>

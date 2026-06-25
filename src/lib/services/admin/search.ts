@@ -1,15 +1,9 @@
 import { supabase } from "@/lib/supabase/client";
 import { AdminSearchResults } from "@/types";
 
-export async function searchUniversity(
-  term: string,
-  limit = 10,
-  offset = 0,
-): Promise<AdminSearchResults> {
-  const { data, error } = await supabase.rpc("search_university", {
-    search_term: term,
-    result_limit: limit,
-    result_offset: offset,
+export async function searchUniversity(term: string): Promise<AdminSearchResults> {
+  const { data, error } = await supabase.rpc("search_admin_portal", {
+    p_query: term,
   });
   if (error) throw new Error(error.message);
   return data as AdminSearchResults;

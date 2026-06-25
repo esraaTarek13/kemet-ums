@@ -5,7 +5,7 @@ export async function getStudentAssignments(
   studentId: string,
 ): Promise<StudentAssignments> {
   const { data, error } = await supabase.rpc("get_student_assignments", {
-    student_uuid: studentId,
+    p_student_id: studentId,
   });
   if (error) throw new Error(error.message);
   return data as StudentAssignments;
@@ -16,10 +16,20 @@ export async function submitAssignment(
   studentId: string,
   file: File,
 ): Promise<void> {
-  // Path format: studentId/assignmentId.ext — ensures unique file per student per assignment
-  const path = `${studentId}/${assignmentId}.${file.name.split(".").pop()}`;
+  // Delete old file if exists (handles extension change)
+  const { data: existing } = await supabase.storage
+    .from("submissions")
+    .list(studentId, { search: assignmentId });
 
-  // upsert: overwrites if student resubmits the same assignment
+  if (existing && existing.length > 0) {
+    await supabase.storage
+      .from("submissions")
+      .remove(existing.map((f) => `${studentId}/${f.name}`));
+  }
+
+  const ext = file.name.split(".").pop();
+  const path = `${studentId}/${assignmentId}.${ext}`;
+
   const { error: uploadError } = await supabase.storage
     .from("submissions")
     .upload(path, file, { upsert: true });
@@ -30,14 +40,12 @@ export async function submitAssignment(
     .from("submissions")
     .getPublicUrl(path);
 
-  // onConflict: handles resubmission by updating the existing row
   const { error: insertError } = await supabase.from("submissions").upsert(
     {
       assignment_id: assignmentId,
       student_id: studentId,
       file_url: urlData.publicUrl,
       file_name: file.name,
-      // Convert bytes to MB with 1 decimal place
       file_size: `${(file.size / 1024 / 1024).toFixed(1)} MB`,
       file_type: file.name.split(".").pop(),
       status: "pending",

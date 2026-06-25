@@ -1,8 +1,9 @@
+import Courses from "@/components/faculty/courses/courses/Courses";
 
-export default function page() {
+export default function CoursesPage() {
   return (
-    <div>
-      
+    <div className="Custom-container">
+      <Courses />
     </div>
   )
 }

@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import MessageMenu from "../chat-actions/MessageMenu";
 import AttachmentList from "./AttachmentList";
 import { memo, useState } from "react";
+import { IoCheckmarkDoneOutline } from "react-icons/io5";
 
 interface MessageBubbleProps {
   message: Message;
@@ -26,7 +27,7 @@ function MessageBubble({ message }: MessageBubbleProps) {
   const isLong = content.length > TRUNCATE_LENGTH;
   const displayContent =
     isLong && !isExpanded ? content.slice(0, TRUNCATE_LENGTH) + "..." : content;
-
+    
   return (
     <div className={`flex ${isMine ? "justify-end" : "justify-start"} `}>
       <div
@@ -93,14 +94,28 @@ function MessageBubble({ message }: MessageBubbleProps) {
                 </button>
               )}
 
-              <p
-                className={`${
-                  isMine ? "text-text-white/70 ml-auto" : "text-text-muted "
-                } text-[10px] mt-2 self-end`}
+              <div
+                className={`flex gap-1 items-end mt-2 self-end ${isMine ? "ml-auto" : ""}`}
               >
-                {formatTime(message.created_at)}
-                {message.edited_at && <span> · edited</span>}
-              </p>
+                <p
+                  className={`${
+                    isMine ? "text-text-white/70" : "text-text-muted "
+                  } text-[10px]`}
+                >
+                  {formatTime(message.created_at)}
+                  {message.edited_at && <span> · edited</span>}
+                </p>
+
+                {isMine && (
+                  <IoCheckmarkDoneOutline
+                    className={
+                      message.seen_by_all
+                        ? "text-success"
+                        : "text-text-white/70"
+                    }
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>

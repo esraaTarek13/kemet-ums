@@ -1,5 +1,5 @@
 import { MessageAttachment } from "@/types";
-import { downloadFile } from "@/utils/shared/downloadFile";
+import { downloadFile } from "@/lib/utils/downloadFile";
 import Image from "next/image";
 import { FiDownload, FiFile } from "react-icons/fi";
 

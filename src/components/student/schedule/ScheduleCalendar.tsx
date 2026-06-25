@@ -1,12 +1,12 @@
 "use client";
 import sharedStyles from "@/styles/schedule.module.css";
-import styles from "@/styles/SchedulePage.module.css";
+import styles from "@/styles/schedulePage.module.css";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic";
 import ScheduleSkeleton from "@/components/ui/skeletons/ScheduleSkeleton";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
-import { useSchedule } from "@/hooks/student/useSchedule";
-import { mapToScheduleEvents } from "@/utils/shared/scheduleEventsMapper";
+import { mapToScheduleEvents } from "@/lib/mappers/shared/scheduleEventsMapper";
+import { useStudentSchedule } from "@/hooks/student/useSchedule";
 
 // SSR disabled to avoid hydration mismatch with calendar DOM
 const IlamyCalendar = dynamic(
@@ -15,7 +15,7 @@ const IlamyCalendar = dynamic(
 );
 
 export default function ScheduleCalendar() {
-  const { data: schedule, isPending, isError } = useSchedule();
+  const { data: schedule, isPending, isError } = useStudentSchedule();
   const events = mapToScheduleEvents(schedule);
 
   if (isPending) return <ScheduleSkeleton />;
