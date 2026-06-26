@@ -1,5 +1,6 @@
 export * from './shared/auth'
 export * from './shared/aside'
+export * from './shared/statCard'
 export * from './shared/fileSubmission'
 export * from './shared/messages'
 export * from './shared/notifications'
@@ -20,4 +21,5 @@ export * from "./faculty/schedule";
 export * from "./faculty/courses";
 export * from "./faculty/attendance";
 export * from "./faculty/submissions";
+export * from "./faculty/student";
 export * from "./faculty/profile";

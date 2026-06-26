@@ -1,3 +1,5 @@
+import { BadgeStatus } from "@/components/ui/shared/StatusBadge";
+
 export interface FacultyDashboardStats {
   total_courses: number;
   total_students: number;
@@ -11,7 +13,7 @@ export interface FacultyRecentSubmission {
   course_code: string;
   submitted_at: string;
   grade: string | null;
-  status: "submitted" | "graded" | "late";
+  status: BadgeStatus;
 }
 
 export interface FacultyPerformanceIndex {

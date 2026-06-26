@@ -26,8 +26,8 @@ export default function ReportsSummary() {
     {
       key: "academic_performance",
       label: "Academic Performance",
-      subtitle: res.current_semester,
-      value: res.academic_performance,
+      // subtitle: res.current_semester,
+      // value: res.academic_performance,
       icon: FiTrendingUp,
       iconClass: "text-success",
       progressClass: "bg-accent",
@@ -37,7 +37,7 @@ export default function ReportsSummary() {
       key: "attendance_rate",
       label: "Attendance Metrics",
       subtitle: "Overall Campus",
-      value: res.attendance_rate,
+      // value: res.attendance_rate,
       icon: FiBarChart2,
       iconClass: "text-text-subtle",
       progressClass: "bg-text-secondary",
@@ -88,7 +88,7 @@ export default function ReportsSummary() {
             </div>
 
             <ProgressBar
-              value={report.value}
+              // value={report.value}
               progressClass={report.progressClass}
               textClass={report.textClass}
             />

@@ -1,3 +1,5 @@
+import { BadgeStatus } from "@/components/ui/shared/StatusBadge";
+
 export interface FacultyCourse {
   course_id: string;
   offering_id: string;
@@ -14,7 +16,7 @@ export interface FacultyCourse {
   room: string | null;
   enrolled_count: number;
   max_students: number;
-  status: string;
+  status: BadgeStatus;
   completion_percentage: number;
 }
 

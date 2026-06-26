@@ -70,9 +70,9 @@ export default function RecentStudents() {
                   <td className="whitespace-nowrap text-text-primary text-xs md:text-sm py-4 md:py-6 px-4 md:px-6 text-left">
                     {row.department}
                   </td>
-                  <td className="whitespace-nowrap font-bold text-text-primary text-xs md:text-sm py-4 md:py-6 px-4 md:px-6 text-left">
+                  {/* <td className="whitespace-nowrap font-bold text-text-primary text-xs md:text-sm py-4 md:py-6 px-4 md:px-6 text-left">
                     {row.gpa}
-                  </td>
+                  </td> */}
 
                   {/* Status badge with dynamic style based on status value */}
                   <td className="py-4 md:py-6 px-4 md:px-6">
