@@ -37,7 +37,7 @@ export default function SearchInput({
     onClose?.();
   }, [onChange, onClose]);
 
-    useEffect(() => {
+  useEffect(() => {
     startTransition(close);
   }, [pathname, close]);
 
@@ -83,7 +83,7 @@ export default function SearchInput({
         aria-label="Open search"
         aria-expanded={isOpen}
         className="md:hidden text-text-primary text-xl px-4 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen((prev) => !prev)}
       >
         <FiSearch aria-hidden="true" />
       </button>
@@ -106,7 +106,10 @@ export default function SearchInput({
             role="combobox"
             autoComplete="off"
             autoFocus
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => {
+              onChange(e.target.value);
+              setIsOpen(true);
+            }}
             className="bg-transparent text-sm text-text-subtle w-full outline-none"
           />
         </div>

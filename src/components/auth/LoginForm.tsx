@@ -77,10 +77,7 @@ export default function LoginForm() {
         {/* Remember me & forgot password */}
         <div className="flex justify-between items-center">
           <label className="flex items-center gap-2 text-xs md:text-sm text-text-secondary font-medium cursor-pointer">
-            <input
-              type="checkbox"
-              className="outline-accent accent-accent"
-            />
+            <input type="checkbox" className="outline-accent accent-accent" />
             Remember me
           </label>
           <Link

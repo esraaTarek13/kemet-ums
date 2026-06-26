@@ -19,7 +19,7 @@ export default function StudentLayout({
   return (
     <div className="min-h-screen flex">
       <StudentAside />
-      <section className="flex flex-col gap-5 md:gap-6 flex-1 ml-16 md:ml-41.5 lg:ml-44.5">
+      <section className="flex flex-col gap-5 md:gap-6 flex-1 ml-16 md:ml-47 lg:ml-50">
         <Header search={<Search />} />
         <main className="grow">
           {children}

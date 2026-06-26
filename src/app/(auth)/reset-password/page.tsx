@@ -14,7 +14,7 @@ export default function ResetPassword() {
         title="Fresh Start, Same You."
         subtitle="Create a new password and continue your academic journey."
       />
-      <section className="bg-bg w-full flex flex-col items-center gap-12 absolute md:relative top-100 bottom-0 md:top-0 left-0 rounded-tl-3xl rounded-tr-3xl md:rounded-none pt-8 md:pt-12 lg:pt-15">
+      <section className="bg-bg w-full h-fit md:h-full flex flex-col items-center gap-12 absolute md:relative top-100 bottom-0 md:top-0 left-0 rounded-tl-3xl rounded-tr-3xl md:rounded-none pt-8 md:pt-12 lg:pt-15">
         <ResetPasswordForm />
         <Footer />
       </section>

@@ -19,7 +19,7 @@ export default function SuperAdminLayout({
   return (
     <div className="min-h-screen flex">
       <SuperAdminAside />
-      <section className="flex flex-col gap-5 md:gap-6 flex-1 ml-16 md:ml-46 lg:ml-50">
+      <section className="flex flex-col gap-5 md:gap-6 flex-1 ml-16 md:ml-47 lg:ml-50">
         <Header search={<Search />} />
         <main className="Custom-container grow flex flex-col gap-5 md:gap-6">
           {children}
