@@ -1,7 +1,15 @@
 "use client";
 import { FiSearch } from "react-icons/fi";
-import { useRef, useCallback, useState, useId } from "react";
+import {
+  useRef,
+  useCallback,
+  useState,
+  useId,
+  useEffect,
+  useTransition,
+} from "react";
 import useClickOutside from "@/hooks/shared/useClickOutside";
+import { usePathname } from "next/navigation";
 
 interface SearchInputProps {
   value: string;
@@ -20,12 +28,18 @@ export default function SearchInput({
   const containerRef = useRef<HTMLDivElement>(null);
   const searchId = useId();
   const resultsId = useId();
+  const pathname = usePathname();
+  const [, startTransition] = useTransition();
 
   const close = useCallback(() => {
     setIsOpen(false);
     onChange("");
     onClose?.();
   }, [onChange, onClose]);
+
+    useEffect(() => {
+    startTransition(close);
+  }, [pathname, close]);
 
   useClickOutside(containerRef, {
     onClickOutside: close,
@@ -104,7 +118,7 @@ export default function SearchInput({
           id={resultsId}
           role="listbox"
           aria-label="Search results"
-          className="absolute top-18.5 md:top-full mt-2 w-60 md:w-full bg-bg-card border border-accent/30 rounded-xl shadow-[0_0_15px_#4a1b26] z-50 overflow-hidden"
+          className="absolute top-18.5 md:top-full mt-2 w-60 md:w-full bg-bg-card border border-accent/30 rounded-xl shadow-[0_4px_24px_0px_#4a1b2640] z-50 overflow-hidden"
         >
           {results}
         </div>

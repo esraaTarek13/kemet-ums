@@ -53,7 +53,7 @@ export default function GpaTrendChart() {
         </p>
       ) : (
         <div role="img" aria-label={`GPA trend by semester: ${chartSummary}`}>
-          <ResponsiveContainer width="100%" height={200}>
+          <ResponsiveContainer width="100%" height={180}>
             <BarChart data={chartData}>
               <XAxis dataKey="label" tick={{ fontSize: 10 }} />
               <Bar

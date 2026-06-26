@@ -22,21 +22,21 @@ export default function Aside({ portalName, navLinks }: AsideProps) {
       className="h-screen fixed flex flex-col bg-primary py-8 px-3 md:px-4 z-50"
     >
       {/* mobile: icon only, desktop: full logo */}
-      <Link href={`${base}/dashboard`}>
+      <Link href={`${base}/dashboard`} className="min-w-fit w-full shrink-0">
         <Image
           src="/images/mark-logo.png"
           alt="Kemet University Logo"
           width={40}
           height={40}
-          className="h-auto w-auto md:hidden"
+          className="h-auto object-contain md:hidden"
           priority
         />
         <Image
           src="/images/kemet-logo.png"
           alt="Kemet University Logo"
-          width={120}
+          width={135}
           height={40}
-          className="h-auto w-auto hidden md:block"
+          className="h-auto object-contain hidden md:block"
           priority
         />
       </Link>
@@ -64,7 +64,7 @@ export default function Aside({ portalName, navLinks }: AsideProps) {
           className="text-2xl md:text-xl shrink-0"
         />
         <span className="hidden md:block uppercase text-sm lg:text-base">
-          {isPending ? "Logging out..." : "Logout"}
+          Logout
         </span>
       </button>
     </aside>

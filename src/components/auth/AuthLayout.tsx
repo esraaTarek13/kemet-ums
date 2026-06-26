@@ -14,7 +14,6 @@ export default function AuthLayout({ title, subtitle }: AuthLayoutProps) {
         alt="Kemet University"
         fill
         sizes="50vw"
-        priority
         className="object-cover"
       />
 

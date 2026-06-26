@@ -9,7 +9,7 @@ interface TableProps<T extends TableNode> {
   columns: Column<T>[];
 }
 
-const MAX_ROWS = 8;
+const MAX_ROWS = 9;
 const ROW_HEIGHT = 50;
 const headerHeight = 50;
 

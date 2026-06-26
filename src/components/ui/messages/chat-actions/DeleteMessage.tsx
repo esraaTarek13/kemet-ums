@@ -69,7 +69,7 @@ export default function DeleteMessage({
                 aria-busy={isPending}
                 aria-label="Confirm delete message"
                 onClick={handleDelete}
-                className="px-4 py-2 text-sm rounded-lg bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 cursor-pointer"
+                className="px-4 py-2 text-sm rounded-lg bg-red-700 text-white hover:bg-red-800 disabled:opacity-50 cursor-pointer"
               >
                 {isPending ? "Deleting…" : "Delete"}
               </button>

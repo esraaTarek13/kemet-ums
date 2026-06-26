@@ -14,7 +14,7 @@ export default function Login() {
         title="Your Campus, Your Way."
         subtitle="Seamless access to everything that matters — anytime, anywhere."
       />
-      <section className="bg-bg w-full flex flex-col items-center gap-12 absolute md:relative top-100 bottom-0 md:top-0 left-0 rounded-tl-3xl rounded-tr-3xl md:rounded-none pt-8 md:pt-12 lg:pt-15">
+      <section className="bg-bg w-full h-full flex flex-col items-center gap-12 absolute md:relative top-100 bottom-0 md:top-0 left-0 rounded-tl-3xl rounded-tr-3xl md:rounded-none pt-8 md:pt-12 lg:pt-15">
         <LoginForm />
         <Footer />
       </section>

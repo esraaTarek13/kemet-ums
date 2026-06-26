@@ -50,7 +50,7 @@ export default function NotificationBell() {
           <Popover.Content
             align="end"
             sideOffset={10}
-            className="w-80 bg-bg-card border border-border rounded-xl shadow-[0_0_10px_#4a1b26] z-50 overflow-hidden"
+            className="w-80 bg-bg-card border border-border rounded-xl shadow-[0_4px_24px_0px_#4a1b2640] z-50 overflow-hidden"
           >
             <div className="px-4 py-3 border-b border-border">
               <h6 className="font-bold text-sm text-text-primary">
