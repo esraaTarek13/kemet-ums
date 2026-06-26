@@ -4,19 +4,37 @@ import GpaTrendChartSkeleton from "@/components/ui/skeletons/GpaTrendChartSkelet
 import { useStudentGrades } from "@/hooks/student/useStudentGrades";
 import { Bar, BarChart, XAxis, ResponsiveContainer } from "recharts";
 
+const SEMESTER_ORDER: Record<string, number> = {
+  Spring: 1,
+  Summer: 2,
+  Fall: 3,
+};
+
 export default function GpaTrendChart() {
   const { data, isPending, isError } = useStudentGrades();
 
   if (isPending) return <GpaTrendChartSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load GPA trend." />;
 
-  const chartData = (data?.gpa_trend ?? []).slice().map((item) => ({
-    label: item.semester
-      .replace("Fall", "F")
-      .replace("Spring", "S")
-      .replace("Summer", "Su"),
-    gpa: item.gpa,
-  }));
+  const chartData = (data?.gpa_trend ?? [])
+    .slice()
+    .sort((a, b) => {
+      const [semNameA, yearA] = a.semester.split(" ");
+      const [semNameB, yearB] = b.semester.split(" ");
+
+      if (yearA !== yearB) return Number(yearA) - Number(yearB);
+
+      return (
+        (SEMESTER_ORDER[semNameA] ?? 99) - (SEMESTER_ORDER[semNameB] ?? 99)
+      );
+    })
+    .map((item) => ({
+      label: item.semester
+        .replace("Fall", "F")
+        .replace("Spring", "S")
+        .replace("Summer", "Su"),
+      gpa: item.gpa,
+    }));
 
   // Text summary for screen readers, since the chart SVG isn't accessible
   const chartSummary = chartData

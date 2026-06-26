@@ -6,9 +6,9 @@ import { ROLE_BASE_ROUTES } from "@/data/shared/roles";
 import Image from "next/image";
 import { useMemo } from "react";
 import NotificationBell from "./notifications/NotificationBell";
-import { useNotificationPanel } from "@/hooks/shared/notifications/useNotificationPanel";
 import { NavbarSkeleton } from "../ui/skeletons/UserInfoSkeleton";
-import ErrorMessage from "../ui/shared/ErrorMessage";
+import { LuMessageSquare } from "react-icons/lu";
+import { useUnreadMessages } from "@/hooks/shared/useUnreadMessages";
 
 interface HeaderProps {
   search?: React.ReactNode;
@@ -16,22 +16,34 @@ interface HeaderProps {
 
 export default function Header({ search }: HeaderProps) {
   const { user, isLoading } = useAuthStore();
-  const { isPending, isError } = useNotificationPanel();
   const base = useMemo(
     () => ROLE_BASE_ROUTES[user?.role ?? ""] ?? "/",
     [user?.role],
   );
+  const { totalUnread } = useUnreadMessages(user?.role ?? "");
 
-  if (isLoading && isPending) return <NavbarSkeleton />;
-  if (isError) return <ErrorMessage content="Failed to load notifications" />;
+  if (isLoading) return <NavbarSkeleton />;
 
   return (
     <header className="py-3 md:py-5 bg-bg-input border-b border-bg-bar">
       <div className="Custom-container flex justify-end md:justify-between items-center">
         {search}
-
         <div className="flex items-center gap-4">
           <NotificationBell />
+
+          {(base === "/faculty" || base === "/student") && (
+            <Link href={`${base}/messages`} className="relative">
+              <LuMessageSquare
+                aria-hidden="true"
+                className="text-text-primary text-2xl cursor-pointer"
+              />
+              {totalUnread > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-accent text-text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  {totalUnread}
+                </span>
+              )}
+            </Link>
+          )}
 
           {user && (
             <Link

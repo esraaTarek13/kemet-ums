@@ -19,7 +19,7 @@ export default function CoursesTableInner() {
         if (a.status !== "active" && b.status === "active") return 1;
         return 0;
       })
-      .map((g) => ({ ...g, id: g.course_id })),
+      .map((g) => ({ ...g, id: g.enrollment_id })),
   };
 
   if (grades.length === 0) {

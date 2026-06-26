@@ -8,7 +8,6 @@ import { PiDownloadSimpleBold } from "react-icons/pi";
 
 export default function TranscriptSummaryBar() {
   const { data, isPending, isError } = useStudentGrades();
-  console.log(data);
 
   if (isPending) return <TranscriptSummaryBarSkeleton />;
   if (isError)

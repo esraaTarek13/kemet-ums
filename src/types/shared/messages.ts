@@ -25,7 +25,7 @@ export interface CourseInfo {
   course_name: string;
   faculty_name?: string;
   faculty_avatar?: string | null;
-  student_count?: number;
+  member_count: number;
 }
 
 export interface CourseMessagesData {

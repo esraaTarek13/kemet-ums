@@ -3,7 +3,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useChatContext } from "../context/ChatContext";
 import { useEditMessage } from "@/hooks/shared/useMessages";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useEffect } from "react";
 import EmojiPickerButton from "./EmojiPickerButton";
 import TextareaAutosize from "react-textarea-autosize";
@@ -28,12 +28,12 @@ export default function EditMessage({
   const { courseId, portal } = useChatContext();
   const { mutate, isPending } = useEditMessage(courseId, portal);
 
-  const { register, handleSubmit, watch, reset, setValue } =
+  const { register, handleSubmit, control, reset, setValue } =
     useForm<EditFormValues>({
       defaultValues: { content },
     });
 
-  const newContent = watch("content");
+  const newContent = useWatch({ control, name: "content" });
 
   // Compare trimmed values so extra spaces don't enable the Save button
   const trimmedNew = newContent?.trim() ?? "";
@@ -72,7 +72,7 @@ export default function EditMessage({
 
         <Dialog.Content
           className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 card shadow-lg z-50 w-[90vw] max-w-md"
-          aria-describedby="edit-message-description"
+          aria-describedby={undefined}
         >
           <Dialog.Title className="font-bold text-text-primary">
             Edit message

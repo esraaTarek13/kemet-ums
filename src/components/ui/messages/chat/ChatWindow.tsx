@@ -5,6 +5,7 @@ import { ChatSkeleton } from "../../skeletons/ChatSkeleton";
 import ErrorMessage from "../../shared/ErrorMessage";
 import { ChatProvider } from "../context/ChatContext";
 import MessageBubble from "./MessageBubble";
+import { useRadixPointerEventsFix } from "@/hooks/shared/useRadixPointerEventsFix";
 
 interface ChatWindowProps {
   messages: Message[];
@@ -23,6 +24,7 @@ export default function ChatWindow({
   courseId,
   portal,
 }: ChatWindowProps) {
+  useRadixPointerEventsFix();
   if (isPending) return <ChatSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load messages." />;
 

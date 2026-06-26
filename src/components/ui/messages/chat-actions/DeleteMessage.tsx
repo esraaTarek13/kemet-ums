@@ -29,7 +29,10 @@ export default function DeleteMessage({
 
   /** Trigger delete and let the mutation's onSuccess/onError close the dialog */
   function handleDelete() {
-    deleteMessage(messageId);
+    deleteMessage(messageId, {
+      onSuccess: () => onOpenChange(false),
+      onError: () => onOpenChange(false),
+    });
   }
 
   return (
@@ -37,19 +40,12 @@ export default function DeleteMessage({
       <AlertDialog.Portal>
         <AlertDialog.Overlay className="fixed inset-0 bg-black/40 z-50" />
 
-        <AlertDialog.Content
-          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 card shadow-lg z-50 w-[90vw] max-w-sm"
-          // Announced to screen readers when dialog opens
-          aria-describedby="delete-message-description"
-        >
+        <AlertDialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 card shadow-lg z-50 w-[90vw] max-w-sm">
           <AlertDialog.Title className="font-bold text-text-primary">
             Delete message?
           </AlertDialog.Title>
 
-          <AlertDialog.Description
-            id="delete-message-description"
-            className="text-sm text-text-secondary mt-2"
-          >
+          <AlertDialog.Description className="text-sm text-text-secondary mt-2">
             This action cannot be undone. The message will be permanently
             deleted.
           </AlertDialog.Description>
@@ -70,7 +66,7 @@ export default function DeleteMessage({
               <button
                 type="button"
                 disabled={isPending}
-                aria-busy={isPending} 
+                aria-busy={isPending}
                 aria-label="Confirm delete message"
                 onClick={handleDelete}
                 className="px-4 py-2 text-sm rounded-lg bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 cursor-pointer"

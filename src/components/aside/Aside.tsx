@@ -3,9 +3,18 @@ import { HiMiniArrowRightStartOnRectangle } from "react-icons/hi2";
 import NavLink from "./NavLink";
 import { useLogout } from "@/hooks/auth/useLogout";
 import Image from "next/image";
+import { useAuthStore } from "@/stores/authStore";
+import { useMemo } from "react";
+import { ROLE_BASE_ROUTES } from "@/data/shared/roles";
+import Link from "next/link";
 
 export default function Aside({ portalName, navLinks }: AsideProps) {
   const { mutate, isPending } = useLogout();
+  const { user } = useAuthStore();
+  const base = useMemo(
+    () => ROLE_BASE_ROUTES[user?.role ?? ""] ?? "/",
+    [user?.role],
+  );
 
   return (
     <aside
@@ -13,22 +22,24 @@ export default function Aside({ portalName, navLinks }: AsideProps) {
       className="h-screen fixed flex flex-col bg-primary py-8 px-3 md:px-4 z-50"
     >
       {/* mobile: icon only, desktop: full logo */}
-      <Image
-        src="/images/mark-logo.png"
-        alt="Kemet University Logo"
-        width={40}
-        height={40}
-        className="h-auto w-auto md:hidden"
-        priority
-      />
-      <Image
-        src="/images/kemet-logo.png"
-        alt="Kemet University Logo"
-        width={120}
-        height={40}
-        className="h-auto w-auto hidden md:block"
-        priority
-      />
+      <Link href={`${base}/dashboard`}>
+        <Image
+          src="/images/mark-logo.png"
+          alt="Kemet University Logo"
+          width={40}
+          height={40}
+          className="h-auto w-auto md:hidden"
+          priority
+        />
+        <Image
+          src="/images/kemet-logo.png"
+          alt="Kemet University Logo"
+          width={120}
+          height={40}
+          className="h-auto w-auto hidden md:block"
+          priority
+        />
+      </Link>
       <p className="hidden md:block font-light md:text-[10px] lg:text-xs text-text-peach uppercase tracking-wider pt-2">
         {portalName}
       </p>

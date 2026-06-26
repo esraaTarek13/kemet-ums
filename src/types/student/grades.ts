@@ -1,4 +1,5 @@
 export interface GradesCourse {
+  enrollment_id: string;
   course_id: string;
   course_name: string;
   course_code: string;

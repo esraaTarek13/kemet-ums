@@ -26,7 +26,7 @@ export default function Courses() {
   return (
     <section aria-label="My courses" className="space-y-5 md:space-y-6">
       <div className="flex flex-col md:flex-row justify-between gap-3">
-        <h2 className="title text-xl md:text-2xl lg:text-3xl">My Courses</h2>
+        <h3 className="title text-xl md:text-2xl lg:text-3xl">My Courses</h3>
 
         {/* status filter: All / In Progress / Completed */}
         <div

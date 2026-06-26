@@ -30,8 +30,8 @@ export default function VerifyOtpForm() {
     >
       <h3 className="auth-title">Verify Your Identity</h3>
       <p className="auth-subtitle max-w-80 lg:max-w-100">
-        We've sent a 8-digit authentication code to your registered academic
-        email.
+        We&apos;ve sent a 8-digit authentication code to your registered
+        academic email.
       </p>
 
       <div className="mt-10 space-y-5 lg:space-y-6">

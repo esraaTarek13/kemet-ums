@@ -1,6 +1,6 @@
 import { FiFile, FiX } from "react-icons/fi";
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 interface FilePreviewItemProps {
   file: File;
@@ -13,7 +13,7 @@ export default function FilePreviewItem({
 }: FilePreviewItemProps) {
   const isImage = file.type.startsWith("image/");
 
-  // Derived value — no need for state, just recompute when `file` changes
+  // Derived value
   const previewUrl = useMemo(
     () => (isImage ? URL.createObjectURL(file) : null),
     [file, isImage],

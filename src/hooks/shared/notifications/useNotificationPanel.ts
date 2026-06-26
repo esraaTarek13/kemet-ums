@@ -3,7 +3,6 @@ import { useState, useRef } from "react";
 import useClickOutside from "@/hooks/shared/useClickOutside";
 import { useMarkNotificationsRead, useNotifications } from "./useNotifications";
 
-
 export function useNotificationPanel() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -14,15 +13,12 @@ export function useNotificationPanel() {
   const unreadCount = data?.unread_count ?? 0;
   const notifications = data?.notifications ?? [];
 
-  function handleOpen() {
-    setOpen((prev) => {
-      if (!prev && unreadCount > 0) markRead(undefined);
-      return !prev;
-    });
+  function handleOpen(isOpen: boolean) {
+    setOpen(isOpen);
+    if (isOpen && unreadCount > 0) markRead(undefined);
   }
 
   useClickOutside(ref, {
-    onClickOutside: () => setOpen(false),
     onScroll: () => setOpen(false),
     enabled: open,
   });
@@ -32,8 +28,8 @@ export function useNotificationPanel() {
     open,
     unreadCount,
     notifications,
-    close: () => setOpen(false),
     handleOpen,
+    close: () => setOpen(false),
     isPending,
     isError,
   };
