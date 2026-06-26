@@ -29,10 +29,10 @@ export default function NotificationBell() {
       {/* Wrapped in div because Radix Popover.Root doesn't forward refs */}
       <div ref={ref}>
         <Popover.Trigger asChild>
-          <button type="button" aria-label="Notifications" className="relative">
+          <button type="button" aria-label="Notifications" className="relative flex justify-center items-center">
             <FaRegBell
               aria-hidden="true"
-              className="text-text-primary text-xl cursor-pointer"
+              className="text-text-primary text-lg sm:text-xl cursor-pointer"
             />
             {/* 9+ to avoid badge overflow on small screens */}
             {unreadCount > 0 && (

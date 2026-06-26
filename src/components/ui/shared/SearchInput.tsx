@@ -82,7 +82,7 @@ export default function SearchInput({
         type="button"
         aria-label="Open search"
         aria-expanded={isOpen}
-        className="md:hidden text-text-primary text-xl px-4 cursor-pointer"
+        className="md:hidden text-text-primary text-lg sm:text-xl px-4 cursor-pointer flex justify-center items-center"
         onClick={() => setIsOpen((prev) => !prev)}
       >
         <FiSearch aria-hidden="true" />

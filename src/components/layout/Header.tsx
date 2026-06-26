@@ -28,14 +28,14 @@ export default function Header({ search }: HeaderProps) {
     <header className="py-3 md:py-5 bg-bg-input border-b border-bg-bar">
       <div className="Custom-container flex justify-end md:justify-between items-center">
         {search}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           <NotificationBell />
 
           {(base === "/faculty" || base === "/student") && (
             <Link href={`${base}/messages`} className="relative">
               <LuMessageSquare
                 aria-hidden="true"
-                className="text-text-primary text-2xl cursor-pointer"
+                className="text-text-primary text-lg sm:text-2xl cursor-pointer"
               />
               {totalUnread > 0 && (
                 <span className="absolute -top-1.5 -right-1.5 bg-accent text-text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
