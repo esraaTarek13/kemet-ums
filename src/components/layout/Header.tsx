@@ -6,7 +6,7 @@ import { ROLE_BASE_ROUTES } from "@/data/shared/roles";
 import Image from "next/image";
 import { useMemo } from "react";
 import NotificationBell from "./notifications/NotificationBell";
-import { NavbarSkeleton } from "../ui/skeletons/UserInfoSkeleton";
+import { NavbarSkeleton } from "../ui/skeletons/NavbarSkeleton";
 import { LuMessageSquare } from "react-icons/lu";
 import { useUnreadMessages } from "@/hooks/shared/useUnreadMessages";
 
@@ -25,10 +25,10 @@ export default function Header({ search }: HeaderProps) {
   if (isLoading) return <NavbarSkeleton />;
 
   return (
-    <header className="py-3 md:py-5 bg-bg-input border-b border-bg-bar">
+    <header className="h-20 flex items-center bg-bg-input border-b border-bg-bar">
       <div className="Custom-container flex justify-end md:justify-between items-center">
         {search}
-        <div className="flex items-center gap-2 md:gap-4">
+        <div className="flex items-center gap-3 md:gap-4">
           <NotificationBell />
 
           {(base === "/faculty" || base === "/student") && (

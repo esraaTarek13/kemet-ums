@@ -3,14 +3,14 @@ import { Skeleton } from "./Skeleton";
 export function ChatSkeleton() {
   return (
     <section className="flex flex-col h-full w-full">
-      {/* Header skeleton */}
-      <div className="p-4 border-b border-bg-bar space-y-4">
-        <Skeleton className="h-6 w-full md:w-32" />
-        <Skeleton className="h-4 w-full md:w-50" />
+      {/* Header skeleton — matches ChatHeader h-20 */}
+      <div className="h-20 flex flex-col justify-center px-4 border-b border-bg-bar space-y-2">
+        <Skeleton className="h-5 w-32" />
+        <Skeleton className="h-4 w-50" />
       </div>
 
       {/* Messages skeleton */}
-      <div className="grow py-8 pl-6 overflow-y-auto space-y-4 md:space-y-6">
+      <div className="grow py-8 overflow-y-auto space-y-4 md:space-y-6 Custom-container">
         {[...Array(5)].map((_, i) => {
           const isMine = i % 2 !== 0;
           return (
@@ -38,12 +38,10 @@ export function ChatSkeleton() {
         })}
       </div>
 
-      {/* Input skeleton */}
-      <div className="p-4 border-t border-bg-bar">
+      {/* Input skeleton — matches ChatInput card height */}
+      <div className="h-fit px-4 py-3 border-t border-bg-bar">
         <Skeleton className="h-12 w-full rounded-xl" />
       </div>
     </section>
   );
 }
-
-

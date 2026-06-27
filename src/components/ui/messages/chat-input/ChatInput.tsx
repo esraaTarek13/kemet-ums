@@ -21,7 +21,7 @@ export default function ChatInput() {
   } = useChatInput();
 
   return (
-    <div className="h-fit card rounded-none fixed lg:absolute bottom-15.25 lg:-bottom-6 left-18 md:left-41.5 lg:-left-3.75 right-0 lg:-right-3.75">
+    <div className="h-fit card rounded-none z-50">
       {/* Preview of files attached before sending */}
       <FilePreviewList files={selectedFiles} onRemove={removeFile} />
 
@@ -39,7 +39,7 @@ export default function ChatInput() {
             id="message"
             autoComplete="off"
             placeholder={
-              selectedFiles.length ? "Add a caption..." : "Type your message..."
+              selectedFiles.length ? "Add a caption..." : "Type a message..."
             }
             disabled={isPending}
             minRows={1}

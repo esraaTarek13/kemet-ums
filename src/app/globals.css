@@ -63,6 +63,23 @@
   }
 }
 
+/* Override the student layout styles only on the messages page.
+   We do this with a body class instead of changing the shared layout,
+   so other pages aren't affected. */
+
+body.messages-page main {
+  height: calc(100dvh - 80px);
+  overflow: hidden;
+}
+
+body.messages-page footer {
+  display: none;
+}
+
+body.messages-page section {
+  gap: 0;
+}
+
 /* Override browser autofill background to match input theme */
 @layer utilities {
   input:-webkit-autofill,
@@ -262,3 +279,5 @@
     }
   }
 }
+
+

@@ -9,7 +9,7 @@ interface EmojiPickerButtonProps {
   onEmojiSelect: (emoji: string) => void;
 }
 
-export default function EmojiPickerButton({
+export default function   EmojiPickerButton({
   onEmojiSelect,
 }: EmojiPickerButtonProps) {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -44,7 +44,7 @@ export default function EmojiPickerButton({
         aria-expanded={showEmojiPicker}
         aria-haspopup="dialog"
       >
-        <FaRegFaceSmile className="text-text-secondary text-2xl shrink-0 cursor-pointer" />
+        <FaRegFaceSmile className="text-text-secondary text-lg md:text-2xl shrink-0 cursor-pointer" />
       </button>
 
       {showEmojiPicker && (

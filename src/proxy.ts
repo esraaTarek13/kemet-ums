@@ -109,6 +109,8 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL(home, request.url));
   }
 
+  response.headers.set("x-pathname", pathname);
+
   return response;
 }
 
