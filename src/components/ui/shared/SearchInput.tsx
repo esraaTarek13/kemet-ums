@@ -90,7 +90,7 @@ export default function SearchInput({
 
       {/* Mobile input */}
       {isOpen && (
-        <div className="md:hidden absolute top-10 left-0 w-60 flex items-center gap-2 bg-bg-search-input rounded-lg px-4 py-2 border border-accent ring-1 ring-accent/50 shadow-[0_0_10px_#4a1b26] z-50">
+        <div className="md:hidden absolute top-10 left-0 w-60 flex items-center gap-2 bg-bg-search-input rounded-lg px-4 py-2 border border-accent ring-1 ring-accent/50 shadow-[0_4px_24px_2px_#4a1b2640] z-50">
           <FiSearch
             aria-hidden="true"
             className="text-text-subtle text-sm shrink-0"

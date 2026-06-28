@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { useAddMaterialForm } from "./useAddMaterialForm";
+import { useAddMaterialForm } from "../../../../../hooks/faculty/useAddMaterialForm";
 import FileSubmission from "@/components/ui/shared/FileSubmission";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoClose } from "react-icons/io5";

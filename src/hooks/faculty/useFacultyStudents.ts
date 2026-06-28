@@ -1,11 +1,14 @@
+import { getFacultyAllStudents } from "@/lib/services/faculty/students";
+import { useAuthStore } from "@/stores/authStore";
 import { useQuery } from "@tanstack/react-query";
-import { getFacultyStudents } from "@/lib/services/faculty/students";
 
-export function useFacultyStudents(offeringId: string) {
+export function useFacultyAllStudents() {
+  const { user } = useAuthStore();
+
   return useQuery({
-    queryKey: ["faculty-students", offeringId],
-    queryFn: () => getFacultyStudents(offeringId),
-    enabled: !!offeringId,
+    queryKey: ["faculty-all-students", user?.id],
+    queryFn: () => getFacultyAllStudents(user?.id ?? ""),
+    enabled: !!user?.id,
     staleTime: 1000 * 60 * 5,
   });
 }

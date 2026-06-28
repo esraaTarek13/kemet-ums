@@ -17,6 +17,7 @@ export default function CourseCard({ course }: CourseCardProps) {
           {course.status}
         </p>
       </div>
+
       <div>
         <h5 className="text-text-primary font-bold text-sm md:text-lg">
           {course.course_name}
@@ -30,6 +31,7 @@ export default function CourseCard({ course }: CourseCardProps) {
           <span>{course.room}</span>
         </div>
       </div>
+      
       <div className="relative">
         <p className="text-xs text-text-primary absolute bottom-3">
           Completion

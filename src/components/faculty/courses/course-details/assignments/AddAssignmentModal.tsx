@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { useAddAssignmentForm } from "./useAddAssignmentForm";
+import { useAddAssignmentForm } from "../../../../../hooks/faculty/useAddAssignmentForm";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoClose } from "react-icons/io5";
 import TextareaAutosize from "react-textarea-autosize";

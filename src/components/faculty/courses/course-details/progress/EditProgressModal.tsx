@@ -1,7 +1,7 @@
 import { memo } from "react";
-import { useEditProgressForm } from "./useEditProgressForm";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoClose } from "react-icons/io5";
+import { useEditProgressForm } from "@/hooks/faculty/useEditProgressForm";
 
 interface EditProgressModalProps {
   offeringId: string;

@@ -3,6 +3,7 @@ import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import ProgressBar from "@/components/ui/shared/ProgressBar";
 import AttendanceSkeletons from "@/components/ui/skeletons/AttendanceSkeletons";
 import { useFacultyPerformanceIndex } from "@/hooks/faculty/useDashboard";
+import { mapToPerformanceMetrics } from "@/lib/mappers/faculty/mapToPerformanceMetrics";
 
 export default function Performance() {
   const { data, isPending, isError } = useFacultyPerformanceIndex();
@@ -11,20 +12,7 @@ export default function Performance() {
   if (isError)
     return <ErrorMessage content="Failed to load Performance Index." />;
 
-  const metrics = [
-    {
-      label: "Student Performance",
-      value: data?.student_performance || 0,
-      textClass: "text-success",
-      progressClass: "bg-success",
-    },
-    {
-      label: "Assignment Completion",
-      value: data?.assignment_completion || 0,
-      textClass: "text-accent",
-      progressClass: "bg-accent",
-    },
-  ];
+  const metrics = mapToPerformanceMetrics(data);
 
   return (
     <section className="w-full lg:min-w-80 card space-y-5 md:space-y-6">

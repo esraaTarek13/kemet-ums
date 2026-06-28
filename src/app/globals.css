@@ -10,7 +10,7 @@
 
   /* ─── Backgrounds ────────────────────────────────────── */
   --color-bg: #fef9ee;
-  --color-bg-navbar: #f9f3e9;
+  --color-bg-navbar: #f9f3e9; 
   --color-bg-card: #ffffff;
   --color-bg-input: #f9f3e9;
   --color-bg-search-input: #ede8dd;
@@ -22,8 +22,8 @@
   --color-text-primary: #1d1c16;
   --color-text-secondary: #715b3a;
   --color-text-muted: #534345;
-  --color-text-subtle: #867275;
-  --color-text-peach: #fddeb5;
+  --color-text-subtle: #867275; 
+  --color-text-peach: #fddeb5; 
   --color-text-white: #ffffff;
 
   /* ─── Borders ────────────────────────────────────────── */

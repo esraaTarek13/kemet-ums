@@ -3,7 +3,11 @@ import { FacultyAssignment } from "@/types";
 import { format, parseISO } from "date-fns";
 import { FaRegFileAlt } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
-import { MdOutlineDateRange, MdOutlineFileUpload } from "react-icons/md";
+import {
+  MdOutlineDateRange,
+  MdOutlineEdit,
+  MdOutlineFileUpload,
+} from "react-icons/md";
 import { TbClipboardCheck } from "react-icons/tb";
 
 interface CourseAssignmentItemProps {
@@ -48,17 +52,29 @@ export default function CourseAssignmentItem({
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={onDelete}
-          aria-label={`Delete ${assignment.title}`}
-          className="bg-danger-bg p-2 rounded-sm cursor-pointer self-end sm:self-center"
-        >
-          <FaRegTrashCan
-            aria-hidden="true"
-            className="text-danger text-xl md:text-2xl shrink-0"
-          />
-        </button>
+        <div className="flex items-center gap-2 md:gap-4">
+          <button
+            type="button"
+            className="bg-text-secondary/20 p-2 rounded-sm cursor-pointer self-end sm:self-center"
+          >
+            <MdOutlineEdit
+              aria-hidden="true"
+              className="text-text-secondary text-xl md:text-2xl shrink-0"
+            />
+          </button>
+          
+          <button
+            type="button"
+            onClick={onDelete}
+            aria-label={`Delete ${assignment.title}`}
+            className="bg-danger-bg p-2 rounded-sm cursor-pointer self-end sm:self-center"
+          >
+            <FaRegTrashCan
+              aria-hidden="true"
+              className="text-danger text-xl md:text-2xl shrink-0"
+            />
+          </button>
+        </div>
       </div>
 
       <div className="flex gap-2 md:gap-3 flex-wrap mt-3">

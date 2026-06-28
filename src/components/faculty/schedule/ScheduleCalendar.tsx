@@ -13,6 +13,7 @@ const IlamyCalendar = dynamic(
   () => import("@ilamy/calendar").then((mod) => mod.IlamyCalendar),
   { ssr: false, loading: () => <ScheduleSkeleton /> },
 );
+
 export default function ScheduleCalendar() {
   const { data: schedule, isPending, isError } = useFacultySchedule();
   const events = mapToScheduleEvents(schedule);  

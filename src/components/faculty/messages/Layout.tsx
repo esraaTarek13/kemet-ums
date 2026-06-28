@@ -13,7 +13,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   // Add a class to the body when the messages page is active.
   // This lets us apply messages-specific styles (full height, no footer, no gap)
-  // without touching the shared student layout.
   // The class is removed automatically when the user navigates away.
   useEffect(() => {
     document.body.classList.add("messages-page");

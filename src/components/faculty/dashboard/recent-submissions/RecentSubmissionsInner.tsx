@@ -14,6 +14,7 @@ export default function RecentSubmissionsInner() {
   if (isPending) return <TableSkeleton />;
   if (isError)
     return <ErrorMessage content="Failed to load recent submissions." />; 
+  
   if (data?.length === 0) {
     return (
       <p className="text-center text-text-subtle py-8">
