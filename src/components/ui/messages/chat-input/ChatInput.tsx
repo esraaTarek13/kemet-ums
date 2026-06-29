@@ -50,7 +50,9 @@ export default function ChatInput() {
             className="text-sm md:text-base text-text-primary w-full bg-transparent outline-none resize-none cursor-auto"
           />
 
-          <EmojiPickerButton onEmojiSelect={addEmoji} />
+          <div className="flex [@media(hover:none)_and_(pointer:coarse)]:hidden">
+  <EmojiPickerButton onEmojiSelect={addEmoji} />
+</div>
         </div>
 
         {/* Icon-only button needs aria-label for screen readers */}

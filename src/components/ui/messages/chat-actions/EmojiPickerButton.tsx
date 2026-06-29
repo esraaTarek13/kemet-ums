@@ -9,18 +9,25 @@ interface EmojiPickerButtonProps {
   onEmojiSelect: (emoji: string) => void;
 }
 
-export default function   EmojiPickerButton({
+export default function EmojiPickerButton({
   onEmojiSelect,
 }: EmojiPickerButtonProps) {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useClickOutside(containerRef, {
     onClickOutside: () => setShowEmojiPicker(false),
     enabled: showEmojiPicker,
   });
 
-  // Close picker on Escape key
   useEffect(() => {
     if (!showEmojiPicker) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -48,9 +55,21 @@ export default function   EmojiPickerButton({
       </button>
 
       {showEmojiPicker && (
-        <div className="absolute bottom-full right-0 mb-2 z-50">
-          {/* Theme follows the user's system preference */}
-          <EmojiPicker onEmojiClick={handleEmojiClick} theme={Theme.LIGHT} />
+        <div
+          className={`
+            absolute z-50
+            ${isMobile
+              ? "fixed inset-x-2 bottom-16"          // موبايل: يمتد عرض الشاشة تقريباً
+              : "bottom-full right-0 mb-2"            // ديسكتوب: فوق الزرار ومحاذي لليمين
+            }
+          `}
+        >
+          <EmojiPicker
+            onEmojiClick={handleEmojiClick}
+            theme={Theme.LIGHT}
+            width={isMobile ? "90%" : 350}
+            height={isMobile ? 380 : 450}
+          />
         </div>
       )}
     </div>

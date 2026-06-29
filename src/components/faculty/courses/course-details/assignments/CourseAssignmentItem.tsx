@@ -1,6 +1,7 @@
 "use client";
 import { FacultyAssignment } from "@/types";
 import { format, parseISO } from "date-fns";
+import { useState } from "react";
 import { FaRegFileAlt } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import {
@@ -9,6 +10,7 @@ import {
   MdOutlineFileUpload,
 } from "react-icons/md";
 import { TbClipboardCheck } from "react-icons/tb";
+import EditAssignmentModal from "./EditAssignmentModal";
 
 interface CourseAssignmentItemProps {
   assignment: FacultyAssignment;
@@ -32,6 +34,7 @@ export default function CourseAssignmentItem({
   assignment,
   onDelete,
 }: CourseAssignmentItemProps) {
+  const [editAssignmentOpen, setEditAssignmentOpen] = useState(false);
   return (
     <li className="bg-bg-navbar rounded-sm p-2.5 md:p-4">
       <div className="flex gap-2 justify-between items-center">
@@ -55,6 +58,7 @@ export default function CourseAssignmentItem({
         <div className="flex items-center gap-2 md:gap-4">
           <button
             type="button"
+            onClick={() => setEditAssignmentOpen(true)}
             className="bg-text-secondary/20 p-2 rounded-sm cursor-pointer self-end sm:self-center"
           >
             <MdOutlineEdit
@@ -62,7 +66,7 @@ export default function CourseAssignmentItem({
               className="text-text-secondary text-xl md:text-2xl shrink-0"
             />
           </button>
-          
+
           <button
             type="button"
             onClick={onDelete}
@@ -95,6 +99,12 @@ export default function CourseAssignmentItem({
           {assignment.max_grade} pts
         </p>
       </div>
+
+      <EditAssignmentModal
+        assignment={assignment}
+        isOpen={editAssignmentOpen}
+        onClose={() => setEditAssignmentOpen(false)}
+      />
     </li>
   );
 }

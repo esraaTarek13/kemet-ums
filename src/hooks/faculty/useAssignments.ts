@@ -1,27 +1,35 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { addAssignment, deleteAssignment } from "@/lib/services/faculty/assignments";
+import {
+  addAssignment,
+  updateAssignment,
+  deleteAssignment,
+} from "@/lib/services/faculty/assignments";
+import { AssignmentFormData, UpdateAssignmentData } from "@/types";
 
 export function useAddAssignment(offeringId: string) {
   const queryClient = useQueryClient();
-
   return useMutation({
-    mutationFn: ({
-      title,
-      description,
-      dueDate,
-      maxGrade,
-    }: {
-      title: string;
-      description: string;
-      dueDate: string;
-      maxGrade: number;
-    }) => addAssignment(offeringId, title, description, dueDate, maxGrade),
+    mutationFn: (data: AssignmentFormData) => addAssignment(offeringId, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["faculty-course-detail"] });
       toast.success("Assignment added successfully");
     },
-    onError: (err: Error) => toast.error(err.message ?? "Failed to add assignment"),
+    onError: (err: Error) =>
+      toast.error(err.message ?? "Failed to add assignment"),
+  });
+}
+
+export function useUpdateAssignment() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: UpdateAssignmentData) => updateAssignment(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["faculty-course-detail"] });
+      toast.success("Assignment updated successfully");
+    },
+    onError: (err: Error) =>
+      toast.error(err.message ?? "Failed to update assignment"),
   });
 }
 
@@ -34,6 +42,7 @@ export function useDeleteAssignment() {
       queryClient.invalidateQueries({ queryKey: ["faculty-course-detail"] });
       toast.success("Assignment deleted");
     },
-    onError: (err: Error) => toast.error(err.message ?? "Failed to delete assignment"),
+    onError: (err: Error) =>
+      toast.error(err.message ?? "Failed to delete assignment"),
   });
 }

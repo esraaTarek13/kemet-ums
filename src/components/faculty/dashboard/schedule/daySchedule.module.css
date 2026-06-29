@@ -1,6 +1,6 @@
 .calendar :global([data-testid="calendar-body"]) {
   width: fit-content;
-  min-width: 100%;
+  min-width: 100% !important;
   height: 500px;
   border: none;
 }

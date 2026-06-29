@@ -1,10 +1,7 @@
 import FileSubmission from "@/components/ui/shared/FileSubmission";
 import { useSubmitAssignment } from "@/hooks/student/useSubmitAssignment";
 import { SubmitModalProps } from "@/types";
-import {
-  SubmitFormValues,
-  submitAssignmentSchema,
-} from "@/validation/submitFile.schema";
+import { submitAssignmentSchema, SubmitFormValues } from "@/validation/student.submitFile.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useForm } from "react-hook-form";

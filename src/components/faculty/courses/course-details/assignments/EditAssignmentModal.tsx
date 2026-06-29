@@ -1,21 +1,21 @@
-import { memo } from "react";
-import { useAddAssignmentForm } from "../../../../../hooks/faculty/useAddAssignmentForm";
+import { useEditAssignmentForm } from "@/hooks/faculty/useEditAssignmentForm";
+import { FacultyAssignment } from "@/types";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoClose } from "react-icons/io5";
 import AssignmentFields from "./AssignmentFields";
 import FileSubmission from "@/components/ui/shared/FileSubmission";
 
-interface AddAssignmentModalProps {
-  offeringId: string;
+interface EditAssignmentModalProps {
+  assignment: FacultyAssignment;
   isOpen: boolean;
   onClose: () => void;
 }
 
-const AddAssignmentModal = memo(function AddAssignmentModal({
-  offeringId,
+export default function EditAssignmentModal({
+  assignment,
   isOpen,
   onClose,
-}: AddAssignmentModalProps) {
+}: EditAssignmentModalProps) {
   const {
     register,
     handleSubmit,
@@ -24,8 +24,8 @@ const AddAssignmentModal = memo(function AddAssignmentModal({
     onSubmit,
     handleClose,
     watch,
-  } = useAddAssignmentForm(offeringId, onClose);
-
+  } = useEditAssignmentForm(assignment, onClose);
+  
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && handleClose()}>
       <Dialog.Portal>
@@ -35,7 +35,7 @@ const AddAssignmentModal = memo(function AddAssignmentModal({
           className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 card-top-border w-[90%] max-w-lg max-h-[90vh] flex flex-col"
         >
           <div className="flex items-center justify-between pb-5 border-b border-border shrink-0">
-            <Dialog.Title className="title">Add New Assignment</Dialog.Title>
+            <Dialog.Title className="title">Edit Assignment</Dialog.Title>
             <Dialog.Close asChild>
               <button
                 type="button"
@@ -57,7 +57,6 @@ const AddAssignmentModal = memo(function AddAssignmentModal({
                 register={register}
                 errors={errors}
                 isPending={isPending}
-                
               />
 
               <FileSubmission
@@ -65,7 +64,7 @@ const AddAssignmentModal = memo(function AddAssignmentModal({
                 errors={errors}
                 watch={watch}
                 isPending={isPending}
-                submitLabel="Add Assignment"
+                submitLabel="Edit Assignment"
                 isOptional={true}
               />
             </div>
@@ -74,6 +73,4 @@ const AddAssignmentModal = memo(function AddAssignmentModal({
       </Dialog.Portal>
     </Dialog.Root>
   );
-});
-
-export default AddAssignmentModal;
+}

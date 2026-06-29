@@ -7,19 +7,6 @@ const ACCEPTED_TYPES = [
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 ];
 
-export const submitAssignmentSchema = z.object({
-  file: z
-    .custom<FileList>()
-    .refine((files) => files?.length > 0, "Please select a file")
-    .refine((files) => files?.[0]?.size <= MAX_SIZE, "Max file size is 25MB")
-    .refine(
-      (files) => ACCEPTED_TYPES.includes(files?.[0]?.type),
-      "Only PDF, DOC, DOCX files are accepted",
-    ),
-});
-
-export type SubmitFormValues = z.infer<typeof submitAssignmentSchema>;
-
 export const addMaterialSchema = z.object({
   title: z.string().min(1, "Title is required"),
   file: z
@@ -41,6 +28,18 @@ export const addAssignmentSchema = z.object({
   maxGrade: z
     .number({ message: "Max grade must be a number" })
     .min(5, "Max grade must be at least 5"),
+  file: z
+    .custom<FileList>()
+    .optional()
+    .refine(
+      (files) => !files || files.length === 0 || files[0].size <= MAX_SIZE,
+      "Max file size is 25MB",
+    )
+    .refine(
+      (files) =>
+        !files || files.length === 0 || ACCEPTED_TYPES.includes(files[0].type),
+      "Only PDF, DOC, DOCX files are accepted",
+    ),
 });
 
 export type AddAssignmentFormValues = z.infer<typeof addAssignmentSchema>;

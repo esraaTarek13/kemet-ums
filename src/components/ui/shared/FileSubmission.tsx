@@ -15,6 +15,7 @@ interface FileSubmissionProps<T extends FieldValues> {
   watch: UseFormWatch<T>;
   isPending: boolean;
   submitLabel?: string;
+  isOptional?: boolean;
 }
 
 export default function FileSubmission<T extends FieldValues>({
@@ -23,6 +24,7 @@ export default function FileSubmission<T extends FieldValues>({
   watch,
   isPending,
   submitLabel = "Submit Assignment",
+  isOptional,
 }: FileSubmissionProps<T>) {
   const watchedFiles = watch("file" as Path<T>);
   const selectedFile = (watchedFiles as FileList)?.[0];
@@ -31,7 +33,10 @@ export default function FileSubmission<T extends FieldValues>({
   return (
     <>
       <div className="space-y-2 my-6">
-        <p className="text-text-secondary text-xs uppercase">file submission</p>
+        <p className="text-text-secondary text-xs uppercase">
+          file submission{" "}
+          {isOptional && <span className="normal-case">(Optional)</span>}
+        </p>
         <label
           htmlFor="file"
           className="flex flex-col justify-center items-center gap-4 py-6 md:py-8 lg:py-10 border border-dashed border-[#C4A8824D] cursor-pointer"

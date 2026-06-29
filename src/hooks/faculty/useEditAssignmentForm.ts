@@ -1,13 +1,18 @@
-import { useAddAssignment } from "@/hooks/faculty/useAssignments";
+import { useUpdateAssignment } from "@/hooks/faculty/useAssignments";
 import {
   AddAssignmentFormValues,
   addAssignmentSchema,
 } from "@/validation/faculty.submitFile.schema";
+import { FacultyAssignment } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
+import { format, parseISO } from "date-fns";
 
-export function useAddAssignmentForm(offeringId: string, onClose: () => void) {
+export function useEditAssignmentForm(
+  assignment: FacultyAssignment,
+  onClose: () => void,
+) {
   const {
     register,
     handleSubmit,
@@ -16,11 +21,16 @@ export function useAddAssignmentForm(offeringId: string, onClose: () => void) {
     formState: { errors },
   } = useForm<AddAssignmentFormValues>({
     resolver: zodResolver(addAssignmentSchema),
+    defaultValues: {
+      title: assignment.title,
+      description: assignment.description ?? "",
+      dueDate: format(parseISO(assignment.due_date), "yyyy-MM-dd"),
+      maxGrade: assignment.max_grade,
+    },
   });
 
-  const { mutate: addAssignment, isPending } = useAddAssignment(offeringId);
+  const { mutate: updateAssignment, isPending } = useUpdateAssignment();
 
-  // Resets form state and notifies parent to close
   const handleClose = useCallback(() => {
     reset();
     onClose();
@@ -28,8 +38,9 @@ export function useAddAssignmentForm(offeringId: string, onClose: () => void) {
 
   const onSubmit = useCallback(
     (data: AddAssignmentFormValues) => {
-      addAssignment(
+      updateAssignment(
         {
+          assignmentId: assignment.id,
           title: data.title,
           description: data.description,
           dueDate: data.dueDate,
@@ -39,7 +50,7 @@ export function useAddAssignmentForm(offeringId: string, onClose: () => void) {
         { onSuccess: handleClose },
       );
     },
-    [addAssignment, handleClose],
+    [updateAssignment, handleClose, assignment.id],
   );
 
   return {

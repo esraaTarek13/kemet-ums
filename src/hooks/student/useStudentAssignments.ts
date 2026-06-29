@@ -9,6 +9,6 @@ export function useStudentAssignments() {
     queryKey: ["student-assignments", user?.id],
     queryFn: () => getStudentAssignments(user?.id ?? ""),
     enabled: !!user?.id,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 0,
   });
 }
