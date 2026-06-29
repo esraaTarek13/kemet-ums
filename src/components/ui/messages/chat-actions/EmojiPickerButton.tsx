@@ -58,9 +58,10 @@ export default function EmojiPickerButton({
         <div
           className={`
             absolute z-50
-            ${isMobile
-              ? "fixed inset-x-2 bottom-16"          // موبايل: يمتد عرض الشاشة تقريباً
-              : "bottom-full right-0 mb-2"            // ديسكتوب: فوق الزرار ومحاذي لليمين
+            ${
+              isMobile
+                ? "fixed inset-x-2 bottom-16"
+                : "bottom-full right-0 mb-2"
             }
           `}
         >

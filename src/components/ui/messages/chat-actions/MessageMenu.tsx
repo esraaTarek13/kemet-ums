@@ -31,7 +31,7 @@ export default function MessageMenu({
       <DropdownMenu.Trigger asChild>
         <button
           aria-label="Message options"
-          className="opacity-0 group-hover:opacity-100 transition-opacity duration-150 cursor-pointer shrink-0 outline-none"
+          className="opacity-0 group-hover:opacity-100 [@media(hover:none)_and_(pointer:coarse)]:opacity-100 transition-opacity duration-150 cursor-pointer shrink-0 outline-none"
         >
           <IoIosArrowDown className="text-text-white/80" aria-hidden="true" />
         </button>
