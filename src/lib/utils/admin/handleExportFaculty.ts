@@ -1,8 +1,6 @@
-import { AdminFacultyMember } from "@/types";
+import { AdminFaculty } from "@/types";
 
-export function handleExportFaculty(tableData: {
-  nodes: AdminFacultyMember[];
-}) {
+export function handleExportFaculty(tableData: { nodes: AdminFaculty[] }) {
   const headers = [
     "Faculty Name",
     "ID",
