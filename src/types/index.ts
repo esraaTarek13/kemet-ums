@@ -11,6 +11,7 @@ export * from './admin/dashboard'
 export * from './admin/students'
 export * from './admin/faculty'
 export * from './admin/courses'
+export * from './admin/proflie'
 export * from './admin/search'
 export * from './student/dashboard'
 export * from "./student/search";

@@ -40,9 +40,9 @@ export default function ProfileAvatarMenu({
           type="button"
           aria-label="Edit profile picture"
           disabled={isPending}
-          className="absolute -right-2 -bottom-1 z-50 bg-primary border-4 border-bg-card p-2 rounded-full cursor-pointer disabled:opacity-50"
+          className="absolute -right-2 -bottom-1 z-50 bg-primary border-4 border-bg-card p-1 md:p-2 rounded-full cursor-pointer disabled:opacity-50"
         >
-          <LuPencil aria-hidden="true" className="shrink-0 text-text-white" />
+          <LuPencil aria-hidden="true" className="shrink-0 text-text-white " />
         </button>
       </DropdownMenu.Trigger>
 

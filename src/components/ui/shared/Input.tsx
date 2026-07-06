@@ -30,13 +30,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           {label}
         </label>
 
-        <div className="flex justify-between items-center bg-bg-input rounded-lg p-3 md:p-4 text-text-subtle/80 border border-transparent focus-within:border-accent focus-within:ring-1 focus-within:ring-accent/50 focus-within:shadow-[0_0_10px_#4a1b26]">
+        <div className="flex justify-between items-center bg-bg-input rounded-lg p-2 md:p-3 text-text-muted border border-transparent focus-within:border-accent focus-within:ring-1 focus-within:ring-accent/50 focus-within:shadow-[0_0_10px_#4a1b26]">
           <input
             ref={ref}
             id={id}
             aria-invalid={!!error}
             aria-describedby={error ? errorId : undefined}
-            className="text-xs md:text-sm lg:text-base outline-none bg-transparent"
+            className="inline-block w-full text-xs md:text-sm lg:text-base outline-none bg-transparent"
             {...props}
             type={inputType}
           />

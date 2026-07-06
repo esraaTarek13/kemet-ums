@@ -24,7 +24,7 @@ export default function ProfilePassword({
 
   return (
     <>
-      <section className="card space-y-6" aria-label="Security">
+      <section className="card space-y-4" aria-label="Security">
         <h4 className="flex items-center justify-between gap-2 text-text-secondary">
           <span className="font-bold text-xs uppercase">security</span>
           <MdLockOpen aria-hidden="true" />

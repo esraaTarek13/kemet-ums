@@ -38,7 +38,7 @@ export default function StudentHeader({ student }: StudentHeaderProps) {
           <span>{student?.email}</span>
         </p>
 
-        <div className="flex gap-3 items-center flex-wrap mt-1 text-text-subtle font-medium">
+        <div className="flex gap-3 items-center flex-wrap mt-1 text-text-subtle font-medium text-center sm:text-start">
           <p className="text-xs md:text-sm">{student?.student_code}</p>
 
           <div
