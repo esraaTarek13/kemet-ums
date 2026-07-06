@@ -1,8 +1,8 @@
 "use client";
 import { useState, useCallback } from "react";
 import { useSearch } from "@/hooks/admin/useSearch";
-import SearchResults from "./SearchResults";
 import SearchInput from "@/components/ui/shared/SearchInput";
+import SearchResults from "./search-results/SearchResults";
 
 export default function Search() {
   const [term, setTerm] = useState("");
@@ -18,7 +18,12 @@ export default function Search() {
       onClose={handleClose}
       results={
         showResults ? (
-          <SearchResults data={res} loading={isPending} isError={isError} onClose={handleClose} />
+          <SearchResults
+            data={res}
+            loading={isPending}
+            isError={isError}
+            onClose={handleClose}
+          />
         ) : null
       }
     />

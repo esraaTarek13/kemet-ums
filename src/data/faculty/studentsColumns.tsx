@@ -2,15 +2,19 @@ import ProgressBar from "@/components/ui/shared/ProgressBar";
 import StatusBadge from "@/components/ui/shared/StatusBadge";
 import { FacultyStudent } from "@/types";
 import { Column } from "@table-library/react-table-library/types/compact";
+import { FaEye } from "react-icons/fa";
 
 export type StudentRow = FacultyStudent & { id: string };
 
-export const STUDENTS_COLUMNS: Column<StudentRow>[] = [
+export const getStudentsColumns = (
+  onView: (id: string) => void,
+): Column<StudentRow>[] => [
   {
     label: "Student Name",
     renderCell: (item: StudentRow) => (
       <span className="font-semibold">{item.full_name ?? "—"}</span>
     ),
+    select: true,
   },
   {
     label: "ID",
@@ -60,5 +64,18 @@ export const STUDENTS_COLUMNS: Column<StudentRow>[] = [
       ) : (
         "—"
       ),
+  },
+  {
+    label: "Actions",
+    renderCell: (item: StudentRow) => (
+      <button
+        type="button"
+        onClick={() => onView(item.student_id)}
+        className="text-text-secondary hover:text-accent/90 transition-colors cursor-pointer ml-4"
+        aria-label="View student details"
+      >
+        <FaEye size={16} />
+      </button>
+    ),
   },
 ];

@@ -1,4 +1,4 @@
-import StudentAside from "@/components/aside/portal-sidebars/StudentAside";
+import StudentAside from "@/components/layout/aside/portal-sidebars/StudentAside";
 import Search from "@/components/student/search/Search";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";

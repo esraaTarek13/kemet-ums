@@ -8,7 +8,7 @@ export default function ClearButton({ onClear, className }: ClearButtonProps) {
     <button
       type="button"
       onClick={onClear}
-      className={`text-text-secondary text-xs md:text-sm font-bold cursor-pointer ${className ?? ""}`}
+      className={`min-w-fit text-text-secondary text-xs lg:text-sm font-bold cursor-pointer ${className ?? ""}`}
     >
       Clear All
     </button>

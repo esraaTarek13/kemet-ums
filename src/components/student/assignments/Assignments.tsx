@@ -27,7 +27,7 @@ export default function Assignments() {
   if (isPending) return <CardSkeleton />;
   if (isError)
     return (
-      <ErrorMessage content="Failed to load assignments. Please try again later." />
+      <ErrorMessage content="Failed to load assignments." />
     );
 
   return (

@@ -73,7 +73,7 @@ export default function SearchInput({
             onChange(e.target.value);
             setIsOpen(true);
           }}
-          className="bg-transparent text-xs md:text-sm text-text-subtle w-full outline-none"
+          className="bg-transparent text-xs md:text-sm text-text-primary w-full outline-none"
         />
       </div>
 
@@ -110,7 +110,7 @@ export default function SearchInput({
               onChange(e.target.value);
               setIsOpen(true);
             }}
-            className="bg-transparent text-sm text-text-subtle w-full outline-none"
+            className="bg-transparent text-sm text-text-primary w-full outline-none"
           />
         </div>
       )}

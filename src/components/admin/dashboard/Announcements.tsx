@@ -4,7 +4,7 @@ import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
 
 export default function Announcements() {
-  const { data: res, isPending, isError } = useRecentAnnouncements();
+  const { data: announcements, isPending, isError } = useRecentAnnouncements();
 
   if (isPending) return <CardSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load Announcements." />;
@@ -13,12 +13,12 @@ export default function Announcements() {
     <section className="card space-y-4 lg:space-y-6">
       <h3 className="title">Announcements</h3>
       <div className="space-y-4">
-        {!res || res.length === 0 ? (
+        {!announcements || announcements.length === 0 ? (
           <p className="text-text-muted text-center py-10 text-sm">
             No announcements yet.
           </p>
         ) : (
-          res.map((announcement) => (
+          announcements.map((announcement) => (
             <div
               key={announcement.id}
               className="bg-bg-navbar border-l-4 border-text-secondary rounded-lg py-4 px-4 md:p-5"

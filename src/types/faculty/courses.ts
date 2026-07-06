@@ -1,6 +1,6 @@
 import { BadgeStatus } from "@/components/ui/shared/StatusBadge";
 
-export interface AssignmentFormData {
+export interface CourseAssignmentFormData {
   title: string;
   description: string;
   dueDate: string;
@@ -8,11 +8,11 @@ export interface AssignmentFormData {
   file?: File;
 }
 
-export interface UpdateAssignmentData extends AssignmentFormData {
+export interface UpdateCourseAssignmentData extends CourseAssignmentFormData {
   assignmentId: string;
 }
 
-export interface FacultyAssignment {
+export interface CourseAssignment {
   id: string;
   title: string;
   description: string | null;
@@ -75,6 +75,6 @@ export interface FacultyCourseDetail {
     status: string;
     completion_percentage: number;
   };
-  assignments: FacultyAssignment[];
+  assignments: CourseAssignment[];
   materials: FacultyMaterial[];
 }

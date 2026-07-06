@@ -61,6 +61,14 @@
   body {
     background-color: var(--color-bg);
   }
+
+  input[type="checkbox"] {
+    @apply outline outline-2 outline-accent accent-accent;
+  }
+
+  thead input[type="checkbox"] {
+    @apply outline-text-peach accent-text-peach;
+  }
 }
 
 /* Override the student layout styles only on the messages page.

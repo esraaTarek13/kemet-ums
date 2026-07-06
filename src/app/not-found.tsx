@@ -2,6 +2,7 @@
 
 import { ROLE_BASE_ROUTES } from "@/data/shared/roles";
 import { useAuthStore } from "@/stores/authStore";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { MdDashboard } from "react-icons/md";
@@ -14,15 +15,26 @@ export default function NotFound() {
   return (
     <section className="Custom-container relative flex items-center justify-center h-screen">
       {/* Background 404 illustration */}
-      <img
-        src="/images/404.png"
-        aria-hidden="true"
-        className="w-80 sm:w-160 lg:w-213.75 object-contain opacity-15 absolute"
-      />
+      <div className="w-80 sm:w-160 lg:w-213.75 h-40 sm:h-80 lg:h-107 absolute opacity-15">
+        <Image
+          src="/images/404.png"
+          alt="404"
+          aria-hidden="true"
+          fill
+          className="object-contain"
+        />
+      </div>
 
       <div className="flex flex-col items-center justify-center relative z-50">
         {/* Logo */}
-        <img src="/images/logo-dark.png" alt="Kemet University logo" />
+
+        <Image
+          src="/images/logo-dark.png"
+          alt="Kemet University logo"
+          width={100}
+          height={80}
+          className="w-20 md:w-30 h-auto object-contain"
+        />
 
         {/* Error message */}
         <div className="mt-5 md:mt-9 lg:mt-12 space-y-2 md:space-y-4">
@@ -30,7 +42,7 @@ export default function NotFound() {
             Page Not Found
           </h3>
           <p className="text-text-secondary text-base md:text-lg lg:text-xl text-center">
-            The page you're looking for could not be found.
+            The page you&rsquo;re looking for could not be found.
           </p>
         </div>
 

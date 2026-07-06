@@ -49,7 +49,7 @@ export default function AssignmentItem({ assignment }: AssignmentItemProps) {
   return (
     <li
       role="listitem"
-      className="flex flex-col md:flex-row justify-between md:items-center gap-6 bg-bg-card border-t-4 md:border-t-0 md:border-l-4 rounded-lg p-4 md:p-6 border-accent"
+      className="flex flex-col md:flex-row justify-between md:items-center gap-6 card-top-border md:border-t-0 md:border-l-4 border-accent"
     >
       <div className="flex md:items-center gap-4 md:gap-6">
         <div

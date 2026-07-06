@@ -3,96 +3,121 @@ import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import FilterBar from "@/components/ui/shared/FilterBar/FilterBar";
 import { TableSkeleton } from "@/components/ui/skeletons/TableSkeleton";
 import Table from "@/components/ui/tables/Table.Large";
-import { STUDENTS_COLUMNS } from "@/data/faculty/studentsColumns";
-import { useFacultyAllStudents } from "@/hooks/faculty/useFacultyStudents";
-import { mapToStudentFilters } from "@/lib/mappers/faculty/mapToStudentFilters";
+import { getStudentsColumns } from "@/data/faculty/studentsColumns";
+import {
+  useFacultyAllStudents,
+  useFacultyOfferingList,
+} from "@/hooks/faculty/useFacultyStudents";
+import { buildStudentFilters } from "@/lib/utils/faculty/buildStudentFilters";
+import { handleExport } from "@/lib/utils/faculty/handleExport";
+import { FacultyStudent } from "@/types";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
+type StudentFilters = {
+  course: string;
+  status: string;
+};
+
+const initialFilters: StudentFilters = {
+  course: "",
+  status: "",
+};
+
 export default function StudentsInner() {
-  const { data: students, isPending, isError } = useFacultyAllStudents();
-  const [selectedFilters, setSelectedFilters] = useState<
-    Record<string, string>
-  >({});
+  const router = useRouter();
+  const [page, setPage] = useState(0);
+  const [search, setSearch] = useState("");
+  const [filters, setFilters] = useState<StudentFilters>(initialFilters);
+  const [selectedMap, setSelectedMap] = useState<
+    Map<string, FacultyStudent & { id: string }>
+  >(new Map());
+
+  const { data: offerings } = useFacultyOfferingList();
+
+  const filterConfigs = useMemo(
+    () => buildStudentFilters(offerings),
+    [offerings],
+  );
 
   function handleFilterChange(key: string, value: string) {
-    setSelectedFilters((prev) => ({ ...prev, [key]: value }));
+    setFilters((prev) => ({ ...prev, [key]: value }));
+    setPage(0);
   }
 
   function handleClearAll() {
-    setSelectedFilters({});
+    setFilters(initialFilters);
+    setPage(0);
   }
 
-  // count unique students and active courses from raw data
-  const { uniqueStudents, activeCourses } = useMemo(
-    () => ({
-      uniqueStudents: students
-        ? new Set(students.map((s) => s.student_id)).size
-        : 0,
-      activeCourses: students
-        ? new Set(students.map((s) => s.course_code)).size
-        : 0,
-    }),
-    [students],
+  const {
+    data: studentsData,
+    isPending,
+    isError,
+  } = useFacultyAllStudents({
+    offeringId: filters.course || undefined,
+    status: filters.status || undefined,
+    page: page + 1,
+    pageSize: 5,
+    search: search || undefined,
+  });
+
+  const students = useMemo(() => studentsData?.data ?? [], [studentsData]);
+  const totalPages = studentsData?.total_pages ?? 1;
+
+   const columns = useMemo(
+    () =>
+      getStudentsColumns((id) => {
+        router.push(`/faculty/students/${id}`);
+      }),
+    [router],
   );
 
-  // build filter options dynamically from data
-  const filterConfigs = useMemo(
-    () => mapToStudentFilters(students),
-    [students],
-  );
-
-  // filter and sort: active students first
-  const filteredStudents = useMemo(() => {
-    if (!students) return [];
-    return students
-      .filter((s) => {
-        const courseMatch =
-          !selectedFilters.course || s.course_code === selectedFilters.course;
-        const gradeMatch =
-          !selectedFilters.grade || s.grade === selectedFilters.grade;
-        return courseMatch && gradeMatch;
-      })
-      .sort((a, b) => {
-        if (a.enrollment_status === b.enrollment_status) return 0;
-        return a.enrollment_status === "active" ? -1 : 1;
-      });
-  }, [students, selectedFilters]);
-
-  // add unique id required by the table library
   const tableData = useMemo(
     () => ({
-      nodes: filteredStudents.map((s, index) => ({
-        ...s,
-        id: `${s.enrollment_id}-${index}`,
-      })),
+      nodes: students.map((s) => ({ ...s, id: s.enrollment_id })),
     }),
-    [filteredStudents],
+    [students],
   );
-
-  if (isPending) return <TableSkeleton />;
-  if (isError) return <ErrorMessage content="Failed to load Students." />;
 
   return (
     <>
-      <section aria-labelledby="students-heading">
-        <h3 id="students-heading" className="title">
-          My Students
-        </h3>
-        <p className="text-text-secondary text-sm md:text-base lg:text-lg">
-          <span aria-live="polite">
-            {uniqueStudents} students across {activeCourses} active courses
-          </span>
-        </p>
-      </section>
+      <h3 id="students-heading" className="title">
+        My Students
+      </h3>
 
       <FilterBar
         filters={filterConfigs}
-        selectedValues={selectedFilters}
+        selectedValues={filters}
         onChange={handleFilterChange}
         onClear={handleClearAll}
+        searchValue={search}
+        onSearchChange={(value) => {
+          setSearch(value);
+          setPage(0);
+        }}
       />
 
-      <Table tableData={tableData} columns={STUDENTS_COLUMNS} />
+      {isPending ? (
+        <TableSkeleton />
+      ) : isError ? (
+        <ErrorMessage content="Failed to load Students." />
+      ) : tableData.nodes.length === 0 ? (
+        <p className="text-center text-text-subtle py-8">
+          {search ? `No results found for "${search}"` : "No Students yet."}
+        </p>
+      ) : (
+        <Table
+          tableData={tableData}
+          columns={columns}
+          page={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+          onExport={(selectedNodes) => handleExport({ nodes: selectedNodes })}
+          selectedMap={selectedMap}
+          onSelectedMapChange={setSelectedMap}
+        />
+      )}
     </>
   );
 }

@@ -29,7 +29,6 @@ export const FACULTY_NAV = [
   { label: "My Courses", href: "/faculty/courses", icon: MdBook },
   { label: "Students", href: "/faculty/students", icon: MdPeople },
   { label: "Assignments", href: "/faculty/assignments", icon: MdAssignment },
-  { label: "Grades", href: "/faculty/grades", icon: MdGrade },
   { label: "Schedule", href: "/faculty/schedule", icon: MdCalendarMonth },
   { label: "Messages", href: "/faculty/messages", icon: MdMessage },
 ];

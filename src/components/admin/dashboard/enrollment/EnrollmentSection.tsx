@@ -23,6 +23,7 @@ export default function EnrollmentSection() {
   // Track current page for API fetch
   const [page, setPage] = useState(0);
   const { data: res, isError, isPending } = useEnrollmentTrend(page);
+console.log(res);
 
   const hasNext = res?.has_next ?? false;
   const hasPrev = res?.has_prev ?? false;

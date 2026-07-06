@@ -2,7 +2,7 @@ import { useUpdateAssignment } from "@/hooks/faculty/useAssignments";
 import {
   AddAssignmentFormValues,
   addAssignmentSchema,
-} from "@/validation/faculty.submitFile.schema";
+} from "@/validation/faculty/submitFile.schema";
 import { FacultyAssignment } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";

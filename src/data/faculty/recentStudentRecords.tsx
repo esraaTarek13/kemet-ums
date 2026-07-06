@@ -15,7 +15,7 @@ export const COLUMNS = [
         : "—",
   },
   { label: "Room", renderCell: (item: FacultyCourse) => item.room ?? "—" },
-   {
+  {
     label: "Status",
     renderCell: (item: FacultyCourse) =>
       item.status ? <StatusBadge status={item.status} /> : "—",

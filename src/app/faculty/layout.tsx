@@ -1,4 +1,4 @@
-import FacultyAside from "@/components/aside/portal-sidebars/FacultyAside";
+import FacultyAside from "@/components/layout/aside/portal-sidebars/FacultyAside";
 import Search from "@/components/faculty/search/Search";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";

@@ -1,11 +1,25 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import {
   addAssignment,
   updateAssignment,
   deleteAssignment,
+  getFacultyAssignments,
+  getAssignmentSubmissions,
 } from "@/lib/services/faculty/assignments";
 import { AssignmentFormData, UpdateAssignmentData } from "@/types";
+import { useAuthStore } from "@/stores/authStore";
+
+export function useFacultyAssignments(search?: string) {
+  const { user } = useAuthStore();
+
+  return useQuery({
+    queryKey: ["faculty-assignments", user?.id, search],
+    queryFn: () => getFacultyAssignments(user?.id ?? "", search),
+    enabled: !!user?.id,
+    staleTime: 1000 * 60 * 2,
+  });
+}
 
 export function useAddAssignment(offeringId: string) {
   const queryClient = useQueryClient();
@@ -44,5 +58,16 @@ export function useDeleteAssignment() {
     },
     onError: (err: Error) =>
       toast.error(err.message ?? "Failed to delete assignment"),
+  });
+}
+
+export function useAssignmentSubmissions(assignmentId: string) {
+  const { user } = useAuthStore();
+
+  return useQuery({
+    queryKey: ["assignment-submissions", assignmentId],
+    queryFn: () => getAssignmentSubmissions(user?.id ?? "", assignmentId),
+    enabled: !!user?.id && !!assignmentId,
+    staleTime: 1000 * 60 * 2,
   });
 }

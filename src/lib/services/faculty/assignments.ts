@@ -1,5 +1,17 @@
 import { supabase } from "@/lib/supabase/client";
-import { AssignmentFormData, UpdateAssignmentData } from "@/types";
+import { AssignmentFormData, AssignmentSubmission, FacultyAssignmentFull, UpdateAssignmentData } from "@/types";
+
+export async function getFacultyAssignments(
+  facultyId: string,
+  search?: string,
+): Promise<FacultyAssignmentFull[]> {
+  const { data, error } = await supabase.rpc("get_faculty_assignments", {
+    p_faculty_id: facultyId,
+    p_search:     search ?? null,
+  });
+  if (error) throw new Error(error.message);
+  return data as FacultyAssignmentFull[];
+}
 
 async function uploadAssignmentFile(offeringId: string, file: File) {
   const ext = file.name.split(".").pop();
@@ -60,4 +72,16 @@ export async function deleteAssignment(assignmentId: string): Promise<void> {
     p_assignment_id: assignmentId,
   });
   if (error) throw new Error(error.message);
+}
+
+export async function getAssignmentSubmissions(
+  facultyId: string,
+  assignmentId: string,
+): Promise<AssignmentSubmission[]> {
+  const { data, error } = await supabase.rpc("get_assignment_submissions", {
+    p_faculty_id:    facultyId,
+    p_assignment_id: assignmentId,
+  });
+  if (error) throw new Error(error.message);
+  return data as AssignmentSubmission[];
 }

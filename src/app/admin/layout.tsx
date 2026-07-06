@@ -1,5 +1,5 @@
 import Search from "@/components/admin/search/Search";
-import AdminAside from "@/components/aside/portal-sidebars/AdminAside";
+import AdminAside from "@/components/layout/aside/portal-sidebars/AdminAside";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import type { Metadata } from "next";
@@ -21,7 +21,7 @@ export default function AdminLayout({
       <AdminAside />
       <section className="flex flex-col gap-5 md:gap-6 flex-1 ml-16 md:ml-47 lg:ml-50">
         <Header search={<Search />} />
-        <main className="Custom-container grow flex flex-col gap-5 md:gap-6">
+        <main className="grow">
           {children}
         </main>
         <Footer />

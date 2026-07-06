@@ -1,17 +1,6 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  getFacultySubmissions,
-  gradeSubmission,
-} from "@/lib/services/faculty/submissions";
-
-export function useFacultySubmissions(assignmentId: string) {
-  return useQuery({
-    queryKey: ["faculty-submissions", assignmentId],
-    queryFn: () => getFacultySubmissions(assignmentId),
-    enabled: !!assignmentId,
-    staleTime: 1000 * 60 * 2,
-  });
-}
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { gradeSubmission } from "@/lib/services/faculty/submissions";
+import { toast } from "sonner";
 
 export function useGradeSubmission(assignmentId: string) {
   const queryClient = useQueryClient();
@@ -23,13 +12,15 @@ export function useGradeSubmission(assignmentId: string) {
       feedback,
     }: {
       submissionId: string;
-      grade: string;
+      grade: number;
       feedback?: string;
     }) => gradeSubmission(submissionId, grade, feedback),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["faculty-submissions", assignmentId],
+        queryKey: ["assignment-submissions", assignmentId],
       });
+      toast.success("Grade saved successfully");
     },
+    onError: (err: Error) => toast.error(err.message ?? "Failed to save grade"),
   });
 }

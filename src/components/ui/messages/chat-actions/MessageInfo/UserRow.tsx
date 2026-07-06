@@ -24,6 +24,7 @@ export default function UserRow({ user }: { user: MessageReadStatus }) {
             </span>
           )}
         </div>
+        
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium truncate">{user.full_name}</p>
           <p className="text-xs text-text-secondary capitalize">{user.role}</p>

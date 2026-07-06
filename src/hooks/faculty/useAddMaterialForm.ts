@@ -2,7 +2,7 @@ import { useAddMaterial } from "@/hooks/faculty/useMaterials";
 import {
   AddMaterialFormValues,
   addMaterialSchema,
-} from "@/validation/faculty.submitFile.schema";
+} from "@/validation/faculty/submitFile.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";

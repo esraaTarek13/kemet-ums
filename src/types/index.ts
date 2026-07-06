@@ -4,8 +4,13 @@ export * from './shared/statCard'
 export * from './shared/fileSubmission'
 export * from './shared/messages'
 export * from './shared/notifications'
+export * from './shared/filterConfig'
 export type { Announcement } from './shared/announcements'
+export * from './super-admin/admins'
 export * from './admin/dashboard'
+export * from './admin/students'
+export * from './admin/faculty'
+export * from './admin/courses'
 export * from './admin/search'
 export * from './student/dashboard'
 export * from "./student/search";
@@ -19,7 +24,7 @@ export * from './faculty/dashboard'
 export * from "./faculty/search";
 export * from "./faculty/schedule";
 export * from "./faculty/courses";
-export * from "./faculty/attendance";
-export * from "./faculty/submissions";
+export * from "./faculty/assignments";
+export * from "./faculty/grades";
 export * from "./faculty/student";
 export * from "./faculty/profile";

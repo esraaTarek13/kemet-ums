@@ -24,7 +24,7 @@ export default function CoursesTableInner() {
 
   if (grades.length === 0) {
     return (
-      <p className="text-center text-text-subtle py-8">
+      <p className="text-center text-xs md:text-sm text-text-subtle py-8">
         No grades available yet.
       </p>
     );

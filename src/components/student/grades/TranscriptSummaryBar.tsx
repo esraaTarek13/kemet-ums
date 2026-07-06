@@ -3,7 +3,7 @@ import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import TranscriptSummaryBarSkeleton from "@/components/ui/skeletons/TranscriptSummaryBarSkeleton";
 import { useStudentGrades } from "@/hooks/student/useStudentGrades";
 import { mapToTranscriptSummary } from "@/lib/mappers/student/mapToTranscriptSummary";
-import { downloadTranscript } from "@/lib/utils/downloadTranscript";
+import { downloadTranscript } from "@/lib/utils/student/downloadTranscript";
 import { PiDownloadSimpleBold } from "react-icons/pi";
 
 export default function TranscriptSummaryBar() {

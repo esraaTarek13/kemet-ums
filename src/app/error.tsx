@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function Error({ reset }: { reset: () => void }) {
@@ -8,15 +9,25 @@ export default function Error({ reset }: { reset: () => void }) {
   return (
     <section className="Custom-container relative flex items-center justify-center h-screen">
       {/* Background 500 illustration */}
-      <img
-        src="/images/500.png"
-        aria-hidden="true"
-        className="w-80 sm:w-160 lg:w-213.75 object-contain opacity-10 absolute"
-      />
+      <div className="w-80 sm:w-160 lg:w-213.75 absolute opacity-10">
+        <Image
+          alt="500 error illustration"
+          src="/images/500.png"
+          aria-hidden="true"
+          fill
+          className="object-contain"
+        />
+      </div>
 
       <div className="flex flex-col items-center justify-center relative z-50">
         {/* Logo */}
-        <img src="/images/logo-dark.png" alt="Kemet University logo" />
+        <Image
+          src="/images/logo-dark.png"
+          alt="Kemet University logo"
+          width={150}
+          height={80}
+          className="w-20 md:w-30 h-auto object-contain"
+        />
 
         {/* Error message */}
         <div className="mt-5 md:mt-9 lg:mt-12 space-y-2 md:space-y-4">

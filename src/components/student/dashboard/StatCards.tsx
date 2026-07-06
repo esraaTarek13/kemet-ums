@@ -10,7 +10,6 @@ export default function StatCards() {
 
   if (isPending) return <StatCardSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load statistics." />;
-
   const stats = mapToStudentStats(data);
 
   return (
