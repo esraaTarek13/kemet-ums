@@ -101,7 +101,7 @@ export default function EditPersonalItemsModal({
               <button
                 type="submit"
                 disabled={isPending}
-                className="btn-dark bg-accent border border-accent rounded-md font-semibold text-text-white text-sm md:text-base py-2 px-5 md:px-8 cursor-pointer disabled:opacity-50"
+                className="btn-dark btn py-2 disabled:opacity-50"
               >
                 {isPending ? "Saving..." : "Save Changes"}
               </button>

@@ -1,12 +1,6 @@
 "use client";
 import { EnrollmentTrend } from "@/types";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 interface Props {
   data: EnrollmentTrend[] | undefined;
@@ -20,7 +14,7 @@ export default function EnrollmentChart({ data }: Props) {
         <defs>
           <linearGradient id="enrollGradient" x1="0" y1="0" x2="0" y2="1">
             <stop
-              offset="5%"
+              offset="20%"
               stopColor="var(--color-accent)"
               stopOpacity={0.2}
             />
@@ -37,6 +31,7 @@ export default function EnrollmentChart({ data }: Props) {
           dataKey="month"
           tick={{ fontSize: 10, fill: "var(--color-text-subtle)" }}
           tickLine={false}
+          axisLine={{ stroke: "var(--color-border, #e5e5e5)" }}
           tickFormatter={(value) => value.toUpperCase()}
           tickMargin={10}
         />
@@ -62,15 +57,9 @@ export default function EnrollmentChart({ data }: Props) {
           dot={{
             r: 4,
             fill: "var(--color-text-secondary)",
-            stroke: "none",
             strokeWidth: 0,
           }}
-          activeDot={{
-            r: 4,
-            fill: "var(--color-text-secondary)",
-            stroke: "none",
-            strokeWidth: 0,
-          }}
+          activeDot={{ r: 6 }}
         />
       </AreaChart>
     </ResponsiveContainer>

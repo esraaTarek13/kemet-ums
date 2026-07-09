@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import FilterBar from "@/components/ui/shared/FilterBar/FilterBar";
-import { useAdminStudents } from "@/hooks/admin/useAdminStudents";
+import { useAdminStudents } from "@/hooks/admin/students/useAdminStudents";
 import { TableSkeleton } from "@/components/ui/skeletons/TableSkeleton";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import Table from "@/components/ui/tables/Table.Large";

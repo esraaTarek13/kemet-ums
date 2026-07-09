@@ -1,4 +1,4 @@
-import { useMessageReadStatus } from "@/hooks/shared/useMessages";
+import { useMessageReadStatus } from "@/hooks/shared/messages/useMessages";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoCheckmarkDoneOutline, IoClose } from "react-icons/io5";
 import UserRow from "./UserRow";

@@ -5,7 +5,7 @@ import { getGradesColumns, GradeRow } from "@/data/faculty/gradesColumns";
 import { FacultyGradeStudent } from "@/types";
 import { useMemo } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { GradesFormValues } from "@/validation/faculty/gradesValidation";
+import { GradesFormValues } from "@/validation/gradesValidation";
 
 interface GradesTableProps {
   students: FacultyGradeStudent[];

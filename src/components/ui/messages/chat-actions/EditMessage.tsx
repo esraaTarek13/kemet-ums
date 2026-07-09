@@ -2,7 +2,7 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { useChatContext } from "../context/ChatContext";
-import { useEditMessage } from "@/hooks/shared/useMessages";
+import { useEditMessage } from "@/hooks/shared/messages/useMessages";
 import { useForm, useWatch } from "react-hook-form";
 import { useEffect } from "react";
 import EmojiPickerButton from "./EmojiPickerButton";

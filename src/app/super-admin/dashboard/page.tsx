@@ -1,5 +1,5 @@
 import Announcements from "@/components/admin/dashboard/Announcements";
-import EnrollmentSection from "@/components/admin/dashboard/enrollment/EnrollmentSection";
+import Enrollment from "@/components/admin/dashboard/enrollment/EnrollmentChart.lazy";
 import RecentStudents from "@/components/admin/dashboard/recent-students/RecentStudents";
 import ReportsSummary from "@/components/admin/dashboard/ReportsSummary";
 import StatCards from "@/components/admin/dashboard/StatCards";
@@ -12,7 +12,7 @@ export default function Dashboard() {
       <StatCards />
       <div className="flex flex-col lg:flex-row gap-5 md:gap-6">
         <div className="space-y-5 md:space-y-6 grow">
-          <EnrollmentSection />
+          <Enrollment />
           <RecentStudents />
         </div>
         <div className="space-y-5 md:space-y-6">

@@ -6,6 +6,7 @@ const AdminsTableInner = dynamic(() => import("./AdminsTableInner"), {
   ssr: false,
   loading: () => <TableSkeleton />,
 });
+
 export default function AdminsTable() {
   return (
     <section

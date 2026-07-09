@@ -3,7 +3,7 @@ import FilterBar from "@/components/ui/shared/FilterBar/FilterBar";
 import { TableSkeleton } from "@/components/ui/skeletons/TableSkeleton";
 import Table from "@/components/ui/tables/Table.Large";
 import { FACULTY_COLUMNS } from "@/data/admin/facultyColumns";
-import { useAdminFaculty } from "@/hooks/admin/useAdminFaculty";
+import { useAdminFaculty } from "@/hooks/admin/faculty/useAdminFaculty";
 import { useDepartments } from "@/hooks/shared/useDepartments";
 import { buildFacultyFilters } from "@/lib/utils/admin/buildFacultyFilters";
 import { handleExportFaculty } from "@/lib/utils/admin/handleExportFaculty";

@@ -25,6 +25,11 @@ export interface AdminListResponse<T> {
   data: T[];
 }
 
+export type {
+  CreateStudentFormValues,
+  CreateStudentPayload,
+} from "@/validation/createStudent.schema";
+
 
 
 

@@ -7,7 +7,7 @@ import { useUpdateStudentGrade } from "@/hooks/faculty/useFacultyGrades";
 import {
   gradesFormSchema,
   GradesFormValues,
-} from "@/validation/faculty/gradesValidation";
+} from "@/validation/gradesValidation";
 
 export function useGradesForm(courseId: string) {
   const { mutateAsync, isPending: isUpdating } = useUpdateStudentGrade();

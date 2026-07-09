@@ -1,6 +1,12 @@
 import { FiAlertTriangle, FiInfo, FiAlertCircle } from "react-icons/fi";
+import { IconType } from "react-icons";
 
-export const PRIORITY_CONFIG = {
+type PriorityConfig = {
+  icon: IconType;
+  className: string;
+};
+
+export const PRIORITY_CONFIG: Record<string, PriorityConfig> = {
   urgent: {
     icon: FiAlertTriangle,
     className: "bg-red-100 text-red-500",
@@ -15,7 +21,12 @@ export const PRIORITY_CONFIG = {
   },
 };
 
-export const STATUS_CONFIG = {
+type StatusConfig = {
+  label: string;
+  className: string;
+};
+
+export const STATUS_CONFIG: Record<string, StatusConfig> = {
   active: {
     label: "active",
     className: "bg-green-100 text-green-600",

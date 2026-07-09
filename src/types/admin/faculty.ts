@@ -19,3 +19,7 @@ export interface AdminFaculty {
   students_count: number;
 }
 
+export type {
+  CreateFacultyFormValues,
+  CreateFacultyPayload,
+} from "@/validation/createFaculty.schema";

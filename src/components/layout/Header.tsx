@@ -8,7 +8,7 @@ import { useMemo } from "react";
 import NotificationBell from "./notifications/NotificationBell";
 import { NavbarSkeleton } from "../ui/skeletons/NavbarSkeleton";
 import { LuMessageSquare } from "react-icons/lu";
-import { useUnreadMessages } from "@/hooks/shared/useUnreadMessages";
+import { useUnreadMessages } from "@/hooks/shared/messages/useUnreadMessages";
 
 interface HeaderProps {
   search?: React.ReactNode;

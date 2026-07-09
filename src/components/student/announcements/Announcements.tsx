@@ -51,7 +51,7 @@ export default function Announcements() {
 
       {/* Empty state */}
       {filteredAnnouncements?.length === 0 ? (
-        <p className="text-text-muted text-sm mt-6">
+        <p className="text-text-muted text-sm mt-6 text-center">
           No {selectedPriority !== "all" ? selectedPriority : ""} announcements
           found.
         </p>

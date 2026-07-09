@@ -1,3 +1,9 @@
+export interface AdminsStats {
+  total_admins: number;
+  active: number;
+  suspended: number;
+  unspecified: number;
+}
 export interface AdminUser {
   id: string;
   full_name: string;
@@ -8,7 +14,10 @@ export interface AdminUser {
   created_at: string;
 }
 
-
+export type {
+  CreateAdminFormValues,
+  CreateAdminPayload,
+} from "@/validation/createAdmin.schema";
 
 
 

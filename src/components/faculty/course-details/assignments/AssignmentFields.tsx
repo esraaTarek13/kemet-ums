@@ -1,4 +1,4 @@
-import { AddAssignmentFormValues } from "@/validation/faculty/submitFile.schema";
+import { AddAssignmentFormValues } from "@/validation/faculty.submitFile.schema";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
 

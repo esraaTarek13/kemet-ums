@@ -12,6 +12,7 @@ export default function Announcements() {
   return (
     <section className="card space-y-4 lg:space-y-6">
       <h3 className="title">Announcements</h3>
+      
       <div className="space-y-4">
         {!announcements || announcements.length === 0 ? (
           <p className="text-text-muted text-center py-10 text-sm">

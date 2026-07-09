@@ -1,5 +1,11 @@
 import { supabase } from "@/lib/supabase/client";
-import { AdminUser } from "@/types";
+import { AdminsStats, AdminUser } from "@/types";
+
+export async function getAdminStats(): Promise<AdminsStats> {
+  const { data, error } = await supabase.rpc("get_admin_stats");
+  if (error) throw new Error(error.message);
+  return data as AdminsStats;
+}
 
 export async function getAdminAdmins(filters?: {
   search?: string;

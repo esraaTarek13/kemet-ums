@@ -1,6 +1,6 @@
 import { FacultyGradeStudent } from "@/types";
 import { Column } from "@table-library/react-table-library/types/compact";
-import { GradesFormValues } from "@/validation/faculty/gradesValidation";
+import { GradesFormValues } from "@/validation/gradesValidation";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import Image from "next/image";
 

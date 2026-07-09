@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
-import { useSendFiles, useSendMessage } from "@/hooks/shared/useMessages";
-import { useChatContext } from "../../components/ui/messages/context/ChatContext";
+import { useSendFiles, useSendMessage } from "@/hooks/shared/messages/useMessages";
+import { useChatContext } from "@/components/ui/messages/context/ChatContext";
 
 interface ChatFormValues {
   content: string;

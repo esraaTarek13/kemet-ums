@@ -1,40 +1,25 @@
 "use client";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useState } from "react";
-import dynamic from "next/dynamic";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import { useEnrollmentTrend } from "@/hooks/admin/useDashboard";
 import { EnrollmentSkeleton } from "@/components/ui/skeletons/EnrollmentSkeleton";
+import { usePagination } from "@/hooks/admin/useEnrollmentPagination";
+import { getDateRange } from "@/lib/utils/admin/dashboardEnrollment";
+import EnrollmentChart from "./EnrollmentChart";
 
-// Lazy load chart — recharts is heavy
-const EnrollmentChart = dynamic(() => import("./EnrollmentChart"), {
-  loading: () => <EnrollmentSkeleton />,
-  ssr: false,
-});
+export default function EnrollmentTrend() {
+  const { page, goNext, goPrev } = usePagination({
+    hasNext: false,
+    hasPrev: false,
+  });
 
-const getDateRange = (data: { month: string }[] | undefined) => {
-  if (!data?.length) return "No Data";
-  const first = data[0].month;
-  const last = data[data.length - 1].month;
-  return first === last ? first : `${first} – ${last}`;
-};
-
-export default function EnrollmentSection() {
-  // Track current page for API fetch
-  const [page, setPage] = useState(0);
   const { data: res, isError, isPending } = useEnrollmentTrend(page);
-console.log(res);
 
   const hasNext = res?.has_next ?? false;
   const hasPrev = res?.has_prev ?? false;
-
-  const goNext = () => hasNext && setPage((p) => p + 1);
-  const goPrev = () => hasPrev && setPage((p) => p - 1);
-
   const dateRange = getDateRange(res?.data);
 
   if (isPending) return <EnrollmentSkeleton />;
-
   if (isError)
     return <ErrorMessage content="Failed to load enrollment data." />;
 

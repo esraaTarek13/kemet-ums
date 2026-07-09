@@ -2,7 +2,7 @@ import { useGradeSubmission } from "@/hooks/faculty/useSubmissions";
 import {
   SubmissionGradeFormValues,
   getSubmissionGradeSchema,
-} from "@/validation/faculty/submissionGrade.schema";
+} from "@/validation/submissionGrade.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";

@@ -11,6 +11,7 @@ export default function CoursesStats() {
   if (isPending) return <StatCardSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load statistics." />;
   const stats = mapToAdminCoursesStats(data);
+  
   return (
     <section
       aria-label="Admin Faculty statistics"

@@ -1,12 +1,12 @@
 import {
   PRIORITY_CONFIG,
   STATUS_CONFIG,
-} from "@/data/student/announcementsConfig";
+} from "@/data/shared/announcementsConfig";
 import { Announcement } from "@/types";
 import { format } from "date-fns";
 
 interface AnnouncementItemProps {
-  announcement: Announcement;
+  announcement: Announcement ;
 }
 
 export default function AnnouncementItem({
