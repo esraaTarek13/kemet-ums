@@ -2,7 +2,7 @@
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import ProgressBar from "@/components/ui/shared/ProgressBar";
 import AttendanceSkeletons from "@/components/ui/skeletons/AttendanceSkeletons";
-import { useFacultyPerformanceIndex } from "@/hooks/faculty/useDashboard";
+import { useFacultyPerformanceIndex } from "@/hooks/faculty/dashboard/queries/useFacultyPerformanceIndex";
 import { mapToPerformanceMetrics } from "@/lib/mappers/faculty/mapToPerformanceMetrics";
 
 export default function Performance() {

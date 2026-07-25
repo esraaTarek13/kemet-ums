@@ -1,6 +1,6 @@
 import { FiFile, FiX } from "react-icons/fi";
 import Image from "next/image";
-import { useEffect, useMemo } from "react";
+import { useFilePreview } from "@/hooks/shared/messages/useFilePreview";
 
 interface FilePreviewItemProps {
   file: File;
@@ -11,20 +11,7 @@ export default function FilePreviewItem({
   file,
   onRemove,
 }: FilePreviewItemProps) {
-  const isImage = file.type.startsWith("image/");
-
-  // Derived value
-  const previewUrl = useMemo(
-    () => (isImage ? URL.createObjectURL(file) : null),
-    [file, isImage],
-  );
-
-  // Cleanup only — this is the legitimate use of useEffect here
-  useEffect(() => {
-    return () => {
-      if (previewUrl) URL.revokeObjectURL(previewUrl);
-    };
-  }, [previewUrl]);
+  const { previewUrl } = useFilePreview(file);
 
   return (
     <div className="flex items-center gap-2 bg-bg-input rounded-xl p-2 w-fit max-w-50 mb-1">

@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { IoClose } from "react-icons/io5";
 import { TfiMedall } from "react-icons/tfi";
 import { Material, SubmissionDetailsModalProps } from "@/types";
-import { getGradeRank } from "@/lib/utils/getGradeRank";
+import { getGradeRank } from "@/lib/utils/shared/getGradeRank";
 import CourseMaterialItem from "@/components/ui/shared/CourseMaterialItem";
 
 export default function SubmissionDetailsModal({

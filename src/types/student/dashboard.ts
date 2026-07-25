@@ -1,7 +1,7 @@
 export interface StudentDashboardStats {
   enrolled_courses: number;
   gpa: number;
-  pending_tasks: number;
+  balance_due: number;
   attendance_rate: number;
 }
 

@@ -1,11 +1,19 @@
 "use client";
-import { useFacultyCourses } from "@/hooks/faculty/useFacultyCourses";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CourseCard from "./CourseCard";
+import { useState } from "react";
+import SemesterYearSelect from "../../ui/shared/SemesterYearSelect";
+import { useFacultyCourses } from "@/hooks/faculty/courses/queries/useFacultyCourses";
 
 export default function Courses() {
-  const { data: courses, isPending, isError } = useFacultyCourses();
+  const [semester, setSemester] = useState("");
+
+  const {
+    data: courses,
+    isPending,
+    isError,
+  } = useFacultyCourses(semester || undefined);
 
   if (isPending)
     return (
@@ -17,7 +25,14 @@ export default function Courses() {
 
   return (
     <section aria-label="My courses" className="space-y-5 md:space-y-6">
-      <h3 className="title">My Courses</h3>
+      <div className="flex items-center gap-4 flex-wrap">
+        <h3 className="title">My Courses</h3>
+        <SemesterYearSelect
+          semester={semester}
+          onSemesterChange={setSemester}
+        />
+      </div>
+
       {courses?.length > 0 ? (
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses?.map((course) => (

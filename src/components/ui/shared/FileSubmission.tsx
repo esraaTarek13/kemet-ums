@@ -1,4 +1,3 @@
-// components/ui/shared/FileSubmission.tsx
 import { TbFileUpload } from "react-icons/tb";
 import { LuFileCheck } from "react-icons/lu";
 import {

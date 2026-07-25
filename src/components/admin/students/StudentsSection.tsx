@@ -1,6 +1,6 @@
 import StudentsStats from "./StudentsStats";
 import AddStudentModal from "./add-student/AddStudentModal";
-import StudentsTable from "./students-table/StudentsTable";
+import StudentsTable from "./students-table/StudentsTable.lazy";
 
 export default function StudentsSection() {
   return (

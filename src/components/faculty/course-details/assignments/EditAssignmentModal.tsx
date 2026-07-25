@@ -1,4 +1,4 @@
-import { useEditAssignmentForm } from "@/hooks/faculty/useEditAssignmentForm";
+import { useEditAssignmentForm } from "@/hooks/faculty/courses/useEditAssignmentForm";
 import { CourseAssignment } from "@/types";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoClose } from "react-icons/io5";

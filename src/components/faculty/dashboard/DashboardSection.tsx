@@ -1,8 +1,8 @@
 import HeroBanner from "@/components/ui/dashboard/HeroBanner";
 import StatCards from "./StatCards";
 import Performance from "./Performance";
-import ActiveCourses from "./active-courses/ActiveCourses";
-import RecentSubmissions from "./recent-submissions/RecentSubmissions";
+import ActiveCourses from "./active-courses/ActiveCourses.lazy";
+import RecentSubmissions from "./recent-submissions/RecentSubmissions.lazy";
 import DayScheduleCard from "./schedule/DayScheduleCard";
 
 export default function DashboardSection() {

@@ -9,10 +9,10 @@ export default function Error({ reset }: { reset: () => void }) {
   return (
     <section className="Custom-container relative flex items-center justify-center h-screen">
       {/* Background 500 illustration */}
-      <div className="w-80 sm:w-160 lg:w-213.75 absolute opacity-10">
+      <div className="w-80 sm:w-160 lg:w-213.75 h-40 sm:h-80 lg:h-107 absolute opacity-15">
         <Image
-          alt="500 error illustration"
           src="/images/500.png"
+          alt="500 error illustration"
           aria-hidden="true"
           fill
           className="object-contain"
@@ -24,7 +24,7 @@ export default function Error({ reset }: { reset: () => void }) {
         <Image
           src="/images/logo-dark.png"
           alt="Kemet University logo"
-          width={150}
+          width={100}
           height={80}
           className="w-20 md:w-30 h-auto object-contain"
         />

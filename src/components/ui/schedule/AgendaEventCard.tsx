@@ -1,4 +1,4 @@
-import { AGENDA_STATUS_STYLES } from "@/data/shared/statusStyles";
+import { AGENDA_STATUS_STYLES } from "@/data/shared/agendaStatusStyles";
 import { FacultyScheduleEvent, StudentSchedule } from "@/types";
 import { CiLocationOn } from "react-icons/ci";
 

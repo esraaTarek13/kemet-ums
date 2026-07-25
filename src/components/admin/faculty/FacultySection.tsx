@@ -1,6 +1,6 @@
 import FacultyStats from "./FacultyStats";
 import AddFacultyModal from "./add-faculty/AddFacultyModal";
-import FacultyTable from "./faculty-table/FacultyTable";
+import FacultyTable from "./faculty-table/FacultyTable.lazy";
 
 
 export default function FacultySection() {

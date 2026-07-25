@@ -2,10 +2,10 @@
 import CourseMaterialItem from "@/components/ui/shared/CourseMaterialItem";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
-import { useFacultyCourseDetail } from "@/hooks/faculty/useFacultyCourses";
-import { useDeleteMaterial } from "@/hooks/faculty/useMaterials";
 import { useState } from "react";
 import AddMaterialsModal from "./AddMaterialsModal";
+import { useFacultyCourseDetail } from "@/hooks/faculty/courses/queries/useFacultyCourseDetail";
+import { useDeleteMaterial } from "@/hooks/faculty/courses/queries/useDeleteMaterial";
 
 interface CourseMaterialsCardProps {
   courseId: string;

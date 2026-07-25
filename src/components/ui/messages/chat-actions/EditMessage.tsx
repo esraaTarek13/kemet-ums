@@ -1,12 +1,9 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { useChatContext } from "../context/ChatContext";
-import { useEditMessage } from "@/hooks/shared/messages/useMessages";
-import { useForm, useWatch } from "react-hook-form";
-import { useEffect } from "react";
 import EmojiPickerButton from "./EmojiPickerButton";
 import TextareaAutosize from "react-textarea-autosize";
+import { useEditMessageForm } from "@/hooks/shared/messages/useEditMessageForm";
 
 interface EditMessageProps {
   messageId: string;
@@ -15,55 +12,20 @@ interface EditMessageProps {
   onOpenChange: (open: boolean) => void;
 }
 
-interface EditFormValues {
-  content: string;
-}
-
 export default function EditMessage({
   messageId,
   content,
   open,
   onOpenChange,
 }: EditMessageProps) {
-  const { courseId, portal } = useChatContext();
-  const { mutate, isPending } = useEditMessage(courseId, portal);
-
-  const { register, handleSubmit, control, reset, setValue } =
-    useForm<EditFormValues>({
-      defaultValues: { content },
-    });
-
-  const newContent = useWatch({ control, name: "content" });
-
-  // Compare trimmed values so extra spaces don't enable the Save button
-  const trimmedNew = newContent?.trim() ?? "";
-  const trimmedOriginal = content.trim();
-  const isUnchanged = trimmedNew === trimmedOriginal || trimmedNew === "";
-
-  // Re-populate the form every time the dialog opens
-  useEffect(() => {
-    if (open) reset({ content });
-  }, [open, content, reset]);
-
-  // Prevent closing while a request is in-flight
-  function handleOpenChange(next: boolean) {
-    if (isPending) return;
-    onOpenChange(next);
-  }
-
-  function onSubmit(values: EditFormValues) {
-    const trimmed = values.content.trim();
-
-    if (!trimmed || trimmed === trimmedOriginal) {
-      onOpenChange(false);
-      return;
-    }
-
-    mutate(
-      { messageId, content: trimmed },
-      { onSuccess: () => onOpenChange(false) },
-    );
-  }
+  const {
+    register,
+    isPending,
+    isUnchanged,
+    handleOpenChange,
+    insertEmoji,
+    onSubmit,
+  } = useEditMessageForm({ messageId, content, open, onOpenChange });
 
   return (
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
@@ -82,7 +44,7 @@ export default function EditMessage({
             Edit the content of your message then press Save.
           </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
+          <form onSubmit={onSubmit} className="mt-3">
             <div className="flex justify-between gap-3 items-center bg-bg-input rounded-xl grow p-3 md:p-4">
               <label htmlFor="edit-message" className="sr-only">
                 Edit message content
@@ -99,13 +61,7 @@ export default function EditMessage({
               />
 
               {/* shouldDirty syncs RHF state after emoji insert */}
-              <EmojiPickerButton
-                onEmojiSelect={(emoji) =>
-                  setValue("content", (newContent ?? "") + emoji, {
-                    shouldDirty: true,
-                  })
-                }
-              />
+              <EmojiPickerButton onEmojiSelect={insertEmoji} />
             </div>
 
             <div className="flex justify-end gap-3 mt-4">

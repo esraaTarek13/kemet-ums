@@ -10,7 +10,7 @@ export default function ConfirmDialog({
   title = "Are you sure?",
   description = "This action cannot be undone.",
   confirmLabel = "Confirm",
-  cancelLabel = "Cancel",
+  cancelLabel,
   isLoading = false,
   variant = "danger",
 }: ConfirmDialogProps) {
@@ -22,7 +22,9 @@ export default function ConfirmDialog({
   const confirmClasses =
     variant === "danger"
       ? "bg-red-700 hover:bg-red-800"
-      : "bg-primary hover:bg-primary-dark";
+      : variant === "warning"
+        ? "bg-amber-600 hover:bg-amber-700"
+        : "bg-primary hover:bg-primary-dark";
 
   return (
     <AlertDialog.Root open={open} onOpenChange={handleOpenChange}>
@@ -39,15 +41,17 @@ export default function ConfirmDialog({
           </AlertDialog.Description>
 
           <div className="flex justify-end gap-3 mt-4">
-            <AlertDialog.Cancel asChild>
-              <button
-                type="button"
-                disabled={isLoading}
-                className="px-4 py-2 text-sm rounded-lg text-text-secondary hover:bg-bg-input disabled:opacity-50 cursor-pointer"
-              >
-                {cancelLabel}
-              </button>
-            </AlertDialog.Cancel>
+            {cancelLabel && (
+              <AlertDialog.Cancel asChild>
+                <button
+                  type="button"
+                  disabled={isLoading}
+                  className="px-4 py-2 text-sm rounded-lg text-text-secondary hover:bg-bg-input disabled:opacity-50 cursor-pointer"
+                >
+                  {cancelLabel}
+                </button>
+              </AlertDialog.Cancel>
+            )}
 
             <AlertDialog.Action asChild>
               <button

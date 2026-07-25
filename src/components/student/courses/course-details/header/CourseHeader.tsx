@@ -1,7 +1,7 @@
 "use client";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import HeaderSkeleton from "@/components/ui/skeletons/HeaderSkeleton";
-import { useStudentCourseDetails } from "@/hooks/student/useStudentCourseDetails";
+import { useStudentCourseDetails } from "@/hooks/student/courses/useStudentCourseDetails";
 import CourseBreadcrumb from "./CourseBreadcrumb";
 import CourseInfoCard from "./CourseInfoCard";
 

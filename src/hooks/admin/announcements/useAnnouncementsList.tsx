@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAdminAnnouncements } from "./useAnnouncements";
+import { useAdminAnnouncements } from "./queries/useAnnouncements";
 import { AnnouncementStatusFilter } from "@/types";
 
 type FilterState = "all" | AnnouncementStatusFilter;

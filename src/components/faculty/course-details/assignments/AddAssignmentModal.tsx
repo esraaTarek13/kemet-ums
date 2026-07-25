@@ -3,7 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { IoClose } from "react-icons/io5";
 import AssignmentFields from "./AssignmentFields";
 import FileSubmission from "@/components/ui/shared/FileSubmission";
-import { useAddAssignmentForm } from "@/hooks/faculty/useAddAssignmentForm";
+import { useAddAssignmentForm } from "@/hooks/faculty/assignments/useAddAssignmentForm";
 
 interface AddAssignmentModalProps {
   offeringId: string;

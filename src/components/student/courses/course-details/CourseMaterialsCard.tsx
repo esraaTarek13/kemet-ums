@@ -1,5 +1,5 @@
 "use client";
-import { useStudentCourseDetails } from "@/hooks/student/useStudentCourseDetails";
+import { useStudentCourseDetails } from "@/hooks/student/courses/useStudentCourseDetails";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CourseMaterialItem from "@/components/ui/shared/CourseMaterialItem";

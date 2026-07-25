@@ -11,6 +11,7 @@ import {
   MdAdminPanelSettings,
 } from "react-icons/md";
 import { PiChalkboardTeacher } from "react-icons/pi";
+import { TbCashBanknote } from "react-icons/tb";
 
 // ─── Student Nav ──────────────────────────────────────────────────────────────
 export const STUDENT_NAV = [
@@ -40,6 +41,7 @@ export const ADMIN_NAV = [
   { label: "Faculty", href: "/admin/faculty", icon: PiChalkboardTeacher },
   { label: "Courses", href: "/admin/courses", icon: MdBook },
   { label: "Reports", href: "/admin/reports", icon: MdBarChart },
+  { label: "Record Payment", href: "/admin/payments", icon: TbCashBanknote },
   { label: "Announcements", href: "/admin/announcements", icon: MdCampaign },
 ];
 
@@ -51,6 +53,7 @@ export const SUPER_ADMIN_NAV = [
   { label: "Faculty", href: "/super-admin/faculty", icon: PiChalkboardTeacher },
   { label: "Courses", href: "/super-admin/courses", icon: MdBook },
   { label: "Reports", href: "/super-admin/reports", icon: MdBarChart },
+  { label: "Record Payment", href: "/super-admin/payments", icon: TbCashBanknote },
   {
     label: "Announcements",
     href: "/super-admin/announcements",

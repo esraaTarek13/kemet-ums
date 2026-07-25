@@ -18,7 +18,7 @@ export default function AddFacultyModal() {
           type="button"
           className="btn btn-dark flex items-center gap-2 py-2"
         >
-          <FiPlus className="text-sm md:text-xl shrink-0" />
+          <FiPlus aria-hidden="true" className="text-sm md:text-xl shrink-0" />
           <span className="text-sm md:text-base hidden sm:block">
             Add New Faculty
           </span>

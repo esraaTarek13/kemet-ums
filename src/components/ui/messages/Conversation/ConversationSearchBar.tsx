@@ -16,7 +16,7 @@ export default function ConversationSearchBar({ value, onChange }: Props) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search conversations..."
-        className="bg-transparent text-xs md:text-sm text-border w-full outline-none"
+        className="bg-transparent text-xs md:text-sm text-text-muted w-full outline-none"
       />
     </div>
   );

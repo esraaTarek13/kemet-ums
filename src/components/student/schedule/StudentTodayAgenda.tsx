@@ -3,23 +3,10 @@
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import TodayAgenda from "@/components/ui/schedule/TodayAgenda";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
-import { getTodayEvents } from "@/lib/utils/getTodayEvents";
-import { format } from "date-fns";
-import { useMemo } from "react";
-import { useStudentSchedule } from "@/hooks/student/useSchedule";
+import { useTodayAgenda } from "@/hooks/student/schedule/useTodayAgenda";
 
 export default function StudentTodayAgenda() {
-  const { data: events, isPending, isError } = useStudentSchedule();
-
-  const todayEvents = useMemo(() => getTodayEvents(events ?? []), [events]);
-
-  const { today, now } = useMemo(
-    () => ({
-      today: format(new Date(), "EEEE, MMMM d"),
-      now: format(new Date(), "HH:mm"),
-    }),
-    [],
-  );
+  const { isPending, isError, today, now, todayEvents } = useTodayAgenda();
 
   if (isPending)
     return (

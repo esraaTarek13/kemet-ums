@@ -9,7 +9,7 @@ interface TableProps<T extends TableNode> {
   columns: Column<T>[];
 }
 
-const MAX_ROWS = 9;
+const MAX_ROWS = 5;
 const ROW_HEIGHT = 50;
 const headerHeight = 50;
 
@@ -18,7 +18,7 @@ export default function Table<T extends TableNode>({
   columns,
 }: TableProps<T>) {
   // generate equal-width columns dynamically based on actual column count
-  const gridTemplateColumns = columns.map(() => "minmax(140px, 20%)").join(" ");
+  const gridTemplateColumns = columns.map(() => "minmax(160px, 20%)").join(" ");
 
   const isScrollable = tableData.nodes.length > MAX_ROWS;
   const containerHeight = isScrollable
@@ -85,7 +85,7 @@ export default function Table<T extends TableNode>({
         layout={{
           custom: true,
           horizontalScroll: true,
-          isDiv: isScrollable,
+          isDiv: true,
           fixedHeader: isScrollable,
         }}
       />

@@ -1,12 +1,12 @@
 "use client";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import { EnrollmentSkeleton } from "@/components/ui/skeletons/EnrollmentSkeleton";
-import { useAdminReports } from "@/hooks/admin/useAdminReports";
+import { useAdminReports } from "@/hooks/admin/report/queries/useAdminReports";
+import AreaTrendChart from "@/components/ui/charts/AreaTrendChart";
 import {
   formatEnrollmentTrend,
   getEnrollmentChartSummary,
-} from "@/lib/utils/admin/reportEnrollmentTrend";
-import EnrollmentChart from "./EnrollmentChart";
+} from "@/lib/utils/admin/enrollmentTrend";
 
 export default function EnrollmentTrend() {
   const { data, isPending, isError } = useAdminReports();
@@ -19,7 +19,7 @@ export default function EnrollmentTrend() {
   const chartSummary = getEnrollmentChartSummary(chartData);
 
   return (
-    <section className="card grow">
+    <section className="card grow min-w-[50%]">
       <h4 className="text-text-secondary text-sm md:text-base font-bold mb-2">
         Enrollment Trend
       </h4>
@@ -33,7 +33,17 @@ export default function EnrollmentTrend() {
           role="img"
           aria-label={`Enrollment trend by semester: ${chartSummary}`}
         >
-          <EnrollmentChart data={chartData} />
+          <AreaTrendChart
+            data={chartData}
+            xAxisKey="label"
+            dataKey="count"
+            gradientId="reportEnrollGradient"
+            strokeWidth={2}
+            tooltipFormatter={(value) => [`${value} students`, "Enrollment"]}
+            tooltipLabelFormatter={(_, payload) =>
+              payload?.[0]?.payload?.fullLabel ?? ""
+            }
+          />
         </div>
       )}
     </section>

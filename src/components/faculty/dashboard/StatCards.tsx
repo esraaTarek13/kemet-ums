@@ -2,7 +2,7 @@
 import StatCard from "@/components/ui/dashboard/StatCard";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import StatCardSkeleton from "@/components/ui/skeletons/StatCardSkeleton";
-import { useFacultyDashboardStats } from "@/hooks/faculty/useDashboard";
+import { useFacultyDashboardStats } from "@/hooks/faculty/dashboard/queries/useFacultyDashboardStats";
 import { mapToStudentStats } from "@/lib/mappers/faculty/statCardMappers";
 
 export default function StatCards() {

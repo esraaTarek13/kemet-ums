@@ -1,6 +1,6 @@
 "use client";
 
-import { useCreateStudent as useCreateStudentMutation } from "./useCreateStudent";
+import { useCreateStudent as useCreateStudentMutation } from "./queries/useCreateStudent";
 import {
   CreateStudentFormValues,
   CreateStudentPayload,
@@ -26,7 +26,7 @@ export function useCreateStudentForm(onSuccess?: () => void) {
 
   const { mutate: createStudent, isPending } = useCreateStudentMutation();
 
-  const { data: departments = [] } = useDepartments("students");
+  const { data: departments = [] } = useDepartments("courses");
   const departmentOptions = departments.map((dept) => ({
     label: dept,
     value: dept,

@@ -1,7 +1,7 @@
 import {
   Announcement,
   DashboardStats,
-  EnrollmentTrendResponse,
+  EnrollmentTrend,
   RecentStudent,
   ReportsSummary,
 } from "@/types";
@@ -36,33 +36,11 @@ export async function getRecentAnnouncements(
   return data as Announcement[];
 }
 
-export async function getEnrollmentTrend(
-  page = 1,
-  pageSize = 6,
-): Promise<EnrollmentTrendResponse> {
-  const { data, error } = await supabase.rpc("get_enrollment_trend", {
-    p_page: page,
-    p_page_size: pageSize,
-  });
+export async function getEnrollmentTrend(): Promise<EnrollmentTrend[]> {
+  const { data, error } = await supabase.rpc("get_enrollment_trend");
   if (error) throw new Error(error.message);
 
-  const rows = data as {
-    month: string;
-    month_date: string;
-    count: number;
-    total_count: number;
-    total_pages: number;
-  }[];
-
-  const total_pages = rows[0]?.total_pages ?? 1;
-
-  return {
-    data: rows.map((r) => ({ month: r.month, count: r.count })),
-    total_pages,
-    current_page: page,
-    has_next: page < total_pages,
-    has_prev: page > 1,
-  };
+  return (data ?? []) as EnrollmentTrend[];
 }
 
 export async function getReportsSummary(): Promise<ReportsSummary> {

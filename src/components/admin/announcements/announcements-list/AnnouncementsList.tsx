@@ -1,12 +1,13 @@
+"use client";
 import { AdminAnnouncement } from "@/types";
 import AnnouncementsFilter from "./AnnouncementsFilter";
 import AnnouncementItem from "./AnnouncementItem";
 import { useState } from "react";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
-import { useDeleteAnnouncementAction } from "@/hooks/admin/announcements/useDeleteAnnouncement";
+import { useDeleteAnnouncementAction } from "@/hooks/admin/announcements/useDeleteAnnouncementAction";
 import ConfirmDialog from "@/components/ui/shared/ConfirmDialog";
-import EditAnnouncementModal from "../manage-announcement/EditAnnouncementModal";
+import EditAnnouncementModal from "../edit-announcement/EditAnnouncementModal";
 import { useAnnouncementsList } from "@/hooks/admin/announcements/useAnnouncementsList";
 import { useRadixPointerEventsFix } from "@/hooks/shared/useRadixPointerEventsFix";
 
@@ -30,11 +31,18 @@ export default function AnnouncementsList() {
     useState<AdminAnnouncement | null>(null);
 
   return (
-    <section className="space-y-8 lg:overflow-y-hidden h-fit">
+    <section
+      aria-label="Announcements"
+      className="flex flex-col gap-8 lg:h-screen min-h-0"
+    >
       <AnnouncementsFilter value={filterState} onChange={setFilterState} />
 
       {/* Fixed-height scroll area on desktop, natural flow on mobile */}
-      <div className="lg:h-[80vh] lg:overflow-y-hidden">
+      <div
+        aria-live="polite"
+        aria-busy={isPending}
+        className="flex-1 min-h-0 lg:overflow-y-hidden"
+      >
         {isError ? (
           <ErrorMessage content="Failed to load Announcements." />
         ) : isPending ? (
@@ -46,7 +54,7 @@ export default function AnnouncementsList() {
         ) : (
           <ul
             aria-label="Announcements list"
-            className="space-y-5 md:space-y-6 pr-4 min-h-full lg:h-0 overflow-y-auto"
+            className="space-y-5 md:space-y-6 pr-4 h-full overflow-y-auto"
           >
             {announcements?.map((a) => (
               <AnnouncementItem
@@ -76,5 +84,5 @@ export default function AnnouncementsList() {
         variant="danger"
       />
     </section>
-  );
+  );  
 }

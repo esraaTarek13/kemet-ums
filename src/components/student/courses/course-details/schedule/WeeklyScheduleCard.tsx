@@ -1,7 +1,7 @@
 "use client";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import WeeklyScheduleSkeleton from "@/components/ui/skeletons/WeeklyScheduleSkeleton";
-import { useStudentCourseDetails } from "@/hooks/student/useStudentCourseDetails";
+import { useStudentCourseDetails } from "@/hooks/student/courses/useStudentCourseDetails";
 import { mapToWeeklySchedule } from "@/lib/mappers/shared/weeklyScheduleMappers";
 import { useMemo } from "react";
 import WeeklyScheduleItem from "./WeeklyScheduleItem";

@@ -1,6 +1,5 @@
 "use client";
 import { CourseAssignment } from "@/types";
-import { format, parseISO } from "date-fns";
 import { useState } from "react";
 import { FaRegFileAlt } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -12,23 +11,11 @@ import {
 import { TbClipboardCheck } from "react-icons/tb";
 import EditAssignmentModal from "./EditAssignmentModal";
 import * as Tooltip from "@radix-ui/react-tooltip";
+import { formatDueDate } from "@/lib/utils/faculty/formatDueDate";
 
 interface CourseAssignmentItemProps {
   assignment: CourseAssignment;
   onDelete: () => void;
-}
-
-// Parses the date as UTC and formats it without converting to local time,
-// so a due date set as "Aug 5" always displays as "Aug 5" regardless of
-// the viewer's timezone.
-function formatDueDate(dateString: string) {
-  const date = parseISO(dateString);
-  const utcDate = new Date(
-    date.getUTCFullYear(),
-    date.getUTCMonth(),
-    date.getUTCDate(),
-  );
-  return format(utcDate, "MMM d, yyyy");
 }
 
 export default function CourseAssignmentItem({
@@ -37,6 +24,7 @@ export default function CourseAssignmentItem({
 }: CourseAssignmentItemProps) {
   const [editAssignmentOpen, setEditAssignmentOpen] = useState(false);
   const isLocked = assignment.graded_count > 0;
+
   return (
     <li className="bg-bg-navbar rounded-sm p-2.5 md:p-4">
       <div className="flex gap-4 justify-between sm:items-center">
@@ -94,11 +82,11 @@ export default function CourseAssignmentItem({
                   disabled={isLocked}
                   onClick={() => !isLocked && onDelete()}
                   aria-label={`Delete ${assignment.title}`}
-                  className="bg-danger-bg p-1.5 md:p-2 rounded-sm cursor-pointer self-end sm:self-center disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="bg-danger-bg text-danger p-1.5 md:p-2 rounded-sm cursor-pointer self-end sm:self-center disabled:opacity-40 disabled:cursor-not-allowed btn-light"
                 >
                   <FaRegTrashCan
                     aria-hidden="true"
-                    className="text-danger text-lg md:text-2xl shrink-0"
+                    className="text-lg md:text-2xl shrink-0"
                   />
                 </button>
               </Tooltip.Trigger>

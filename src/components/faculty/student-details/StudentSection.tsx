@@ -1,10 +1,10 @@
 "use client";
 
-import { useFacultyStudentProfile } from "@/hooks/faculty/useFacultyStudents";
+import { useFacultyStudentProfile } from "@/hooks/faculty/students/useFacultyStudents";
 import StudentHeader from "./StudentHeader";
 import StatCards from "./StatCards";
 import { mapToStudentProfileStats } from "@/lib/mappers/faculty/mapToStudentProfileStats";
-import StudentTable from "./student-table/StudentTable";
+import StudentTable from "./student-table/StudentTable.lazy";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import HeaderSkeleton from "@/components/ui/skeletons/HeaderSkeleton";
 import StatCardSkeleton from "@/components/ui/skeletons/StatCardSkeleton";

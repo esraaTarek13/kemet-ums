@@ -4,29 +4,18 @@ import AuthBtn from "../ui/shared/AuthBtn";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRotateRight } from "react-icons/fa6";
 import { OTPInput } from "input-otp";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { otpSchema, type OtpSchema } from "@/validation/auth.schema";
-import { useResendOtp, useVerifyOtp } from "@/hooks/auth/useForgotPassword";
+import { Controller } from "react-hook-form";
+import { useVerifyOtpForm } from "@/hooks/auth/useVerifyOtpForm";
 
 export default function VerifyOtpForm() {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<OtpSchema>({
-    resolver: zodResolver(otpSchema),
-  });
-
-  const { mutate } = useVerifyOtp();
-  const { mutate: resend, isPending: isResending } = useResendOtp();
+  const { control, errors, isResending, onSubmit, resend } = useVerifyOtpForm();
 
   return (
     <form
       className="px-8"
       noValidate
       aria-label="OTP verification form"
-      onSubmit={handleSubmit((data) => mutate(data))}
+      onSubmit={onSubmit}
     >
       <h3 className="auth-title">Verify Your Identity</h3>
       <p className="auth-subtitle max-w-80 lg:max-w-100">

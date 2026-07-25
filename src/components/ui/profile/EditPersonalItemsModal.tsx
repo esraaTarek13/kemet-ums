@@ -1,6 +1,5 @@
 "use client";
 import * as Dialog from "@radix-ui/react-dialog";
-import { useUpdateAdminProfile } from "@/hooks/admin/useAdminProfile";
 import {
   UpdateAdminProfileFormValues,
   updateAdminProfileSchema,
@@ -10,6 +9,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { IoClose } from "react-icons/io5";
 import Input from "../shared/Input";
+import { useUpdateAdminProfile } from "@/hooks/admin/profile/queries/useUpdateAdminProfile";
 
 interface EditPersonalItemsModalProps {
   isOpen: boolean;

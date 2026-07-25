@@ -1,36 +1,21 @@
 "use client";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import type { LoginRole } from "@/types/shared/auth";
 import AuthBtn from "../ui/shared/AuthBtn";
 import Input from "../ui/shared/Input";
-import { useState } from "react";
 import Link from "next/link";
 import { ROLE_BUTTONS } from "@/data/shared/auth";
-import { loginSchema, LoginSchema } from "@/validation/auth.schema";
-import { useLogin } from "@/hooks/auth/useLogin";
+import { useLoginForm } from "@/hooks/auth/useLoginForm";
 
 /** Login form with role switcher, email/password fields */
 export default function LoginForm() {
-  const [selectedRole, setSelectedRole] = useState<LoginRole>("student");
-
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: { role: "student" },
-  });
-  const { mutate } = useLogin();
+  const { register, errors, selectedRole, selectRole, onSubmit } =
+    useLoginForm();
 
   return (
     <form
       className="px-8"
       noValidate
       aria-label="Login form"
-      onSubmit={handleSubmit((data) => mutate(data))}
+      onSubmit={onSubmit}
     >
       <h3 className="auth-title">Welcome Back</h3>
       <p className="auth-subtitle">Please login to access your portal</p>
@@ -47,10 +32,7 @@ export default function LoginForm() {
             type="button"
             aria-pressed={selectedRole === btn.value}
             aria-label={`Login as ${btn.label}`}
-            onClick={() => {
-              setSelectedRole(btn.value);
-              setValue("role", btn.value);
-            }}
+            onClick={() => selectRole(btn.value)}
             className={`${selectedRole === btn.value ? "bg-accent text-text-white" : "bg-bg-input text-text-secondary"} py-2 px-4 md:px-6 rounded-xl font-bold text-xs md:text-sm cursor-pointer`}
           >
             {btn.label}

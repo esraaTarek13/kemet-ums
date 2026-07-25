@@ -2,11 +2,13 @@ import ProgressBar from "@/components/ui/shared/ProgressBar";
 import StatusBadge from "@/components/ui/shared/StatusBadge";
 import { AdminCourse } from "@/types";
 import { Column } from "@table-library/react-table-library/types/compact";
-import { HiOutlineDotsVertical } from "react-icons/hi";
+import { FaEye } from "react-icons/fa6";
 
 export type CourseRow = AdminCourse & { id: string };
 
-export const COURSES_COLUMNS: Column<CourseRow>[] = [
+export const getCoursesColumns = (
+  onView: (id: string) => void,
+): Column<CourseRow>[] => [
   {
     label: "Course Name",
     renderCell: (item: CourseRow) => item.course_name ?? "—",
@@ -59,13 +61,14 @@ export const COURSES_COLUMNS: Column<CourseRow>[] = [
   },
   {
     label: "Actions",
-    renderCell: () => (
+    renderCell: (item: CourseRow) => (
       <button
         type="button"
-        className="p-1 rounded hover:bg-bg-filter text-text-muted cursor-pointer"
-        aria-label="Actions"
+        onClick={() => onView(item.offering_id)}
+        className="text-text-secondary hover:text-accent/90 transition-colors cursor-pointer ml-4"
+        aria-label="View course details"
       >
-        <HiOutlineDotsVertical className="text-lg" />
+        <FaEye size={16} />
       </button>
     ),
   },

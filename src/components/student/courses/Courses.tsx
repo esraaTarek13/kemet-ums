@@ -1,7 +1,7 @@
 "use client";
 
 import { FILTER_COURSES } from "@/data/student/filterCourses";
-import { useStudentCourses } from "@/hooks/student/useStudentCourses";
+import { useStudentCourses } from "@/hooks/student/courses/useStudentCourses";
 import CourseCard from "../shared/CourseCard";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";

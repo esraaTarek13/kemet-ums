@@ -1,9 +1,15 @@
 import { supabase } from "@/lib/supabase/client";
 import { FacultyCourse, FacultyCourseDetail } from "@/types";
 
-export async function getFacultyCourses(facultyId: string): Promise<FacultyCourse[]> {
+export async function getFacultyCourses(
+  facultyId: string,
+  semester?: string,
+  academicYear?: string,
+): Promise<FacultyCourse[]> {
   const { data, error } = await supabase.rpc("get_faculty_courses", {
     p_faculty_id: facultyId,
+    p_semester: semester ?? null,
+    p_academic_year: academicYear ?? null,
   });
   if (error) throw new Error(error.message);
   return data as FacultyCourse[];

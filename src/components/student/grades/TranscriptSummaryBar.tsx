@@ -1,7 +1,7 @@
 "use client";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import TranscriptSummaryBarSkeleton from "@/components/ui/skeletons/TranscriptSummaryBarSkeleton";
-import { useStudentGrades } from "@/hooks/student/useStudentGrades";
+import { useStudentGrades } from "@/hooks/student/grades/queries/useStudentGrades";
 import { mapToTranscriptSummary } from "@/lib/mappers/student/mapToTranscriptSummary";
 import { downloadTranscript } from "@/lib/utils/student/downloadTranscript";
 import { PiDownloadSimpleBold } from "react-icons/pi";

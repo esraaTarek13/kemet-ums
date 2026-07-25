@@ -42,14 +42,6 @@ export interface EnrollmentTrend {
   count: number;
 }
 
-export interface EnrollmentTrendResponse {
-  data: EnrollmentTrend[];
-  total_pages: number;
-  current_page: number;
-  has_next: boolean;
-  has_prev: boolean;
-}
-
 export type ReportsSummary = {
   avg_gpa: number;
   pass_rate: number;

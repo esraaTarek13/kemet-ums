@@ -1,8 +1,9 @@
 import { memo } from "react";
+import Input from "@/components/ui/shared/Input";
 import FileSubmission from "@/components/ui/shared/FileSubmission";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoClose } from "react-icons/io5";
-import { useAddMaterialForm } from "@/hooks/faculty/useAddMaterialForm";
+import { useAddMaterialForm } from "@/hooks/faculty/courses/useAddMaterialForm";
 
 interface AddMaterialsModalProps {
   offeringId: string;
@@ -48,35 +49,16 @@ const AddMaterialsModal = memo(function AddMaterialsModal({
 
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
             {/* Title field — specific to materials, not part of the shared FileSubmission component */}
-            <div className="mt-6 space-y-2">
-              <label
-                htmlFor="addMaterialTitle"
-                className="text-text-secondary text-xs uppercase"
-              >
-                Material Title
-              </label>
-              <input
+            <div className="mt-6">
+              <Input
                 type="text"
-                id="addMaterialTitle"
+                label="Material Title"
                 placeholder="e.g. Week 1 — Syllabus"
                 disabled={isPending}
                 autoComplete="off"
-                aria-invalid={!!errors.title}
-                aria-describedby={
-                  errors.title ? "addMaterialTitle-error" : undefined
-                }
-                className="w-full border border-border rounded-md px-3 py-2 text-sm text-text-primary outline-none focus:border-accent"
+                error={errors.title?.message}
                 {...register("title")}
               />
-              {errors.title && (
-                <p
-                  id="addMaterialTitle-error"
-                  role="alert"
-                  className="text-red-500 text-xs"
-                >
-                  {errors.title.message}
-                </p>
-              )}
             </div>
 
             <FileSubmission

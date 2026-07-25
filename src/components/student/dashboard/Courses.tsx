@@ -2,9 +2,9 @@
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
-import { useStudentDashboardCourses } from "@/hooks/student/useDashboard";
 import CourseCard from "../shared/CourseCard";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
+import { useStudentDashboardCourses } from "@/hooks/student/dashboard/useStudentDashboardCourses";
 
 export default function Courses() {
   const { data: courses, isPending, isError } = useStudentDashboardCourses();

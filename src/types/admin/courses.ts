@@ -6,7 +6,7 @@ export interface AdminCoursesStats {
 
 export interface AdminCourse {
   course_id: string;
-  offering_id: string | null;
+  offering_id: string ;
   course_code: string;
   course_name: string;
   department: string;
@@ -19,3 +19,7 @@ export interface AdminCourse {
   completion_percentage: number | null;
 }
 
+export type {
+  CreateCourseFormValues,
+  CreateCoursePayload,
+} from "@/validation/createCourse.schema";

@@ -2,17 +2,11 @@
 import sharedStyles from "@/styles/schedule.module.css";
 import styles from "@/styles/schedulePage.module.css";
 import dayjs from "dayjs";
-import dynamic from "next/dynamic";
+import { IlamyCalendar } from "@ilamy/calendar";
 import ScheduleSkeleton from "@/components/ui/skeletons/ScheduleSkeleton";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import { mapToScheduleEvents } from "@/lib/mappers/shared/scheduleEventsMapper";
-import { useStudentSchedule } from "@/hooks/student/useSchedule";
-
-// SSR disabled to avoid hydration mismatch with calendar DOM
-const IlamyCalendar = dynamic(
-  () => import("@ilamy/calendar").then((mod) => mod.IlamyCalendar),
-  { ssr: false, loading: () => <ScheduleSkeleton /> },
-);
+import { useStudentSchedule } from "@/hooks/student/schedule/queries/useSchedule";
 
 export default function ScheduleCalendar() {
   const { data: schedule, isPending, isError } = useStudentSchedule();
@@ -43,7 +37,6 @@ export default function ScheduleCalendar() {
             viewHeaderClassName="pointer-events-none sticky top-0 z-40 shadow-sm h-fit bg-bg-filter text-text-muted font-semibold uppercase"
             eventHeight={80}
             eventSpacing={2}
-            // today's event gets distinct border and background
             renderEvent={(event) => {
               const isActive =
                 event.start.format("YYYY-MM-DD") ===
@@ -63,7 +56,6 @@ export default function ScheduleCalendar() {
                 </div>
               );
             }}
-            // time column label e.g. "9:00 AM"
             renderHour={(date) => (
               <span className="text-xs text-muted-foreground">
                 {date.format("H:00 A")}

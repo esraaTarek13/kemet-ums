@@ -2,22 +2,17 @@ import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import ConversationItem from "@/components/ui/messages/Conversation/ConversationItem";
 import ConversationSearchBar from "@/components/ui/messages/Conversation/ConversationSearchBar";
 import { ConversationSidebarSkeleton } from "@/components/ui/skeletons/ConversationSidebarSkeleton";
-import { useFacultyMessages } from "@/hooks/faculty/useMessages";
-import { useParams } from "next/navigation";
-import { useMemo, useState } from "react";
-import { filterAndSortThreads } from "@/lib/utils/filterAndSortThreads";
+import { useConversationSidebar } from "@/hooks/faculty/messages/useConversationSidebar";
 
 export default function ConversationSidebar() {
-  const { chatId: selectedCourseId } = useParams<{ chatId?: string }>();
-  const { data: threads, isPending, isError } = useFacultyMessages();
-  
-  const [search, setSearch] = useState("");
-
-  // Filter by course name/code, then sort by most recent message
-  const sortedThreads = useMemo(
-    () => filterAndSortThreads(threads, search),
-    [threads, search],
-  );
+  const {
+    selectedCourseId,
+    search,
+    setSearch,
+    sortedThreads,
+    isPending,
+    isError,
+  } = useConversationSidebar();
 
   if (isPending) return <ConversationSidebarSkeleton />;
   if (isError)
@@ -28,9 +23,12 @@ export default function ConversationSidebar() {
     );
 
   return (
-    <aside aria-label="Conversations" className="w-full h-full lg:max-w-72.5 relative pt-4">
+    <aside
+      aria-label="Conversations"
+      className="w-full h-full lg:max-w-72.5 relative pt-4"
+    >
       {/* Decorative background, hidden from assistive tech */}
-       <div
+      <div
         className="bg-bg-navbar border-r border-bg-bar absolute top-0 bottom-0 right-0 -left-50 -z-10"
         aria-hidden="true"
       />

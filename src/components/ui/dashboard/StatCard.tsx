@@ -1,4 +1,4 @@
-import { statCardDescriptionColors } from "@/data/dashboard/statusCardStyles";
+import { statCardDescriptionColors } from "@/data/shared/statusCardStyles";
 import { StatCardProps } from "@/types";
 
 export default function StatCard({

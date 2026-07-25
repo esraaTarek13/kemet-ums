@@ -2,7 +2,7 @@
 import ProgressBar from "@/components/ui/shared/ProgressBar";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import AttendanceSkeletons from "@/components/ui/skeletons/AttendanceSkeletons";
-import { useStudentDashboardStats } from "@/hooks/student/useDashboard";
+import { useStudentDashboardStats } from "@/hooks/student/dashboard/useStudentDashboardStats";
 
 export default function Attendance() {
  const { data, isPending, isError } = useStudentDashboardStats();

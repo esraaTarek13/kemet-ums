@@ -1,34 +1,23 @@
 "use client";
 
 import { TABS } from "@/data/student/assignments";
-import { useStudentAssignments } from "@/hooks/student/useStudentAssignments";
-import { useMemo, useState } from "react";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
-import {
-  filterAssignmentsByTab,
-  mapToAssignmentStats,
-} from "@/lib/mappers/student/assignmentsMappers";
 import AssignmentsCards from "./AssignmentsCards";
+import { useAssignments } from "@/hooks/student/assignment/useAssignments";
 
 export default function Assignments() {
-  const { data, isPending, isError } = useStudentAssignments();
-  const [activeTab, setActiveTab] = useState("All");
-
-  // Filter assignments based on the active tab
-  const filteredAssignments = useMemo(
-    () => filterAssignmentsByTab(data, activeTab),
-    [data, activeTab],
-  );
-
-  // Map stat counts to config for rendering summary cards
-  const statsCards = useMemo(() => mapToAssignmentStats(data), [data]);
+  const {
+    isPending,
+    isError,
+    activeTab,
+    setActiveTab,
+    filteredAssignments,
+    statsCards,
+  } = useAssignments();
 
   if (isPending) return <CardSkeleton />;
-  if (isError)
-    return (
-      <ErrorMessage content="Failed to load assignments." />
-    );
+  if (isError) return <ErrorMessage content="Failed to load assignments." />;
 
   return (
     <section className="space-y-12">

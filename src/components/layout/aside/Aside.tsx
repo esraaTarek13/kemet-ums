@@ -1,7 +1,7 @@
 import type { AsideProps } from "@/types";
 import { HiMiniArrowRightStartOnRectangle } from "react-icons/hi2";
 import NavLink from "./NavLink";
-import { useLogout } from "@/hooks/auth/useLogout";
+import { useLogout } from "@/hooks/auth/queries/useLogout";
 import Image from "next/image";
 import { useAuthStore } from "@/stores/authStore";
 import { useMemo } from "react";

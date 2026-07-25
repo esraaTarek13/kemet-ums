@@ -108,10 +108,10 @@ export default function SearchResults({
         <SearchSection title="Courses" icon={<FiBook aria-hidden="true" />}>
           {data!.courses!.map((c: SearchCourse) => (
             <ResultItem
-              key={c.id}
+              key={c.offering_id}
               title={c.course_name}
               subtitle={`${c.course_code} · ${c.department}`}
-              onClick={() => handleNavigate(`${base}/courses/${c.id}`)}
+              onClick={() => handleNavigate(`${base}/courses/${c.offering_id}`)}
             />
           ))}
         </SearchSection>

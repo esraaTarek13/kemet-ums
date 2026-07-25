@@ -3,8 +3,8 @@
 import StatCard from "@/components/ui/dashboard/StatCard";
 import StatCardSkeleton from "@/components/ui/skeletons/StatCardSkeleton";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
-import { useDashboardStats } from "@/hooks/admin/useDashboard";
 import { mapToStudentStats } from "@/lib/mappers/admin/statCardMappers";
+import { useDashboardStats } from "@/hooks/admin/dashboard/queries/useDashboardStats";
 
 export default function StatCards() {
   const { data, isPending, isError } = useDashboardStats();

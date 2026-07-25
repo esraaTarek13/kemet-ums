@@ -1,7 +1,8 @@
 import { memo } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoClose } from "react-icons/io5";
-import { useEditProgressForm } from "@/hooks/faculty/useEditProgressForm";
+import Input from "@/components/ui/shared/Input";
+import { useEditProgressForm } from "@/hooks/faculty/courses/useEditProgressForm";
 
 interface EditProgressModalProps {
   offeringId: string;
@@ -41,38 +42,19 @@ const EditProgressModal = memo(function EditProgressModal({
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <div className="my-6 space-y-2">
-              <label
-                htmlFor="editCompletion"
-                className="text-text-secondary text-xs uppercase"
-              >
-                Completion Percentage
-              </label>
-              <input
+            <div className="my-6">
+              <Input
                 type="number"
-                id="editCompletion"
+                label="Completion Percentage"
                 placeholder="0 - 100"
                 autoComplete="off"
-                autoFocus={true}
+                autoFocus
                 disabled={isPending}
-                aria-invalid={!!errors.completion_percentage}
-                aria-describedby={
-                  errors.completion_percentage
-                    ? "editCompletion-error"
-                    : undefined
-                }
-                {...register("completion_percentage", { valueAsNumber: true })}
-                className="w-full border border-border rounded-md px-3 py-2 text-sm text-text-primary outline-none focus:border-accent"
+                error={errors.completion_percentage?.message}
+                {...register("completion_percentage", {
+                  valueAsNumber: true,
+                })}
               />
-              {errors.completion_percentage && (
-                <p
-                  id="editCompletion-error"
-                  role="alert"
-                  className="text-red-500 text-xs"
-                >
-                  {errors.completion_percentage.message}
-                </p>
-              )}
             </div>
 
             <div className="pt-6 border-t border-border text-end">

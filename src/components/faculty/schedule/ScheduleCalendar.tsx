@@ -6,7 +6,7 @@ import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import ScheduleSkeleton from "@/components/ui/skeletons/ScheduleSkeleton";
 import { mapToScheduleEvents } from "@/lib/mappers/shared/scheduleEventsMapper";
 import dynamic from "next/dynamic";
-import { useFacultySchedule } from "@/hooks/faculty/useSchedule";
+import { useFacultySchedule } from "@/hooks/faculty/schedule/useSchedule";
 
 // SSR disabled to avoid hydration mismatch with calendar DOM
 const IlamyCalendar = dynamic(

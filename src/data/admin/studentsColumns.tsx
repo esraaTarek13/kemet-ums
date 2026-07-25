@@ -2,11 +2,13 @@ import ProgressBar from "@/components/ui/shared/ProgressBar";
 import StatusBadge from "@/components/ui/shared/StatusBadge";
 import { AdminStudent } from "@/types";
 import { Column } from "@table-library/react-table-library/types/compact";
-import { HiOutlineDotsVertical } from "react-icons/hi";
+import { FaEye } from "react-icons/fa6";
 
 export type StudentRow = AdminStudent & { id: string };
 
-export const STUDENTS_COLUMNS: Column<StudentRow>[] = [
+export const getStudentsColumns = (
+  onView: (id: string) => void,
+): Column<StudentRow>[] => [
   {
     label: "Student Name",
     renderCell: (item: StudentRow) => item.full_name ?? "—",
@@ -53,7 +55,7 @@ export const STUDENTS_COLUMNS: Column<StudentRow>[] = [
     label: "GPA",
     renderCell: (item: StudentRow) => {
       const gpa = item.gpa ?? 0;
-      const gpaClass = gpa < 2.5 ? "text-[#E8A0A0]" : "text-text-primary";
+      const gpaClass = gpa < 2 ? "text-[#E8A0A0]" : "text-text-primary";
       return <span className={`font-semibold ${gpaClass}`}>{gpa}</span>;
     },
   },
@@ -64,13 +66,14 @@ export const STUDENTS_COLUMNS: Column<StudentRow>[] = [
   },
   {
     label: "Actions",
-    renderCell: () => (
+    renderCell: (item: StudentRow) => (
       <button
         type="button"
-        className="p-1 rounded hover:bg-bg-filter text-text-muted cursor-pointer"
-        aria-label="Actions"
+        onClick={() => onView(item.id)}
+        className="text-text-secondary hover:text-accent/90 transition-colors cursor-pointer ml-4"
+        aria-label="View student details"
       >
-        <HiOutlineDotsVertical className="text-lg" />
+        <FaEye size={16} />
       </button>
     ),
   },

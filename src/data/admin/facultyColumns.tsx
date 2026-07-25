@@ -1,11 +1,13 @@
 import StatusBadge from "@/components/ui/shared/StatusBadge";
 import { AdminFaculty } from "@/types";
 import { Column } from "@table-library/react-table-library/types/compact";
-import { HiOutlineDotsVertical } from "react-icons/hi";
+import { FaEye } from "react-icons/fa6";
 
 export type FacultyRow = AdminFaculty & { id: string };
 
-export const FACULTY_COLUMNS: Column<FacultyRow>[] = [
+export const getFacultyColumns = (
+  onView: (id: string) => void,
+): Column<FacultyRow>[] => [
   {
     label: "Faculty Name",
     renderCell: (item: FacultyRow) => item.full_name ?? "—",
@@ -43,13 +45,14 @@ export const FACULTY_COLUMNS: Column<FacultyRow>[] = [
   },
   {
     label: "Actions",
-    renderCell: () => (
+    renderCell: (item: FacultyRow) => (
       <button
         type="button"
-        className="p-1 rounded hover:bg-bg-filter text-text-muted cursor-pointer"
-        aria-label="Actions"
+        onClick={() => onView(item.id)}
+        className="text-text-secondary hover:text-accent/90 transition-colors cursor-pointer ml-4"
+        aria-label="View faculty details"
       >
-        <HiOutlineDotsVertical className="text-lg" />
+        <FaEye size={16} />
       </button>
     ),
   },

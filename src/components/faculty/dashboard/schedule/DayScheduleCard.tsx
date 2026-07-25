@@ -3,7 +3,7 @@
 import WeeklyScheduleSkeleton from "@/components/ui/skeletons/WeeklyScheduleSkeleton";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import { mapToScheduleEvents } from "@/lib/mappers/shared/scheduleEventsMapper";
-import { useFacultySchedule } from "@/hooks/faculty/useSchedule";
+import { useFacultySchedule } from "@/hooks/faculty/schedule/useSchedule";
 import DayScheduleCalendar from "./DayScheduleCalendar";
 
 export default function DayScheduleCard() {

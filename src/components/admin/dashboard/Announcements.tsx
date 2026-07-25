@@ -1,18 +1,23 @@
 "use client";
-import { useRecentAnnouncements } from "@/hooks/admin/useDashboard";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
+import { useRecentAnnouncements } from "@/hooks/admin/dashboard/queries/useRecentAnnouncements";
 
 export default function Announcements() {
   const { data: announcements, isPending, isError } = useRecentAnnouncements();
 
-  if (isPending) return <CardSkeleton />;
+  if (isPending)
+    return (
+      <div className="w-full lg:w-70">
+        <CardSkeleton />
+      </div>
+    );
   if (isError) return <ErrorMessage content="Failed to load Announcements." />;
 
   return (
     <section className="card space-y-4 lg:space-y-6">
       <h3 className="title">Announcements</h3>
-      
+
       <div className="space-y-4">
         {!announcements || announcements.length === 0 ? (
           <p className="text-text-muted text-center py-10 text-sm">

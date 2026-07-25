@@ -10,12 +10,14 @@ export async function getFacultyDashboardStats(facultyId: string): Promise<Facul
   return data as FacultyDashboardStats;
 }
 
-export async function getActiveFacultyCourses(facultyId: string): Promise<FacultyCourse[]> {
-  const { data, error } = await supabase.rpc("get_faculty_courses", {
+export async function getActiveFacultyCourses(
+  facultyId: string,
+): Promise<FacultyCourse[]> {
+  const { data, error } = await supabase.rpc("get_faculty_active_courses", {
     p_faculty_id: facultyId,
   });
   if (error) throw new Error(error.message);
-  return (data as FacultyCourse[]).filter((course) => course.status === "active");
+  return data as FacultyCourse[];
 }
 
 export async function getFacultyRecentSubmissions(

@@ -1,31 +1,18 @@
 "use client";
-import { useForm } from "react-hook-form";
 import AuthBtn from "../ui/shared/AuthBtn";
 import Input from "../ui/shared/Input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  resetPasswordSchema,
-  type ResetPasswordSchema,
-} from "@/validation/auth.schema";
-import { useResetPassword } from "@/hooks/auth/useResetPassword";
+import { useResetPasswordForm } from "@/hooks/auth/useResetPasswordForm";
 
 /** Reset password form — validates and submits new password with confirmation. */
 export default function ResetPasswordForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ResetPasswordSchema>({
-    resolver: zodResolver(resetPasswordSchema),
-  });
-  const { mutate } = useResetPassword();
+  const { register, errors, onSubmit } = useResetPasswordForm();
 
   return (
     <form
       className="px-8"
       noValidate
       aria-label="Reset password form"
-      onSubmit={handleSubmit((data) => mutate(data))}
+      onSubmit={onSubmit}
     >
       <h3 className="auth-title">Reset Password</h3>
       <p className="auth-subtitle">Please enter your new credentials below.</p>

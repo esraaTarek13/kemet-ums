@@ -7,5 +7,5 @@ export interface ConfirmDialogProps {
   confirmLabel?: string;
   cancelLabel?: string;
   isLoading?: boolean; // pass this if the mutation already exposes isPending
-  variant?: "danger" | "default";
+  variant?: "danger" | "default" | "warning";
 }

@@ -2,9 +2,9 @@
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import ProgressBar from "@/components/ui/shared/ProgressBar";
 import AttendanceSkeletons from "@/components/ui/skeletons/AttendanceSkeletons";
-import { useFacultyCourseDetail } from "@/hooks/faculty/useFacultyCourses";
 import { useState } from "react";
 import EditProgressModal from "./EditProgressModal";
+import { useFacultyCourseDetail } from "@/hooks/faculty/courses/queries/useFacultyCourseDetail";
 
 interface CourseProgressCardProps {
   courseId: string;

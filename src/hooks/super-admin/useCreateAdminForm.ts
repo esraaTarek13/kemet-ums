@@ -1,6 +1,6 @@
 "use client";
 
-import { useCreateAdmin as useCreateAdminMutation } from "./useCreateAdmin";
+import { useCreateAdmin as useCreateAdminMutation } from "./queries/useCreateAdmin";
 import {
   CreateAdminFormValues,
   CreateAdminPayload,

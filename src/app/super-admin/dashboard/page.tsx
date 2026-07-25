@@ -1,6 +1,6 @@
 import Announcements from "@/components/admin/dashboard/Announcements";
 import Enrollment from "@/components/admin/dashboard/enrollment/EnrollmentChart.lazy";
-import RecentStudents from "@/components/admin/dashboard/recent-students/RecentStudents";
+import RecentStudents from "@/components/admin/dashboard/recent-students/RecentStudents.lazy";
 import ReportsSummary from "@/components/admin/dashboard/ReportsSummary";
 import StatCards from "@/components/admin/dashboard/StatCards";
 import HeroBanner from "@/components/ui/dashboard/HeroBanner";

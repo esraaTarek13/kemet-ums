@@ -1,10 +1,10 @@
-import { useAssignmentSubmissions } from "@/hooks/faculty/useAssignments";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoClose } from "react-icons/io5";
 import { useAssignmentGradingContext } from "./AssignmentGradingContext";
 import StudentSubmissionItem from "./StudentSubmissionItem";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
-import UserSkeleton from "@/components/ui/skeletons/UserSkeleton";
+import MiniCardSkeleton from "@/components/ui/skeletons/MiniCardSkeleton";
+import { useAssignmentSubmissions } from "@/hooks/faculty/assignments/queries/useAssignmentSubmissions";
 
 interface GradeSubmissionsModalProps {
   isOpen: boolean;
@@ -50,7 +50,7 @@ export default function GradeSubmissionsModal({
             <h5 className="title text-text-primary">{title}</h5>
 
             {isPending ? (
-              <UserSkeleton />
+              <MiniCardSkeleton />
             ) : isError ? (
               <ErrorMessage content="Failed to load submissions." />
             ) : students?.length === 0 ? (

@@ -1,37 +1,34 @@
-import { Message } from "@/types";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
-import { format } from "date-fns";
 import MessageMenu from "../chat-actions/MessageMenu";
 import AttachmentList from "./AttachmentList";
-import { memo, useState } from "react";
+import { memo } from "react";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
 import MessageInfo from "../chat-actions/MessageInfo/MessageInfo";
 import EditMessage from "../chat-actions/EditMessage";
 import DeleteMessage from "../chat-actions/DeleteMessage";
+import { formatTime } from "@/lib/utils/shared/formatTime";
+import { Message } from "@/types";
+import { useMessageBubble } from "@/hooks/shared/messages/useMessageBubble";
 
 interface MessageBubbleProps {
   message: Message;
 }
-const TRUNCATE_LENGTH = 200;
-
-// Format timestamp safely, falling back to empty string on invalid dates
-function formatTime(date: string) {
-  const parsed = new Date(date);
-  return isNaN(parsed.getTime()) ? "" : format(parsed, "hh:mm a");
-}
 
 function MessageBubble({ message }: MessageBubbleProps) {
-  const isMine = message.is_mine;
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [editOpen, setEditOpen] = useState(false);
-  const [deleteOpen, setDeleteOpen] = useState(false);
-  const [infoOpen, setInfoOpen] = useState(false);
-
-  const content = message.content ?? "";
-  const isLong = content.length > TRUNCATE_LENGTH;
-  const displayContent =
-    isLong && !isExpanded ? content.slice(0, TRUNCATE_LENGTH) + "..." : content;
+  const {
+    isMine,
+    isLong,
+    displayContent,
+    isExpanded,
+    toggleExpanded,
+    editOpen,
+    setEditOpen,
+    deleteOpen,
+    setDeleteOpen,
+    infoOpen,
+    setInfoOpen,
+  } = useMessageBubble(message);
 
   return (
     <>
@@ -92,7 +89,7 @@ function MessageBubble({ message }: MessageBubbleProps) {
                 {message.content && isLong && (
                   <button
                     type="button"
-                    onClick={() => setIsExpanded((prev) => !prev)}
+                    onClick={toggleExpanded}
                     aria-expanded={isExpanded}
                     className={`text-xs font-semibold underline cursor-pointer ${
                       isMine ? "text-text-white/80 " : "text-primary"

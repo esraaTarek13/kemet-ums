@@ -1,6 +1,6 @@
 "use client" 
 import ChatWindow from "@/components/ui/messages/chat/ChatWindow";
-import { useFacultyCourseMessages } from "@/hooks/faculty/useMessages";
+import { useFacultyCourseMessages } from "@/hooks/faculty/messages/queries/useFacultyCourseMessages";
 
 interface ChatPageProps {
   chatId: string;

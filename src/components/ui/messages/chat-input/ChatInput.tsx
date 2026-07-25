@@ -5,7 +5,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import EmojiPickerButton from "../chat-actions/EmojiPickerButton";
 import AttachmentButton from "./AttachmentButton";
 import FilePreviewList from "./FilePreviewList";
-import { useChatInput } from "../../../../hooks/shared/messages/useChatInput";
+import { useChatInput } from "@/hooks/shared/messages/useChatInput";
 
 export default function ChatInput() {
   const {

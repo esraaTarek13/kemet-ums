@@ -1,49 +1,34 @@
 "use client";
-import { FiTrendingUp, FiBarChart2 } from "react-icons/fi";
 import Link from "next/link";
 import { useAuthStore } from "@/stores/authStore";
 import { ROLE_BASE_ROUTES } from "@/data/shared/roles";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
-import { useReportsSummary } from "@/hooks/admin/useDashboard";
 import ProgressBar from "@/components/ui/shared/ProgressBar";
 import { FaArrowRight } from "react-icons/fa";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
+import { useReportsSummary } from "@/hooks/admin/dashboard/queries/useReportsSummary";
+import { mapToReportsSummary } from "@/lib/mappers/student/mapToReportsSummary";
 
 export default function ReportsSummary() {
   const { user } = useAuthStore();
   const base = ROLE_BASE_ROUTES[user?.role ?? ""] ?? "/";
   const { data: res, isPending, isError } = useReportsSummary();
 
-  if (isPending) return <CardSkeleton />;
-  if (isError)
-    return <ErrorMessage content="Failed to load Reports Summary." />;
+  if (isPending)
+    return (
+      <div className="w-full lg:w-70">
+        <CardSkeleton />
+      </div>
+    );
+
+  if (isError) <ErrorMessage content="Failed to load Reports Summary." />;
+
   if (!res)
     return (
       <p className="text-text-muted text-center py-10">No reports available.</p>
     );
 
-  const reports = [
-    {
-      key: "academic_performance",
-      label: "Academic Performance",
-      // subtitle: res.current_semester,
-      // value: res.academic_performance,
-      icon: FiTrendingUp,
-      iconClass: "text-success",
-      progressClass: "bg-accent",
-      textClass: "text-accent",
-    },
-    {
-      key: "attendance_rate",
-      label: "Attendance Metrics",
-      subtitle: "Overall Campus",
-      // value: res.attendance_rate,
-      icon: FiBarChart2,
-      iconClass: "text-text-subtle",
-      progressClass: "bg-text-secondary",
-      textClass: "text-accent",
-    },
-  ];
+  const reports = mapToReportsSummary(res);
 
   return (
     <section aria-labelledby="reports-summary-title" className="space-y-4">
@@ -88,7 +73,7 @@ export default function ReportsSummary() {
             </div>
 
             <ProgressBar
-              // value={report.value}
+              value={report.value}
               progressClass={report.progressClass}
               textClass={report.textClass}
             />

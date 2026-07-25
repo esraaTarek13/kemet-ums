@@ -1,10 +1,10 @@
 "use client";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
-import { useStudentDueSoon } from "@/hooks/student/useDashboard";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import DueSoonItem from "./DueSoonItem";
+import { useStudentDueSoon } from "@/hooks/student/dashboard/useStudentDueSoon";
 
 export default function DueSoonList() {
   const { data: tasks, isPending, isError } = useStudentDueSoon();

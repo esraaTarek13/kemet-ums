@@ -1,20 +1,36 @@
-"use client";
-
+import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import { TableSkeleton } from "@/components/ui/skeletons/TableSkeleton";
-import dynamic from "next/dynamic";
-
-const DepartmentPerformanceTableInner = dynamic(
-  () => import("./DepartmentPerformanceTableInner"),
-  {
-    ssr: false,
-    loading: () => <TableSkeleton />,
-  },
-);
+import Table from "@/components/ui/tables/Table.Small";
+import { DEPARTMENT_PERFORMANCE_COLUMNS } from "@/data/admin/departmentsColumns";
+import { useAdminReports } from "@/hooks/admin/report/queries/useAdminReports";
+import { useMemo } from "react";
 
 export default function DepartmentPerformanceTable() {
+  const { data, isPending, isError } = useAdminReports();
+  const departments = data?.department_performance;
+
+  const tableData = useMemo(
+    () => ({
+      nodes: (departments ?? []).map((d, index) => ({
+        ...d,
+        id: `${d.department}-${index}`,
+      })),
+    }),
+    [departments],
+  );
+
+  if (isPending) return <TableSkeleton />;
+  if (isError)
+    return <ErrorMessage content="Failed to load department performance." />;
+
   return (
-    <section aria-label="Department Performance">
-      <DepartmentPerformanceTableInner />
+    <section
+      aria-label="Department Performance"
+      className="card p-0 min-w-full w-0"
+    >
+      <h4 className="title p-4">Department Performance Matrix</h4>
+
+      <Table tableData={tableData} columns={DEPARTMENT_PERFORMANCE_COLUMNS} />
     </section>
   );
 }

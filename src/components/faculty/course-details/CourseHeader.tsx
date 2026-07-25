@@ -1,7 +1,7 @@
 "use client";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import HeaderSkeleton from "@/components/ui/skeletons/HeaderSkeleton";
-import { useFacultyCourseDetail } from "@/hooks/faculty/useFacultyCourses";
+import { useFacultyCourseDetail } from "@/hooks/faculty/courses/queries/useFacultyCourseDetail";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 

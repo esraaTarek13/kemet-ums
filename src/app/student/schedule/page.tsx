@@ -1,4 +1,4 @@
-import ScheduleCalendar from "@/components/student/schedule/ScheduleCalendar";
+import ScheduleCalendar from "@/components/student/schedule/ScheduleCalendar.lazy";
 import StudentTodayAgenda from "@/components/student/schedule/StudentTodayAgenda";
 
 export default function SchedulePage() {

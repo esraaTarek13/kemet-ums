@@ -43,3 +43,27 @@ export interface GpaBarItem {
   label: string;
   value: number;
 }
+
+export interface FinancialReportsSummary {
+  total_collected: number;
+  students_with_dues: number;
+  pending_payments: number;
+  overdue_accounts: number;
+}
+
+export interface DepartmentPayment {
+  department: string;
+  total_collected: number;
+}
+
+export interface PaymentStatusBreakdown {
+  paid_pct: number;
+  pending_pct: number;
+  overdue_pct: number;
+  total_students: number;
+}
+
+export interface FinancialReportsParams {
+  semester: string;
+  academicYear: string;
+}

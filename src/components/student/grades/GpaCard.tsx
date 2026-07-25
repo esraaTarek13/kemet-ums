@@ -1,18 +1,13 @@
 "use client";
-import { useStudentGrades } from "@/hooks/student/useStudentGrades";
+
 import { IoStarSharp } from "react-icons/io5";
 import { FaCircle } from "react-icons/fa";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import GpaCardSkeleton from "@/components/ui/skeletons/GpaCardSkeleton";
+import { useGpaCard } from "@/hooks/student/grades/useGpaCard";
 
 export default function GpaCard() {
-  const { data, isPending, isError } = useStudentGrades();
-  const gpa = data?.cumulative_gpa ?? 0;
-  const cohortPercentile = data?.cohort_percentile ?? 0;
-
-  // Guard against unexpected percentile values from the API
-  const topPercent =
-    cohortPercentile > 0 ? Math.max(0, 100 - cohortPercentile) : null;
+  const { isPending, isError, gpa, topPercent } = useGpaCard();
 
   if (isPending) return <GpaCardSkeleton />;
   if (isError) return <ErrorMessage content="Failed to load GPA." />;
@@ -26,9 +21,11 @@ export default function GpaCard() {
         />
         <p className="text-text-white/80 text-xs md:text-sm">Cumulative GPA</p>
       </div>
+
       <p className="font-bold text-4xl md:text-5xl text-text-white">
         {gpa.toFixed(1)}
       </p>
+
       <p className="flex items-center gap-3 bg-bg-card/10 rounded-full py-1 px-3">
         <FaCircle aria-hidden="true" className="text-[#4ADE80] text-sm" />
         <span className="text-text-white text-xs font-medium">

@@ -2,7 +2,7 @@
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import ProgressBar from "@/components/ui/shared/ProgressBar";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
-import { useStudentCourseDetails } from "@/hooks/student/useStudentCourseDetails";
+import { useStudentCourseDetails } from "@/hooks/student/courses/useStudentCourseDetails";
 import { LuFileCheck } from "react-icons/lu";
 import { TbUserCheck } from "react-icons/tb";
 

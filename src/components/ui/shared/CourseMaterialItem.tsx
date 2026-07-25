@@ -1,6 +1,6 @@
 import { FacultyMaterial, StudentCourseDetails } from "@/types";
-import { downloadFile } from "@/lib/utils/downloadFile";
-import { getFileIcon } from "@/lib/utils/getFileIcon";
+import { downloadFile } from "@/lib/utils/shared/downloadFile";
+import { getFileIcon } from "@/lib/utils/shared/getFileIcon";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { PiDownloadSimpleBold } from "react-icons/pi";
 

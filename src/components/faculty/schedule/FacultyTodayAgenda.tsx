@@ -2,10 +2,10 @@
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import TodayAgenda from "@/components/ui/schedule/TodayAgenda";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
-import { getTodayEvents } from "@/lib/utils/getTodayEvents";
+import { getTodayEvents } from "@/lib/utils/shared/getTodayEvents";
 import { format } from "date-fns";
 import { useMemo } from "react";
-import { useFacultySchedule } from "@/hooks/faculty/useSchedule";
+import { useFacultySchedule } from "@/hooks/faculty/schedule/useSchedule";
 
 export default function FacultyTodayAgenda() {
   const { data: events, isPending, isError } = useFacultySchedule();

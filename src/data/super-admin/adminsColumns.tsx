@@ -1,11 +1,13 @@
 import { AdminUser } from "@/types";
 import { Column } from "@table-library/react-table-library/types/compact";
 import { format } from "date-fns";
-import { HiOutlineDotsVertical } from "react-icons/hi";
+import { FaEye } from "react-icons/fa6";
 
 export type AdminRow = AdminUser & { id: string };
 
-export const ADMINS_COLUMNS: Column<AdminRow>[] = [
+export const getAdminsColumns = (
+  onView: (id: string) => void,
+): Column<AdminRow>[] => [
   {
     label: "Name",
     renderCell: (item: AdminRow) => item.full_name ?? "—",
@@ -26,19 +28,18 @@ export const ADMINS_COLUMNS: Column<AdminRow>[] = [
   {
     label: "Joined At",
     renderCell: (item: AdminRow) =>
-      item.created_at
-        ? format(new Date(item.created_at), "dd/MM/yyyy")
-        : "—",
+      item.created_at ? format(new Date(item.created_at), "dd/MM/yyyy") : "—",
   },
   {
     label: "Actions",
-    renderCell: () => (
+    renderCell: (item: AdminRow) => (
       <button
         type="button"
-        className="p-1 rounded hover:bg-bg-filter text-text-muted cursor-pointer"
-        aria-label="Actions"
+        onClick={() => onView(item.id)}
+        className="text-text-secondary hover:text-accent/90 transition-colors cursor-pointer ml-4"
+        aria-label="View admin details"
       >
-        <HiOutlineDotsVertical className="text-lg" />
+        <FaEye size={16} />
       </button>
     ),
   },

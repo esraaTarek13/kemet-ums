@@ -1,11 +1,11 @@
 "use client";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
-import { useFacultyCourseDetail } from "@/hooks/faculty/useFacultyCourses";
-import { useDeleteAssignment } from "@/hooks/faculty/useAssignments";
 import CourseAssignmentItem from "./CourseAssignmentItem";
 import AddAssignmentModal from "./AddAssignmentModal";
 import { useState } from "react";
+import { useDeleteAssignment } from "@/hooks/faculty/assignments/queries/useDeleteAssignment";
+import { useFacultyCourseDetail } from "@/hooks/faculty/courses/queries/useFacultyCourseDetail";
 
 interface CourseAssignmentsCardProps {
   courseId: string;

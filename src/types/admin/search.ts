@@ -17,7 +17,7 @@ export interface SearchFaculty {
 }
 
 export interface SearchCourse {
-  id: string;
+  offering_id: string;
   course_code: string;
   course_name: string;
   department: string;

@@ -1,7 +1,7 @@
 import Attendance from "@/components/student/dashboard/Attendance";
 import Courses from "@/components/student/dashboard/Courses";
 import DueSoonList from "@/components/student/dashboard/due-soon/DueSoonList";
-import Schedule from "@/components/student/dashboard/Schedule";
+import Schedule from "@/components/student/dashboard/schedule/Schedule.lazy";
 import StatCards from "@/components/student/dashboard/StatCards";
 import HeroBanner from "@/components/ui/dashboard/HeroBanner";
 

@@ -5,7 +5,7 @@ import ProfileCard from "@/components/ui/profile/ProfileCard";
 import ProfilePassword from "@/components/ui/profile/ProfilePassword";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import ProfileSkeleton from "@/components/ui/skeletons/ProfileSkeleton";
-import { useAdminProfile } from "@/hooks/admin/useAdminProfile";
+import { useAdminProfile } from "@/hooks/admin/profile/queries/useAdminProfile";
 import {
   mapToAcademicItems,
   mapToBannerItems,

@@ -2,7 +2,7 @@
 import StatCard from "@/components/ui/dashboard/StatCard";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import StatCardSkeleton from "@/components/ui/skeletons/StatCardSkeleton";
-import { useAdminCoursesStats } from "@/hooks/admin/useAdminCourses";
+import { useAdminCoursesStats } from "@/hooks/admin/courses/queries/useAdminCoursesStats";
 import { mapToAdminCoursesStats } from "@/lib/mappers/admin/mapToAdminCoursesStats";
 
 export default function CoursesStats() {

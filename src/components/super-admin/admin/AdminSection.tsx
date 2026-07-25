@@ -1,5 +1,5 @@
 import AdminStats from "./AdminStats";
-import AdminsTable from "./admin-table/AdminsTable";
+import AdminsTable from "./admin-table/AdminsTable.lazy";
 import AddAdminModal from "./add-admin/AddAdminModal";
 
 export default function AdminSection() {

@@ -1,10 +1,10 @@
-import { useGradesForm } from "@/hooks/faculty/useGradesForm";
+import { useGradesForm } from "@/hooks/faculty/grades/useGradesForm";
 import CourseBreadcrumb from "./CourseBreadcrumb";
 import GradesHeader from "./GradesHeader";
 import GradesTable from "./GradesTable";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import { TableSkeleton } from "@/components/ui/skeletons/TableSkeleton";
-import { useFacultyGrades } from "@/hooks/faculty/useFacultyGrades";
+import { useFacultyGrades } from "@/hooks/faculty/grades/queries/useFacultyGrades";
 
 export default function GradesInner({ courseId }: { courseId: string }) {
   const { data, isPending, isError } = useFacultyGrades(courseId);

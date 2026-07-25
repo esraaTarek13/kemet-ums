@@ -1,5 +1,5 @@
 import { IoBookOutline } from "react-icons/io5";
-import CoursesTable from "./courses-table/CoursesTable";
+import CoursesTable from "./courses-table/CoursesTable.lazy";
 import GpaCard from "./GpaCard";
 import GpaTrendChart from "./GpaTrendChart";
 import TranscriptSummaryBar from "./TranscriptSummaryBar";

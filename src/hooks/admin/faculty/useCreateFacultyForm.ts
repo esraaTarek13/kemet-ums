@@ -1,6 +1,6 @@
 "use client";
 
-import { useCreateFaculty as useCreateFacultyMutation } from "./useCreateFaculty";
+import { useCreateFaculty as useCreateFacultyMutation } from "./queries/useCreateFaculty";
 import {
   CreateFacultyFormValues,
   CreateFacultyPayload,
@@ -27,7 +27,7 @@ export function useCreateFacultyForm(onSuccess?: () => void) {
 
   const { mutate: createFaculty, isPending } = useCreateFacultyMutation();
 
-  const { data: departments = [] } = useDepartments("faculty");
+  const { data: departments = [] } = useDepartments("courses");
   const departmentOptions = departments.map((dept) => ({
     label: dept,
     value: dept,

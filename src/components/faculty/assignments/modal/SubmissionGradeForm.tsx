@@ -1,5 +1,5 @@
 import { useAssignmentGradingContext } from "./AssignmentGradingContext";
-import { useGradeSubmissionForm } from "@/hooks/faculty/useGradeSubmissionForm";
+import { useGradeSubmissionForm } from "@/hooks/faculty/assignments/useGradeSubmissionForm";
 import TextareaAutosize from "react-textarea-autosize";
 import { MdOutlineGrade, MdOutlineRateReview } from "react-icons/md";
 

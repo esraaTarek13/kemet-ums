@@ -3,7 +3,7 @@
 import StatCard from "@/components/ui/dashboard/StatCard";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import StatCardSkeleton from "@/components/ui/skeletons/StatCardSkeleton";
-import { useAdminStats } from "@/hooks/super-admin/useAdmins";
+import { useAdminStats } from "@/hooks/super-admin/queries/useAdminStats";
 import { mapToAdminsStats } from "@/lib/mappers/super-admin/mapToAdminsStats";
 
 export default function AdminStats() {

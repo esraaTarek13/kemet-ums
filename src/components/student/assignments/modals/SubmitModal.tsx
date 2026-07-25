@@ -1,49 +1,24 @@
+"use client";
+
 import FileSubmission from "@/components/ui/shared/FileSubmission";
-import { useSubmitAssignment } from "@/hooks/student/useSubmitAssignment";
 import { SubmitModalProps } from "@/types";
-import { submitAssignmentSchema, SubmitFormValues } from "@/validation/student.submitFile.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as Dialog from "@radix-ui/react-dialog";
-import { useForm } from "react-hook-form";
 import { IoClose } from "react-icons/io5";
+import { useSubmitModalForm } from "@/hooks/student/assignment/useSubmitModalForm";
 
 export default function SubmitModal({
   isOpen,
   onClose,
   assignmentId,
 }: SubmitModalProps) {
-
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm<SubmitFormValues>({
-    resolver: zodResolver(submitAssignmentSchema),
-  });
-  const { mutate: submit, isPending } = useSubmitAssignment();
-
-  function onSubmit(data: SubmitFormValues) {
-    submit(
-      { assignmentId, file: data.file[0] },
-      {
-        onSuccess: () => {
-          reset();
-          onClose();
-        },
-      },
-    );
-  }
+  const { register, errors, watch, isPending, onSubmit, handleClose } =
+    useSubmitModalForm({ assignmentId, onSuccess: onClose });
 
   return (
     <Dialog.Root
       open={isOpen}
       onOpenChange={(open) => {
-        if (!open) {
-          reset();
-          onClose();
-        }
+        if (!open) handleClose();
       }}
     >
       <Dialog.Portal>
@@ -64,8 +39,8 @@ export default function SubmitModal({
               </button>
             </Dialog.Close>
           </div>
-          
-          <form onSubmit={handleSubmit(onSubmit)} noValidate>
+
+          <form onSubmit={onSubmit} noValidate>
             <FileSubmission
               register={register}
               errors={errors}

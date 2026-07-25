@@ -1,5 +1,5 @@
-import { useFacultyMessages } from "@/hooks/faculty/useMessages";
-import { useStudentMessages } from "@/hooks/student/useMessages";
+import { useFacultyMessages } from "@/hooks/faculty/messages/queries/useFacultyMessages";
+import { useStudentMessages } from "@/hooks/student/messages/queries/useStudentMessages";
 
 export function useUnreadMessages(role: string) {
   const isStudent = role === "student";

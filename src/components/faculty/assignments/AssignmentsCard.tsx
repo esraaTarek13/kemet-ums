@@ -1,10 +1,10 @@
 "use client";
-import { useFacultyAssignments } from "@/hooks/faculty/useAssignments";
 import AssignmentItem from "./AssignmentItem";
 import CardSkeleton from "@/components/ui/skeletons/CardSkeleton";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import SearchInput from "@/components/ui/shared/FilterBar/search/SearchInput";
 import { useState } from "react";
+import { useFacultyAssignments } from "@/hooks/faculty/assignments/queries/useFacultyAssignments";
 
 export default function AssignmentsCard() {
   const [search, setSearch] = useState("");

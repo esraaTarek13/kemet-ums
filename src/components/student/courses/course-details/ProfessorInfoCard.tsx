@@ -1,7 +1,7 @@
 "use client";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import InstructorCardSkeleton from "@/components/ui/skeletons/InstructorCardSkeleton";
-import { useStudentCourseDetails } from "@/hooks/student/useStudentCourseDetails";
+import { useStudentCourseDetails } from "@/hooks/student/courses/useStudentCourseDetails";
 import Image from "next/image";
 import { FaRegEnvelope, FaUserCircle } from "react-icons/fa";
 import { PiDoorBold } from "react-icons/pi";

@@ -1,7 +1,8 @@
+"use client";
 import StatCard from "@/components/ui/dashboard/StatCard";
 import ErrorMessage from "@/components/ui/shared/ErrorMessage";
 import StatCardSkeleton from "@/components/ui/skeletons/StatCardSkeleton";
-import { useAdminAnnouncements } from "@/hooks/admin/announcements/useAnnouncements";
+import { useAdminAnnouncements } from "@/hooks/admin/announcements/queries/useAnnouncements";
 import { mapToAdminAnnouncementsStats } from "@/lib/mappers/admin/mapToAnnouncementsStats";
 
 export default function AnnouncementsStats() {
