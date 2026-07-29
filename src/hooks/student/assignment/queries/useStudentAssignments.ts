@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuthStore } from "@/stores/authStore";
 import { getStudentAssignments } from "@/lib/services/student/assignments";
-import { studentAssignmentsKeys } from "./queries/queryKeys";
+import { studentAssignmentsKeys } from "./queryKeys";
 
 export function useStudentAssignments() {
   const { user } = useAuthStore();

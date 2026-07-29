@@ -1,6 +1,5 @@
 "use client";
 
-import { useFacultyStudentProfile } from "@/hooks/faculty/students/useFacultyStudents";
 import StudentHeader from "./StudentHeader";
 import StatCards from "./StatCards";
 import { mapToStudentProfileStats } from "@/lib/mappers/faculty/mapToStudentProfileStats";
@@ -10,6 +9,7 @@ import HeaderSkeleton from "@/components/ui/skeletons/HeaderSkeleton";
 import StatCardSkeleton from "@/components/ui/skeletons/StatCardSkeleton";
 import { TableSkeleton } from "@/components/ui/skeletons/TableSkeleton";
 import StudentBreadcrumb from "./StudentBreadcrumb";
+import { useFacultyStudentProfile } from "@/hooks/faculty/students/queries/useFacultyStudentProfile";
 
 interface studentSectionProps {
   studentId: string;

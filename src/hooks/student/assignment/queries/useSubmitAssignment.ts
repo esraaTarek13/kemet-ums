@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useAuthStore } from "@/stores/authStore";
 import { submitAssignment } from "@/lib/services/student/assignments";
-import { studentAssignmentsKeys } from "./queries/queryKeys";
+import { studentAssignmentsKeys } from "./queryKeys";
 
 export function useSubmitAssignment() {
   const { user } = useAuthStore();

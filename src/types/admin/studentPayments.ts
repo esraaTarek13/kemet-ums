@@ -31,7 +31,7 @@ export interface PaymentHistorySummary {
 
 export interface StudentPaymentHistoryStudent {
   full_name: string;
-  student_number: string;
+  student_code: string;
 }
 
 export interface StudentPaymentHistory {

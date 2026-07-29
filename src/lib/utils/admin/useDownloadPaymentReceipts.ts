@@ -12,7 +12,7 @@ function buildPaymentReceiptsPdf(history: StudentPaymentHistory): jsPDF {
 
   doc.setFontSize(11);
   doc.text(
-    `${history.student.full_name} — ${history.student.student_number}`,
+    `${history.student.full_name} — ${history.student.student_code}`,
     14,
     26,
   );
@@ -42,7 +42,7 @@ export function useDownloadPaymentReceipts() {
   return useMutation({
     mutationFn: async (history: StudentPaymentHistory) => {
       const doc = buildPaymentReceiptsPdf(history);
-      const fileName = `payment-history-${history.student.student_number}.pdf`;
+      const fileName = `payment-history-${history.student.student_code}.pdf`;
       doc.save(fileName);
       return fileName;
     },
