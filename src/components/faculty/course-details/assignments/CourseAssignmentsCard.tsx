@@ -4,7 +4,7 @@ import CourseCardSkeleton from "@/components/ui/skeletons/CourseCardSkeleton";
 import CourseAssignmentItem from "./CourseAssignmentItem";
 import AddAssignmentModal from "./AddAssignmentModal";
 import { useState } from "react";
-import { useDeleteAssignment } from "@/hooks/faculty/assignments/queries/useDeleteAssignment";
+import { useDeleteAssignment } from "@/hooks/faculty/courses/queries/useDeleteAssignment";
 import { useFacultyCourseDetail } from "@/hooks/faculty/courses/queries/useFacultyCourseDetail";
 
 interface CourseAssignmentsCardProps {

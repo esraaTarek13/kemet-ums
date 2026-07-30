@@ -16,12 +16,12 @@ export function useUpdateCourseCompletion() {
             offeringId: string;
             completion: number;
         }) => updateCourseCompletion(offeringId, completion),
-        onSuccess: () => {
+        onSuccess: (_data, variables) => {
             queryClient.invalidateQueries({
-                queryKey: facultyCoursesKeys.list(user?.id),
+                queryKey: facultyCoursesKeys.all,
             });
             queryClient.invalidateQueries({
-                queryKey: facultyCoursesKeys.detail(user?.id),
+                queryKey: facultyCoursesKeys.detail(user?.id, variables.offeringId),
             });
             toast.success("Course completion updated");
         },

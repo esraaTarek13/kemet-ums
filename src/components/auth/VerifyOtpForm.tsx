@@ -8,7 +8,8 @@ import { Controller } from "react-hook-form";
 import { useVerifyOtpForm } from "@/hooks/auth/useVerifyOtpForm";
 
 export default function VerifyOtpForm() {
-  const { control, errors, isResending, onSubmit, resend } = useVerifyOtpForm();
+  const { control, errors, isResending, onSubmit, resend, isVerifying } =
+    useVerifyOtpForm();
 
   return (
     <form
@@ -65,7 +66,7 @@ export default function VerifyOtpForm() {
           </p>
         )}
 
-        <AuthBtn content="Verify Code" />
+        <AuthBtn content="Verify Code" isPending={isVerifying} />
       </div>
 
       {/* Resend & back link */}

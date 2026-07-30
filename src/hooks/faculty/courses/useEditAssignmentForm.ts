@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { format, parseISO } from "date-fns";
-import { useUpdateAssignment } from "../assignments/queries/useUpdateAssignment";
+import { useUpdateAssignment } from "./queries/useUpdateAssignment";
 
 export function useEditAssignmentForm(
   assignment: FacultyAssignment,

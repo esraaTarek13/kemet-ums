@@ -5,7 +5,7 @@ import { useResetPasswordForm } from "@/hooks/auth/useResetPasswordForm";
 
 /** Reset password form — validates and submits new password with confirmation. */
 export default function ResetPasswordForm() {
-  const { register, errors, onSubmit } = useResetPasswordForm();
+  const { register, errors, onSubmit, isPending } = useResetPasswordForm();
 
   return (
     <form
@@ -32,7 +32,7 @@ export default function ResetPasswordForm() {
           {...register("confirmPassword")}
           error={errors.confirmPassword?.message}
         />
-        <AuthBtn content="Update Password" />
+        <AuthBtn content="Update Password" isPending={isPending} />
       </div>
     </form>
   );

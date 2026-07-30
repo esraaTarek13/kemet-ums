@@ -7,7 +7,7 @@ import { useForgotPasswordForm } from "@/hooks/auth/useForgotPasswordForm";
 
 /** Forgot password form — collects email and sends OTP. */
 export default function ForgotPasswordForm() {
-  const { register, errors, onSubmit } = useForgotPasswordForm();
+  const { register, errors, onSubmit, isPending } = useForgotPasswordForm();
 
   return (
     <form
@@ -29,7 +29,7 @@ export default function ForgotPasswordForm() {
           {...register("email")}
           error={errors.email?.message}
         />
-        <AuthBtn content="Send OTP" />
+        <AuthBtn content="Send OTP" isPending={isPending} />
       </div>
 
       {/* Divider & back link */}

@@ -1,20 +1,18 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useState } from "react";
 
 export function useFilePreview(file: File) {
     const isImage = file.type.startsWith("image/");
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-    // Derived value
-    const previewUrl = useMemo(
-        () => (isImage ? URL.createObjectURL(file) : null),
-        [file, isImage],
-    );
-
-    // Cleanup only — this is the legitimate use of useEffect here
     useEffect(() => {
-        return () => {
-            if (previewUrl) URL.revokeObjectURL(previewUrl);
-        };
-    }, [previewUrl]);
+        if (!isImage) return;
 
-    return { isImage, previewUrl };
+        const url = URL.createObjectURL(file);
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- syncing with Blob URL API, not derived state
+        setPreviewUrl(url);
+
+        return () => URL.revokeObjectURL(url);
+    }, [file, isImage]);
+
+    return { isImage, previewUrl: isImage ? previewUrl : null };
 }

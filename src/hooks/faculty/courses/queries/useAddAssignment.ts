@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { addAssignment } from "@/lib/services/faculty/assignments";
 import { AssignmentFormData } from "@/types";
+import { facultyCoursesKeys } from "./queryKeys";
 
 export function useAddAssignment(offeringId: string) {
     const queryClient = useQueryClient();
@@ -9,7 +10,7 @@ export function useAddAssignment(offeringId: string) {
     return useMutation({
         mutationFn: (data: AssignmentFormData) => addAssignment(offeringId, data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["faculty-course-detail"] });
+            queryClient.invalidateQueries({ queryKey: facultyCoursesKeys.detailAll });
             toast.success("Assignment added successfully");
         },
         onError: (err: Error) =>

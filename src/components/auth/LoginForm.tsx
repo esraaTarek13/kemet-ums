@@ -7,7 +7,7 @@ import { useLoginForm } from "@/hooks/auth/useLoginForm";
 
 /** Login form with role switcher, email/password fields */
 export default function LoginForm() {
-  const { register, errors, selectedRole, selectRole, onSubmit } =
+  const { register, errors, selectedRole, selectRole, onSubmit, isPending } =
     useLoginForm();
 
   return (
@@ -71,7 +71,7 @@ export default function LoginForm() {
           </Link>
         </div>
 
-        <AuthBtn content="Login" />
+        <AuthBtn content="Login" isPending={isPending} />
       </div>
     </form>
   );

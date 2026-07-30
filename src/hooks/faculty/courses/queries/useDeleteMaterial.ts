@@ -9,9 +9,7 @@ export function useDeleteMaterial() {
     return useMutation({
         mutationFn: (materialId: string) => deleteCourseMaterial(materialId),
         onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: facultyCoursesKeys.detail(),
-            });
+            queryClient.invalidateQueries({ queryKey: facultyCoursesKeys.detailAll });
             toast.success("Material deleted");
         },
         onError: (err: Error) =>

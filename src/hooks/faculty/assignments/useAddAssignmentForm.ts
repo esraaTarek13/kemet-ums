@@ -5,7 +5,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { useAddAssignment } from "./queries/useAddAssignment";
+import { useAddAssignment } from "../courses/queries/useAddAssignment";
 
 export function useAddAssignmentForm(offeringId: string, onClose: () => void) {
   const {

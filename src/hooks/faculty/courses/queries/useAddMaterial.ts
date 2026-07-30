@@ -10,9 +10,7 @@ export function useAddMaterial(offeringId: string) {
         mutationFn: ({ title, file }: { title: string; file: File }) =>
             addCourseMaterial(offeringId, title, file),
         onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: facultyCoursesKeys.detail(),
-            });
+            queryClient.invalidateQueries({ queryKey: facultyCoursesKeys.detailAll });
             toast.success("Material added successfully");
         },
         onError: (err: Error) =>

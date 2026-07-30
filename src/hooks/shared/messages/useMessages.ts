@@ -8,19 +8,27 @@ import {
   sendMessageWithFiles,
   getMessageReadStatus,
 } from "@/lib/services/shared/messages";
+import { facultyMessagesKeys } from "@/hooks/faculty/messages/queries/queryKeys";
+import { studentMessagesKeys } from "@/hooks/student/messages/queries/queryKeys";
+
 
 // Shared helper to invalidate both the course chat and the sidebar list
 function useInvalidateMessages(
   courseId: string,
   portal: "student" | "faculty",
 ) {
+  const { user } = useAuthStore();
   const queryClient = useQueryClient();
 
   return () => {
+    const keys = portal === "faculty" ? facultyMessagesKeys : studentMessagesKeys;
+
     queryClient.invalidateQueries({
-      queryKey: [`${portal}-course-messages`, courseId],
+      queryKey: keys.course(courseId),
     });
-    queryClient.invalidateQueries({ queryKey: [`${portal}-messages`] });
+    queryClient.invalidateQueries({
+      queryKey: keys.list(user?.id),
+    });
   };
 }
 
